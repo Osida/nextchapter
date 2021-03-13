@@ -2,6 +2,16 @@ import React from "react";
 import { Container } from "../../styles/utilities";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import * as S from "./FooterStyles";
+import { featureOne, featureTwo } from "../feature/homeData";
+import { ROUTES } from "../../pages";
+
+const footerLinkSProps = {
+  smooth: true,
+  duration: 500,
+  spy: true,
+  exact: "true",
+  offset: -80,
+};
 
 export default function Footer() {
   return (
@@ -9,17 +19,21 @@ export default function Footer() {
       <Container>
         <S.Wrapper>
           <S.FooterTop>
-            <S.Logo>N | nextchapter.</S.Logo>
+            <S.Logo to={ROUTES.HOME}>N | nextchapter.</S.Logo>
 
             <S.FooterMenu>
               <S.FooterItem>
-                <S.FooterLink>About</S.FooterLink>
+                <S.FooterLinkR to={ROUTES.ABOUT}>About</S.FooterLinkR>
               </S.FooterItem>
               <S.FooterItem>
-                <S.FooterLink>Access</S.FooterLink>
+                <S.FooterLinkS to={featureOne.id} {...footerLinkSProps}>
+                  Access
+                </S.FooterLinkS>
               </S.FooterItem>
               <S.FooterItem>
-                <S.FooterLink>Messaging</S.FooterLink>
+                <S.FooterLinkS to={featureTwo.id} {...footerLinkSProps}>
+                  Messaging
+                </S.FooterLinkS>
               </S.FooterItem>
             </S.FooterMenu>
           </S.FooterTop>
@@ -32,7 +46,9 @@ export default function Footer() {
             </S.CopyrightText>
 
             <S.SocialLinks>
-              <GitHubIcon />
+              <S.OutLink href="https://github.com/ewoods6/COSC484">
+                <GitHubIcon />
+              </S.OutLink>
             </S.SocialLinks>
           </S.FooterBottom>
         </S.Wrapper>

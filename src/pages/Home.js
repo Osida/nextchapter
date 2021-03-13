@@ -1,14 +1,14 @@
 import React from "react";
-import { Navbar, Hero, Feature, Footer } from "../components";
-import { featureOne, featureTwo } from "../components/feature/data";
+import { Navbar, Hero, HomeFeature, Footer } from "../components";
+import { featureOne, featureTwo } from "../components/feature/homeData";
 
 export default function Home() {
   return (
     <div className="home">
       <Navbar />
       <Hero />
-      <Feature {...featureOne} />
-      <Feature {...featureTwo} />
+      <HomeFeature {...featureOne} />
+      <HomeFeature {...featureTwo} />
       <Footer />
     </div>
   );

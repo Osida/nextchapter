@@ -11,11 +11,12 @@ export default function Button({
   children,
   to,
   padding,
-  fontSize,
-  fontWeight,
+  textSize,
+  textWeight,
+  color,
 }) {
   return (
-    <S.ButtonLink to={to} padding={padding}>
+    <S.ButtonLink to={to} padding={padding} color={color}>
       {children}
     </S.ButtonLink>
   );

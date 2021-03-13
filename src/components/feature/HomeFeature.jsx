@@ -1,11 +1,12 @@
 import React from "react";
-import { Button } from "react-scroll";
+import { LinkButton } from "..";
+import { ROUTES } from "../../pages";
 import { Container } from "../../styles/utilities";
-import * as S from "./FeatureStyles";
+import * as S from "./HomeFeatureStyles";
 
-export default function Feature(props) {
+export default function HomeFeature(props) {
   return (
-    <S.Feature bgColor={props.bgColor}>
+    <S.Feature bgColor={props.bgColor} id={props.id}>
       <Container>
         <S.Wrapper row={props.row}>
           <S.Content contentWidth={props.contentWidth}>
@@ -21,7 +22,9 @@ export default function Feature(props) {
               {props.description}
             </S.Description>
 
-            <h6 style={{ color: "black" }}>Get Started {">"}</h6>
+            <LinkButton to={ROUTES.SIGN_IN} textColor={props.linkBtnColor}>
+              {props.linkBtnText}
+            </LinkButton>
           </S.Content>
 
           <S.ImageWrap imageWrapSize={props.imageWrapSize}>

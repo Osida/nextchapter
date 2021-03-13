@@ -3,8 +3,9 @@ import * as S from "./NavbarStyles";
 import { Container } from "../../styles/utilities";
 import { ButtonLink, btnPadding } from "..";
 import { ROUTES } from "../../pages";
+import { featureOne, featureTwo } from "../feature/homeData";
 
-const navLinkProps = {
+const navLinkSProps = {
   smooth: true,
   duration: 500,
   spy: true,
@@ -17,37 +18,21 @@ export default function Navbar() {
     <S.Navbar>
       <Container>
         <S.NavWrapper>
-          <S.NavLogo>N | nextchapter</S.NavLogo>
+          <S.NavLogo to={ROUTES.HOME}>N | nextchapter</S.NavLogo>
 
           <S.NavMenu>
             <S.NavItem>
-              <S.NavLink to={ROUTES.ABOUT} {...navLinkProps}>
-                About
-              </S.NavLink>
+              <S.NavLinkR to={ROUTES.ABOUT}>About</S.NavLinkR>
             </S.NavItem>
             <S.NavItem>
-              <S.NavLink
-                to="access"
-                smooth={true}
-                duration={500}
-                spy={true}
-                exact="true"
-                offset={-80}
-              >
+              <S.NavLinkS to={featureOne.id} {...navLinkSProps}>
                 Access
-              </S.NavLink>
+              </S.NavLinkS>
             </S.NavItem>
             <S.NavItem>
-              <S.NavLink
-                to="messages"
-                smooth={true}
-                duration={500}
-                spy={true}
-                exact="true"
-                offset={-80}
-              >
+              <S.NavLinkS to={featureTwo.id} {...navLinkSProps}>
                 Messaging
-              </S.NavLink>
+              </S.NavLinkS>
             </S.NavItem>
           </S.NavMenu>
 

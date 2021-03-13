@@ -1,6 +1,4 @@
-import styled, { css } from "styled-components/macro";
-import { Link as LinkS } from "react-scroll";
-import { Link as LinkR } from "react-router-dom";
+import styled from "styled-components/macro";
 
 // style object
 export const Feature = styled.div((props) => ({

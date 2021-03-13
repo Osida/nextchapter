@@ -17,11 +17,13 @@ export const NavWrapper = styled.div`
   padding: 0.5em 0;
 `;
 
-export const NavLogo = styled.div`
+export const NavLogo = styled(LinkR)`
   font-size: 20px;
   line-height: 24.38px;
   font-weight: 700;
   cursor: pointer;
+  text-decoration: none;
+  color: white;
 `;
 
 export const NavMenu = styled.ul`
@@ -36,8 +38,19 @@ export const NavItem = styled.li`
   }
 `;
 
-export const NavLink = styled(LinkS)`
+export const NavLinkS = styled(LinkS)`
   text-decoration: none;
   font-size: 0.875rem; // 14px
   cursor: pointer;
+
+  &.active {
+    border-bottom: 3px solid #01bf71;
+  }
+`;
+
+export const NavLinkR = styled(LinkR)`
+  text-decoration: none;
+  font-size: 0.875rem; // 14px
+  cursor: pointer;
+  color: inherit;
 `;

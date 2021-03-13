@@ -35,7 +35,13 @@ export const FooterMenu = styled(Navbar.NavMenu)`
 
 export const FooterItem = styled(Navbar.NavItem)``;
 
-export const FooterLink = styled(Navbar.NavLink)``;
+export const FooterLinkS = styled(LinkS)`
+  text-decoration: none;
+  font-size: 0.875rem;
+  cursor: pointer;
+`;
+
+export const FooterLinkR = styled(Navbar.NavLinkR)``;
 
 export const Line = styled.hr`
   width: 100%;
@@ -50,5 +56,10 @@ export const CopyrightText = styled.div`
 `;
 
 export const SocialLinks = styled.div`
-    cursor: pointer;
+  cursor: pointer;
+`;
+
+export const OutLink = styled.a`
+  color: inherit;
+  text-decoration: none;
 `;
