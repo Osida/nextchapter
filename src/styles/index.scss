@@ -1,6 +1,7 @@
+@use "./fonts";
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap");
 
-/* style resets */
+// Style resets
 *,
 *::before,
 *::after {
@@ -16,8 +17,8 @@ img {
 body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
+  font-size: fonts.$default_fontSize;
+  font-weight: fonts.$default_weight;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

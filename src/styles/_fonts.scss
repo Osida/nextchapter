@@ -1,0 +1,33 @@
+/****** sizes & weights (line-height & font-size in rem) ******/
+$size_15px: 0.938rem;
+$size_21px: 1.313rem;
+$size_24px: 1.5rem;
+$size_36px: 2.25rem;
+$size_56px: 3.5rem;
+$size_80px: 5rem;
+
+$weight_700: 700;
+$weight_400: 400;
+
+/****** general ******/
+$default_weight: $weight_400;
+
+$default_fontSize: $size_15px;
+
+/****** Home ******/
+$hero_title_fontSize: $size_56px;
+$hero_title_fontWeight: $weight_700;
+$hero_title_lineHeight: $size_80px;
+
+$hero_subTitle_fontSize: $size_24px;
+$hero_subTitle_fontWeight: $weight_700;
+$hero_subTitle_lineHeight: $size_24px;
+
+// section
+$section_topLine_fontSize: $size_21px;
+$section_topLine_fontWeight: $weight_700;
+$section_topLine_lineHeight: $size_36px;
+
+$section_headLine_fontSize: $size_24px;
+
+/****** About ******/
