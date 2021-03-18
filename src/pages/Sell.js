@@ -1,11 +1,12 @@
 import React from 'react';
 import { Navbar, Footer } from '../components';
+import { SellBookForm } from '../components/forms/SellBookForm';
 
 export const Sell = () => {
   return (
-    <div>
+    <div className="sell">
       <Navbar />
-      <h1>This is the Sell page</h1>
+      <SellBookForm />
       <Footer />
     </div>
   );
