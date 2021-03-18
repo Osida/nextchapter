@@ -3,36 +3,77 @@ import * as S from './SellBookFormStyle';
 
 export const SellBookForm = () => {
   const [warning, setWarn] = useState(false);
+  const [inputs, setInput] = useState({
+    title: '',
+    author: '',
+    ispn: '',
+    edition: '',
+    publisher: '',
+    department: '',
+    courseUsedIn: '',
+  });
+  const title = inputs.title;
+  const author = inputs.author;
+  const ispn = inputs.ispn;
+  const edition = inputs.edition;
+  const publisher = inputs.publisher;
+  const department = inputs.department;
+  const courseUsedIn = inputs.courseUsedIn;
+
+  const changeTitle = (e) => {
+    setInput((prevState) => {
+      return { ...prevState, title: e.target.value };
+    });
+  };
+
+  const changeAuthor = (e) => {
+    setInput((prevState) => {
+      return { ...prevState, author: e.target.value };
+    });
+  };
+  const changeISPN = (e) => {
+    setInput((prevState) => {
+      return { ...prevState, ispn: e.target.value };
+    });
+  };
+
+  const changeEdition = (e) => {
+    setInput((prevState) => {
+      return { ...prevState, edition: e.target.value };
+    });
+  };
+  const changePublisher = (e) => {
+    setInput((prevState) => {
+      return { ...prevState, publisher: e.target.value };
+    });
+  };
+  const changeDepartment = (e) => {
+    setInput((prevState) => {
+      return { ...prevState, department: e.target.value };
+    });
+  };
+  const changeCourseUsedIn = (e) => {
+    setInput((prevState) => {
+      return { ...prevState, courseUsedIn: e.target.value };
+    });
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    let title = document.getElementById('title');
-    let author = document.getElementById('author');
-    let ispn = document.getElementById('ispn');
-    let edition = document.getElementById('edition');
-    let publisher = document.getElementById('publisher');
-    let department = document.getElementById('department');
-    let courseUsedIn = document.getElementById('courseUsedIn').value;
 
     if (
-      title.value ||
-      author.value ||
-      ispn.value ||
-      edition.value ||
-      publisher.value ||
-      department.value ||
-      courseUsedIn.value
+      title &&
+      author &&
+      ispn &&
+      edition &&
+      publisher &&
+      department &&
+      courseUsedIn
     ) {
       console.log('filled out');
-      title.value = '';
-      author.value = '';
-      ispn.value = '';
-      edition.value = '';
-      publisher.value = '';
-      department.value = '';
-      courseUsedIn.value = '';
       return;
     }
+    console.log('failed');
 
     setWarn((prewarn) => (prewarn = !prewarn));
 
@@ -59,6 +100,8 @@ export const SellBookForm = () => {
           type="text"
           id="title"
           name="title"
+          value={title}
+          onChange={changeTitle}
           placeholder="Intro to Algorithms"
         ></S.Input>
         <S.Label for="author">Author</S.Label>
@@ -66,6 +109,8 @@ export const SellBookForm = () => {
           type="text"
           id="author"
           name="author"
+          value={author}
+          onChange={changeAuthor}
           placeholder="Thomas Cormen"
         ></S.Input>
         <S.Label for="ispn">ISPN</S.Label>
@@ -73,6 +118,8 @@ export const SellBookForm = () => {
           type="number"
           id="ispn"
           name="ispn"
+          value={ispn}
+          onChange={changeISPN}
           placeholder="9780140274059"
         ></S.Input>
         <S.Label for="edition">Edition</S.Label>
@@ -80,6 +127,8 @@ export const SellBookForm = () => {
           type="number"
           id="edition"
           name="edition"
+          value={edition}
+          onChange={changeEdition}
           placeholder="3"
         ></S.Input>
         <S.Label for="publisher">Publisher</S.Label>
@@ -87,6 +136,8 @@ export const SellBookForm = () => {
           type="text"
           id="publisher"
           name="publisher"
+          value={publisher}
+          onChange={changePublisher}
           placeholder="MIT Press"
         ></S.Input>
         <S.Label for="department">Department</S.Label>
@@ -94,13 +145,17 @@ export const SellBookForm = () => {
           type="text"
           id="department"
           name="department"
+          value={department}
+          onChange={changeDepartment}
           placeholder="Computer"
         ></S.Input>
-        <S.Label for="course">Course Used In</S.Label>
+        <S.Label for="courseUsedIn">Course Used In</S.Label>
         <S.Input
           type="text"
           id="courseUsedIn"
           name="courseused"
+          value={courseUsedIn}
+          onChange={changeCourseUsedIn}
           placeholder="COSC 336"
         ></S.Input>
         <S.Label for="book-img">Choose Image of Book</S.Label>
