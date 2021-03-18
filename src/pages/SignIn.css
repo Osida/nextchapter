@@ -1,0 +1,141 @@
+
+.leftDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px 54px;
+    position: absolute;
+    width: 528px;
+    height: 600px;
+    left: 0px;
+    top: 0px;
+}
+
+.catimg {
+    position: static;
+    width: 413px;
+    height: 213px;
+    left: 54px;
+    top: 206px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 144px 0px;
+}
+
+.rightDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 64px 57px;
+    position: absolute;
+    width: 472px;
+    height: 600px;
+    left: 528px;
+    top: 0px;
+}
+
+.header {
+    position: static;
+    width: 91px;
+    height: 50px;
+    left: 190.5px;
+    top: 49px;
+    padding-bottom: 33px;
+}
+
+.header p {
+    /* Need to add font family Montserrat */
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 50px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.015em;
+    color: #000000;
+}
+
+.header2 {
+    position: static;
+    width: 269px;
+    height: 36px;
+    left: 101.5px;
+    top: 132px;
+    padding-bottom: 33px;
+}
+
+.header2 p {
+    /* Need to add font family Montserrat */
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 36px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.015em;
+    color: #000000;
+}
+
+.emailContainer {
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 15px 35px 15px 40px;
+    position: static;
+    width: 358px;
+    height: 59px;
+    left: 57px;
+    top: 201px;
+    background: #F5F5F5;
+    border-radius: 100px;
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 18px;
+}
+
+button {
+    position: static;
+    width: 87px;
+    height: 40px;
+    left: 192.5px;
+    top: 385px;
+    background: linear-gradient(0deg, #D83F87, #D83F87);
+    border-radius: 8px;
+}
+
+.forgotContainer {
+    position: static;
+    width: 262px;
+    height: 30px;
+    left: 105px;
+    top: 458px;
+}
+
+.forgotContainer a {
+    /* need font family */
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.015em;
+    color: #000000;
+}
+
+
+
+
+
