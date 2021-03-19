@@ -1,10 +1,15 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { ROUTES, Home, Main, Login, SignIn, About, Profile } from "../../pages";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { ROUTES, Home, Main, Login, SignIn, About } from '../../pages';
+
+import { Sell } from './../../pages/Sell';
+import { Buy } from './../../pages/Buy';
+import { Trade } from './../../pages/Trade';
+
 import {
   ThemeProvider as StyleThemeProvider,
   styleTheme,
-} from "../../styles/utilities";
+} from '../../styles/utilities';
 
 export default function App() {
   return (
@@ -13,23 +18,29 @@ export default function App() {
         <div className="app">
           <Router>
             <Switch>
-              <Route path={ROUTES.PROFILE}>
-                <Profile />
-              </Route>
-              <Route path={ROUTES.MAIN}>
+              <Route exact path={ROUTES.MAIN}>
                 <Main />
               </Route>
-              <Route path={ROUTES.LOGIN}>
+              <Route exact path={ROUTES.LOGIN}>
                 <Login />
               </Route>
-              <Route path={ROUTES.SIGN_IN}>
+              <Route exact path={ROUTES.SIGN_IN}>
                 <SignIn />
               </Route>
-              <Route path={ROUTES.ABOUT}>
+              <Route exact path={ROUTES.ABOUT}>
                 <About />
               </Route>
-              <Route path={ROUTES.HOME}>
+              <Route exact path={ROUTES.HOME}>
                 <Home />
+              </Route>
+              <Route exact path={ROUTES.SELL}>
+                <Sell />
+              </Route>
+              <Route exact path={ROUTES.BUY}>
+                <Buy />
+              </Route>
+              <Route exact path={ROUTES.TRADE}>
+                <Trade />
               </Route>
             </Switch>
           </Router>

@@ -1,15 +1,15 @@
-import React from "react";
-import * as S from "./NavbarStyles";
-import { Container } from "../../styles/utilities";
-import { ButtonLink, btnPadding } from "..";
-import { ROUTES } from "../../pages";
-import { featureOne, featureTwo } from "../feature/homeData";
+import React from 'react';
+import * as S from './NavbarStyles';
+import { Container } from '../../styles/utilities';
+import { ButtonLink, btnPadding } from '..';
+import { ROUTES } from '../../pages';
+import { featureOne, featureTwo } from '../feature/homeData';
 
 const navLinkSProps = {
   smooth: true,
   duration: 500,
   spy: true,
-  exact: "true",
+  exact: 'true',
   offset: -80,
 };
 
@@ -32,6 +32,15 @@ export default function Navbar() {
               <S.NavLinkS to={featureTwo.id} {...navLinkSProps}>
                 Messaging
               </S.NavLinkS>
+            </S.NavItem>
+            <S.NavItem>
+              <S.NavLinkR to={ROUTES.SELL}>Sell</S.NavLinkR>
+            </S.NavItem>
+            <S.NavItem>
+              <S.NavLinkR to={ROUTES.BUY}>Buy</S.NavLinkR>
+            </S.NavItem>
+            <S.NavItem>
+              <S.NavLinkR to={ROUTES.TRADE}>Trade</S.NavLinkR>
             </S.NavItem>
           </S.NavMenu>
 
