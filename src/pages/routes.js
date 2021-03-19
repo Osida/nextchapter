@@ -4,4 +4,5 @@ export const ROUTES = {
   SIGN_IN: "/signin",
   LOGIN: "/login",
   MAIN: "/main",
+  PROFILE: "/profile",
 };

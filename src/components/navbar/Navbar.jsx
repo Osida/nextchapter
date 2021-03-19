@@ -19,7 +19,6 @@ export default function Navbar() {
       <Container>
         <S.NavWrapper>
           <S.NavLogo to={ROUTES.HOME}>N | nextchapter</S.NavLogo>
-
           <S.NavMenu>
             <S.NavItem>
               <S.NavLinkR to={ROUTES.ABOUT}>About</S.NavLinkR>

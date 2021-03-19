@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { ROUTES, Home, Main, Login, SignIn, About } from "../../pages";
+import { ROUTES, Home, Main, Login, SignIn, About, Profile } from "../../pages";
 import {
   ThemeProvider as StyleThemeProvider,
   styleTheme,
@@ -13,6 +13,9 @@ export default function App() {
         <div className="app">
           <Router>
             <Switch>
+              <Route path={ROUTES.PROFILE}>
+                <Profile />
+              </Route>
               <Route path={ROUTES.MAIN}>
                 <Main />
               </Route>
