@@ -63,7 +63,7 @@ export const PostButton = styled.button`
   font-size: 20px;
   color: #d83f87;
   font-weight: 600;
-  background: #ccc;
+  background: #2f2f2f;
   border: 1px solid transparent;
   transition: all 0.6s ease;
   padding: 10px 8px;
