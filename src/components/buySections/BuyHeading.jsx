@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as S from './BuyHeadingStyle';
 
-export const BuyHeading = ({ button }) => {
+export const BuyHeading = ({ button, backToDept = '', backToClasses = '' }) => {
   const [buttonStatus, setButtonStatus] = useState(false);
   useEffect(() => {
     changeButton();
@@ -14,7 +14,9 @@ export const BuyHeading = ({ button }) => {
   return (
     <S.HeadingContainer>
       {buttonStatus ? (
-        <S.BackButton>Back</S.BackButton>
+        <S.BackButton onClick={backToDept ? backToDept : backToClasses}>
+          Back
+        </S.BackButton>
       ) : (
         <S.BackButton style={{ opacity: 0, pointerEvents: 'none' }}>
           Back
