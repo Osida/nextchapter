@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Navbar, Footer } from '../components';
 import { BuyDepartment } from '../components/buySections/BuyDepartment';
 import { BuyClass } from '../components/buySections/class/BuyClass';
+import { Book } from './../components/buySections/book/Book';
 
 export const Buy = () => {
   const [depStatus, setDepStatus] = useState(true);
@@ -12,107 +13,110 @@ export const Buy = () => {
     department: 'Math',
     classes: [],
   });
-  const [data, setData] = useState([
+
+  const [book, setBook] = useState({});
+  const [clss, setClss] = useState('');
+  const data = [
     {
       id: 1,
       department: 'Computer',
       classes: [
         {
-          id: 1,
+          id: 31,
           course: 'COSC 236',
           books: [
             {
-              id: 1,
+              id: 11,
               title: 'Intro to Prog',
               author: 'Eric Run',
               ispn: 123456789,
-              edition: 3,
+              edition: 'Third',
               publisher: 'McHill',
               image: '',
             },
             {
-              id: 2,
+              id: 12,
               title: 'Intro to Prog',
               author: 'Eric Run',
               ispn: 123456789,
-              edition: 3,
+              edition: 'Third',
               publisher: 'McHill',
               image: '',
             },
             {
-              id: 3,
+              id: 13,
               title: 'Intro to Prog',
               author: 'Eric Run',
               ispn: 123456789,
-              edition: 3,
+              edition: 'Fourth',
               publisher: 'McHill',
               image: '',
             },
           ],
         },
         {
-          id: 2,
+          id: 32,
           course: 'COSC 290',
           books: [
             {
-              id: 1,
+              id: 111,
               title: 'Intro to OS',
               author: 'John Doe',
               ispn: 452323213,
-              edition: 2,
+              edition: 'Second',
               publisher: 'BillBooks',
               image: '',
             },
 
             {
-              id: 2,
+              id: 211,
               title: 'Intro to OS',
               author: 'Will Snow',
               ispn: 5434974,
-              edition: 4,
+              edition: 'Fourth',
               publisher: 'JanesBooks',
               image: '',
             },
 
             {
-              id: 3,
+              id: 311,
               title: 'Intro to OS',
               author: 'John Doe',
               ispn: 452323213,
-              edition: 2,
+              edition: 'First',
               publisher: 'BillBooks',
               image: '',
             },
           ],
         },
         {
-          id: 3,
+          id: 33,
           course: 'COSC 336',
           books: [
             {
-              id: 1,
+              id: 1111,
               title: 'Intro to Algorithms',
               author: 'Thomas Kay',
               ispn: 90783462,
-              edition: 3,
+              edition: 'Third',
               publisher: 'MIT Press',
               image: '',
             },
             {
-              id: 2,
+              id: 1112,
               title: 'Intro to Algorithms',
               author: 'Jane Hill',
               ispn: 83478907,
-              edition: 6,
+              edition: 'Sixth',
               publisher: 'McRib',
               image: '',
             },
             {
-              id: 3,
+              id: 1113,
               title: 'Intro to Algorithms',
               author: 'Alex T',
               ispn: 90783462,
-              edition: 2,
+              edition: 'Second',
               publisher: 'FlyingHills',
               image: '',
             },
@@ -125,101 +129,101 @@ export const Buy = () => {
       department: 'English',
       classes: [
         {
-          id: 1,
-          course: 'Eng 190',
+          id: 21,
+          course: 'ENG 190',
           books: [
             {
-              id: 1,
+              id: 11111,
               title: 'Writing Skills',
               author: 'Eric Run',
               ispn: 123456789,
-              edition: 3,
+              edition: 'Fourth',
               publisher: 'McHill',
               image: '',
             },
             {
-              id: 2,
+              id: 11112,
               title: 'Intro To Writing',
               author: 'Emily Walk',
               ispn: 123456789,
-              edition: 2,
+              edition: 'Seventh',
               publisher: 'McHill',
               image: '',
             },
             {
-              id: 3,
+              id: 11113,
               title: 'How to Write',
               author: 'Eric Run',
               ispn: 123456789,
-              edition: 3,
+              edition: 'Sixth',
               publisher: 'McHill',
               image: '',
             },
           ],
         },
         {
-          id: 2,
-          course: 'COSC 240',
+          id: 22,
+          course: 'ENG 240',
           books: [
             {
-              id: 1,
+              id: 41,
               title: 'How to Read',
               author: 'John Doe',
               ispn: 452323213,
-              edition: 2,
+              edition: 'Second',
               publisher: 'BillBooks',
               image: '',
             },
 
             {
-              id: 2,
-              title: 'Intro to OS',
+              id: 42,
+              title: 'Intro Reading',
               author: 'Will Snow',
               ispn: 5434974,
-              edition: 4,
+              edition: 'Fourth',
               publisher: 'JanesBooks',
               image: '',
             },
 
             {
-              id: 3,
-              title: 'Intro to OS',
+              id: 43,
+              title: 'Reading Now',
               author: 'John Doe',
               ispn: 452323213,
-              edition: 2,
+              edition: 'Eighth',
               publisher: 'BillBooks',
               image: '',
             },
           ],
         },
         {
-          id: 3,
-          course: 'COSC 336',
+          id: 23,
+          course: 'ENG 317',
           books: [
             {
-              id: 1,
-              title: 'Intro to Algorithms',
+              id: 51,
+              title: 'Business Writing',
               author: 'Thomas Kay',
               ispn: 90783462,
-              edition: 3,
+              edition: 'Third',
               publisher: 'MIT Press',
               image: '',
             },
             {
-              id: 2,
-              title: 'Intro to Algorithms',
+              id: 52,
+              title: 'Intro to Business Writing',
               author: 'Jane Hill',
               ispn: 83478907,
-              edition: 6,
+              edition: 'Sixth',
               publisher: 'McRib',
               image: '',
             },
             {
-              id: 3,
-              title: 'Intro to Algorithms',
+              id: 53,
+              title: 'Writing the Business',
               author: 'Alex T',
               ispn: 90783462,
-              edition: 2,
+              edition: 'Second',
               publisher: 'FlyingHills',
               image: '',
             },
@@ -238,9 +242,9 @@ export const Buy = () => {
             {
               id: 1,
               title: 'How to Count',
-              author: 'Count Drake',
+              author: 'Count Drack',
               ispn: 123456789,
-              edition: 3,
+              edition: 'Second',
               publisher: 'McHill',
               image: '',
             },
@@ -249,7 +253,7 @@ export const Buy = () => {
               title: 'Intro to Counting',
               author: 'Emily Walk',
               ispn: 89349834,
-              edition: 2,
+              edition: 'Third',
               publisher: 'Ronald',
               image: '',
             },
@@ -258,7 +262,7 @@ export const Buy = () => {
               title: 'You want to count?',
               author: 'Bill Count',
               ispn: 29023432,
-              edition: 5,
+              edition: 'Fourth',
               publisher: 'McRib',
               image: '',
             },
@@ -273,7 +277,7 @@ export const Buy = () => {
               title: 'Intro to Calc',
               author: 'Jess Love',
               ispn: 452323213,
-              edition: 4,
+              edition: 'Ninth',
               publisher: 'BillBooks',
               image: '',
             },
@@ -283,7 +287,7 @@ export const Buy = () => {
               title: 'Guide to Calc',
               author: 'Will Snow',
               ispn: 5434974,
-              edition: 7,
+              edition: 'Tenth',
               publisher: 'JanesBooks',
               image: '',
             },
@@ -293,7 +297,7 @@ export const Buy = () => {
               title: 'Calc Fun',
               author: 'John Doe',
               ispn: 452323213,
-              edition: 2,
+              edition: 'Third',
               publisher: 'BillBooks',
               image: '',
             },
@@ -308,7 +312,7 @@ export const Buy = () => {
               title: 'Stats Guide',
               author: 'Thomas Kay',
               ispn: 90783462,
-              edition: 3,
+              edition: 'Third',
               publisher: 'MIT Press',
               image: '',
             },
@@ -317,7 +321,7 @@ export const Buy = () => {
               title: 'Got Stats',
               author: 'Jane Hill',
               ispn: 83478907,
-              edition: 6,
+              edition: 'Second',
               publisher: 'McRib',
               image: '',
             },
@@ -326,7 +330,7 @@ export const Buy = () => {
               title: 'StatsRUS',
               author: 'Alex T',
               ispn: 90783462,
-              edition: 2,
+              edition: 'Fourth',
               publisher: 'FlyingHills',
               image: '',
             },
@@ -334,23 +338,71 @@ export const Buy = () => {
         },
       ],
     },
-  ]);
+  ];
+
+  const [searchData, setData] = useState(data);
+  const [searchCourse, setCourse] = useState(department);
 
   const clickedDept = (id) => {
-    console.log(id);
-
     setDept((prev) => {
-      const d = data.filter((dept) => dept.id === id);
-      const dat = d[0];
-      return { id: dat.id, department: dat.department, classes: dat.classes };
+      const [d] = data.filter((dept) => dept.id === id);
+      return { id: d.id, department: d.department, classes: d.classes };
+    });
+    setCourse((prev) => {
+      const [d] = data.filter((dept) => dept.id === id);
+      return { id: d.id, department: d.department, classes: d.classes };
     });
 
-    changeScreen();
+    fromDeptToClasses();
   };
 
-  const changeScreen = () => {
+  const fromDeptToClasses = () => {
     setDepStatus((prev) => (prev = !depStatus));
     setClassStatus((prev) => (prev = !classStatus));
+  };
+
+  const fromClassesToDept = () => {
+    console.log('back');
+    setDepStatus((prev) => (prev = !depStatus));
+    setClassStatus((prev) => (prev = !classStatus));
+  };
+
+  const clickedBook = (id) => {
+    setBook(() => {
+      const b = searchData.filter((bk) => bk);
+    });
+  };
+
+  const fromBookToClasses = () => {
+    console.log('back to classes');
+    setClassStatus((prev) => (prev = !classStatus));
+    setBookStatus((prev) => (prev = !bookStatus));
+  };
+
+  const getClass = (e, course, bk) => {
+    setBook((prevBook) => {
+      return { ...bk };
+    });
+    setClss((prev) => (prev = course.course));
+
+    setClassStatus((prev) => (prev = !classStatus));
+    setBookStatus((prev) => (prev = !bookStatus));
+  };
+
+  const searchDept = (e) => {
+    const d = data.filter((dept) =>
+      dept.department.toLowerCase().includes(e.target.value)
+    );
+    setData((prev) => (prev = d));
+  };
+
+  const searchClass = (e, course) => {
+    const cl = department.classes.filter((cl) =>
+      cl.course.toLowerCase().includes(e.target.value)
+    );
+    setCourse((prevState) => {
+      return { ...prevState, classes: cl };
+    });
   };
 
   return (
@@ -360,14 +412,32 @@ export const Buy = () => {
         <BuyDepartment
           heading="Department"
           button={false}
-          depInfo={data}
+          depInfo={searchData}
           clickedDept={clickedDept}
+          search={searchDept}
         />
       ) : (
         ''
       )}
       {classStatus ? (
-        <BuyClass heading="Class" button={true} classInfo={department} />
+        <BuyClass
+          heading="Class"
+          button={true}
+          classInfo={searchCourse}
+          backToDept={fromClassesToDept}
+          getClass={getClass}
+          searchClass={searchClass}
+        />
+      ) : (
+        ''
+      )}
+      {bookStatus ? (
+        <Book
+          button={true}
+          clas={clss}
+          book={book}
+          backToClasses={fromBookToClasses}
+        />
       ) : (
         ''
       )}

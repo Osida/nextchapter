@@ -4,7 +4,7 @@ export const Container = styled.div`
   max-width: 1100px;
   overflow: auto;
   margin: 2em auto;
-  padding: 1em 1em 2em;
+  padding: 1em 2em 3em;
   background-color: #ebebeb;
   display: flex;
   align-items: center;
@@ -20,7 +20,7 @@ export const Header = styled.h1`
 `;
 
 export const Form = styled.form`
-  width: 90%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,15 +31,18 @@ export const Label = styled.label`
   align-items: flex-end;
   margin-top: 20px;
   margin-bottom: 5px;
+  padding-left: 20px;
 `;
 
 export const Input = styled.input`
-  padding: 12px 10px;
+  padding: 12px 20px;
   background: #c4c4c4;
   outline: 0;
   border: 1px solid transparent;
   font-size: 18px;
   transition: all 0.4s ease;
+  width: 100%;
+  border-radius: 0;
 
   &:hover,
   :focus {
@@ -52,6 +55,11 @@ export const InputFile = styled.input`
   border: none;
   margin-top: 8px;
   font-size: 24px;
+  width: 100%;
+  background: transparent;
+  padding: 0;
+  padding-left: 20px;
+  border-radius: 0;
 
   &:hover {
     cursor: pointer;
@@ -67,6 +75,7 @@ export const PostButton = styled.button`
   border: 1px solid transparent;
   transition: all 0.6s ease;
   padding: 10px 8px;
+  width: 100%;
 
   &:hover,
   :active,

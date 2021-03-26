@@ -95,7 +95,7 @@ export const SellBookForm = () => {
       )}
       <S.Header id="form-container">Sell Books</S.Header>
       <S.Form method="POST" onSubmit={(e) => onSubmit(e)}>
-        <S.Label for="title">Book Title</S.Label>
+        <S.Label HTMLFor="title">Book Title</S.Label>
         <S.Input
           type="text"
           id="title"
@@ -104,7 +104,7 @@ export const SellBookForm = () => {
           onChange={changeTitle}
           placeholder="Intro to Algorithms"
         ></S.Input>
-        <S.Label for="author">Author</S.Label>
+        <S.Label HTMLFor="author">Author</S.Label>
         <S.Input
           type="text"
           id="author"
@@ -113,7 +113,7 @@ export const SellBookForm = () => {
           onChange={changeAuthor}
           placeholder="Thomas Cormen"
         ></S.Input>
-        <S.Label for="ispn">ISPN</S.Label>
+        <S.Label HTMLFor="ispn">ISPN</S.Label>
         <S.Input
           type="number"
           id="ispn"
@@ -122,16 +122,16 @@ export const SellBookForm = () => {
           onChange={changeISPN}
           placeholder="9780140274059"
         ></S.Input>
-        <S.Label for="edition">Edition</S.Label>
+        <S.Label HTMLFor="edition">Edition</S.Label>
         <S.Input
-          type="number"
+          type="text"
           id="edition"
           name="edition"
           value={edition}
           onChange={changeEdition}
           placeholder="3"
         ></S.Input>
-        <S.Label for="publisher">Publisher</S.Label>
+        <S.Label HTMLFor="publisher">Publisher</S.Label>
         <S.Input
           type="text"
           id="publisher"
@@ -140,7 +140,7 @@ export const SellBookForm = () => {
           onChange={changePublisher}
           placeholder="MIT Press"
         ></S.Input>
-        <S.Label for="department">Department</S.Label>
+        <S.Label HTMLFor="department">Department</S.Label>
         <S.Input
           type="text"
           id="department"
@@ -149,7 +149,7 @@ export const SellBookForm = () => {
           onChange={changeDepartment}
           placeholder="Computer"
         ></S.Input>
-        <S.Label for="courseUsedIn">Course Used In</S.Label>
+        <S.Label HTMLFor="courseUsedIn">Course Used In</S.Label>
         <S.Input
           type="text"
           id="courseUsedIn"
@@ -158,7 +158,7 @@ export const SellBookForm = () => {
           onChange={changeCourseUsedIn}
           placeholder="COSC 336"
         ></S.Input>
-        <S.Label for="book-img">Choose Image of Book</S.Label>
+        <S.Label HTMLFor="book-img">Choose Image of Book</S.Label>
         <S.InputFile type="file" accept="image/png, image/jpeg"></S.InputFile>
         <S.PostButton type="submit">Post Book</S.PostButton>
       </S.Form>
