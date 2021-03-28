@@ -1,25 +1,29 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { ROUTES, Home, Main, Login, SignIn, About } from '../../pages';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { ROUTES, Home, Main, Login, SignIn, About, Profile } from "../../pages";
 
-import { Sell } from './../../pages/Sell';
-import { Buy } from './../../pages/Buy';
-import { Trade } from './../../pages/Trade';
+import { Sell } from "./../../pages/Sell";
+import { Buy } from "./../../pages/Buy";
+import { Trade } from "./../../pages/Trade";
 
-import {
-  ThemeProvider as StyleThemeProvider,
-  styleTheme,
-} from '../../styles/utilities';
+import { ThemeProvider, styleTheme } from "../../styles/utilities";
+import Test from "../../pages/Test";
 
 export default function App() {
   return (
     <>
-      <StyleThemeProvider theme={styleTheme}>
+      <ThemeProvider theme={styleTheme}>
         <div className="app">
           <Router>
             <Switch>
+              <Route exact path="/test">
+                <Test />
+              </Route>
               <Route exact path={ROUTES.MAIN}>
                 <Main />
+              </Route>
+              <Route exact path={ROUTES.PROFILE}>
+                <Profile />
               </Route>
               <Route exact path={ROUTES.LOGIN}>
                 <Login />
@@ -45,7 +49,7 @@ export default function App() {
             </Switch>
           </Router>
         </div>
-      </StyleThemeProvider>
+      </ThemeProvider>
     </>
   );
 }

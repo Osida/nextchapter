@@ -1,10 +1,11 @@
 import React from "react";
-import { Navbar, Footer } from "../components";
+import { Navbar, Footer, Profile } from "../components";
 
-export default function Profile() {
+export default function ProfilePage() {
   return (
     <div className="profile">
       <Navbar />
+      <Profile />
       <Footer />
     </div>
   );

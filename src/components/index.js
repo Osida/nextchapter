@@ -5,6 +5,9 @@ export { default as Hero } from "./hero/Hero";
 export { default as HomeFeature } from "./feature/HomeFeature";
 export { default as Footer } from "./footer/Footer";
 export { default as Slogan } from "./slogan/Slogan";
+export { default as Profile } from "./profile/Profile";
+export { default as ProfileBanner } from "./profileBanner/ProfileBanner";
+export { default as Input } from "./input/Input";
 
 export { default as ButtonLink } from "./button/Button";
 export { btnPadding } from "./button/Button";
