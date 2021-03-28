@@ -4,7 +4,6 @@ import { ROUTES, Home, Main, Login, SignIn, About } from '../../pages';
 
 import { Sell } from './../../pages/Sell';
 import { Buy } from './../../pages/Buy';
-import { Trade } from './../../pages/Trade';
 
 import {
   ThemeProvider as StyleThemeProvider,
@@ -38,9 +37,6 @@ export default function App() {
               </Route>
               <Route exact path={ROUTES.BUY}>
                 <Buy />
-              </Route>
-              <Route exact path={ROUTES.TRADE}>
-                <Trade />
               </Route>
             </Switch>
           </Router>

@@ -35,13 +35,10 @@ export default function Navbar() {
               </S.NavLinkS>
             </S.NavItem>
             <S.NavItem>
-              <S.NavLinkR to={ROUTES.SELL}>Sell</S.NavLinkR>
+              <S.NavLinkR to={ROUTES.SELL}>Post Book</S.NavLinkR>
             </S.NavItem>
             <S.NavItem>
-              <S.NavLinkR to={ROUTES.BUY}>Buy</S.NavLinkR>
-            </S.NavItem>
-            <S.NavItem>
-              <S.NavLinkR to={ROUTES.TRADE}>Trade</S.NavLinkR>
+              <S.NavLinkR to={ROUTES.BUY}>Buy / Trade</S.NavLinkR>
             </S.NavItem>
           </S.NavMenu>
 

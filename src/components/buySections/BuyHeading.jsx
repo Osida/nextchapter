@@ -22,7 +22,7 @@ export const BuyHeading = ({ button, backToDept = '', backToClasses = '' }) => {
           Back
         </S.BackButton>
       )}
-      <S.Heading>Buy Books</S.Heading>
+      <S.Heading>Buy or Trade a Book</S.Heading>
     </S.HeadingContainer>
   );
 };

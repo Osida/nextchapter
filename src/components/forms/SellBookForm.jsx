@@ -93,7 +93,7 @@ export const SellBookForm = () => {
           Make Sure All Fields Are Filled Out and In Correct Format
         </S.WarningDiv>
       )}
-      <S.Header id="form-container">Sell Books</S.Header>
+      <S.Header id="form-container">Post a Book for Sale or Trade</S.Header>
       <S.Form method="POST" onSubmit={(e) => onSubmit(e)}>
         <S.Label HTMLFor="title">Book Title</S.Label>
         <S.Input
@@ -158,6 +158,26 @@ export const SellBookForm = () => {
           onChange={changeCourseUsedIn}
           placeholder="COSC 336"
         ></S.Input>
+        <S.SaleOrTradeContainer>
+          <S.Label>Sell or Trade</S.Label>
+          <S.RadioButtonContainer>
+            <S.RadioButton
+              type="radio"
+              name="type"
+              value="sell"
+              id="type"
+              defaultChecked
+            ></S.RadioButton>
+            <S.RadioLabel HMLTFor="type">Sell</S.RadioLabel>
+            <S.RadioButton
+              type="radio"
+              name="type"
+              value="trade"
+              id="type"
+            ></S.RadioButton>
+            <S.RadioLabel HMLTFor="type">Trade</S.RadioLabel>
+          </S.RadioButtonContainer>
+        </S.SaleOrTradeContainer>
         <S.Label HTMLFor="book-img">Choose Image of Book</S.Label>
         <S.InputFile type="file" accept="image/png, image/jpeg"></S.InputFile>
         <S.PostButton type="submit">Post Book</S.PostButton>

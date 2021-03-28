@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './BuyClassStyle';
 import { Books } from './Books';
 
-export const Class = ({ course, getClass }) => {
+export const Class = ({ filter, course, getClass }) => {
+  const books =
+    filter === 'both'
+      ? course.books
+      : course.books.filter((book) => book.type === filter);
+
   return (
     <S.ClassContainer>
       <S.ClassTitle>{course.course}</S.ClassTitle>
       <S.BooksContainer>
-        {course.books.map((book) => (
+        {books.map((book) => (
           <Books
             key={Math.floor(Math.random() * 10000)}
             book={book}

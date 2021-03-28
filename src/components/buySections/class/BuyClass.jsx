@@ -21,6 +21,7 @@ export const BuyClass = ({
         searchClass={searchClass}
         classInfo={classInfo}
       />
+
       <ClassList classes={classInfo.classes} getClass={getClass} />
     </S.Container>
   );

@@ -13,6 +13,7 @@ export const HeadingContainer = styled.div`
 export const Heading = styled.div`
   font-size: 48px;
   color: #d83f87;
+  white-space: nowrap;
 `;
 
 export const BackButton = styled.button`
@@ -24,6 +25,7 @@ export const BackButton = styled.button`
   outline: 0;
   border: none;
   width: 100px;
+  justify-self: start;
 
   &:hover {
     color: #d83f87;

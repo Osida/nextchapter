@@ -50,6 +50,32 @@ export const Input = styled.input`
   }
 `;
 
+export const SaleOrTradeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const RadioButtonContainer = styled.div`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-top: 0;
+  padding-left: 20px;
+`;
+
+export const RadioLabel = styled.label`
+  margin: 0 8px;
+  font-size: 18px;
+`;
+
+export const RadioButton = styled.input`
+  width: 20px;
+
+  &:last-of-type {
+    margin-left: 20px;
+  }
+`;
+
 export const InputFile = styled.input`
   outline: 0;
   border: none;
