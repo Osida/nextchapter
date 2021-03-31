@@ -1,51 +1,47 @@
-import React from 'react';
-import * as S from './NavbarStyles';
-import { Container } from '../../styles/utilities';
-import { ButtonLink, btnPadding } from '..';
-import { ROUTES } from '../../pages';
-import { featureOne, featureTwo } from '../feature/homeData';
+import React, { useState } from "react";
+import { ROUTES } from "../../pages";
+import Btn, { color, size } from "../button/Btn";
+import { Spin as Hamburger } from "hamburger-react";
+import * as S from "./NavbarStyles";
+import { Container } from "../../styles";
 
-const navLinkSProps = {
-  smooth: true,
-  duration: 500,
-  spy: true,
-  exact: 'true',
-  offset: -80,
-};
+export default function Navbar_({ linkR, linkS }) {
+  const [isOpen, setOpen] = useState(false);
 
-export default function Navbar() {
   return (
     <S.Navbar>
       <Container>
-        <S.NavWrapper>
-          <S.NavLogo to={ROUTES.HOME}>N | nextchapter</S.NavLogo>
+        <S.NavbarContent>
+          <S.NavbarLogo to={ROUTES.HOME}>N | nextchapter.</S.NavbarLogo>
 
-          <S.NavMenu>
-            <S.NavItem>
-              <S.NavLinkR to={ROUTES.ABOUT}>About</S.NavLinkR>
-            </S.NavItem>
-            <S.NavItem>
-              <S.NavLinkS to={featureOne.id} {...navLinkSProps}>
-                Access
-              </S.NavLinkS>
-            </S.NavItem>
-            <S.NavItem>
-              <S.NavLinkS to={featureTwo.id} {...navLinkSProps}>
-                Messaging
-              </S.NavLinkS>
-            </S.NavItem>
-            <S.NavItem>
-              <S.NavLinkR to={ROUTES.SELL}>Post Book</S.NavLinkR>
-            </S.NavItem>
-            <S.NavItem>
-              <S.NavLinkR to={ROUTES.BUY}>Buy / Trade</S.NavLinkR>
-            </S.NavItem>
-          </S.NavMenu>
+          <S.NavbarMenu>
+            {Object.values(linkR).map((link, index) => (
+              <S.NavbarItem key={index}>
+                <S.NavbarLinkR to={link.to}>{link.name}</S.NavbarLinkR>
+              </S.NavbarItem>
+            ))}
 
-          <ButtonLink to={ROUTES.SIGN_IN} padding={btnPadding.md}>
-            Sign in
-          </ButtonLink>
-        </S.NavWrapper>
+            {Object.values(linkS).map((link, index) => (
+              <S.NavbarItem key={index}>
+                <S.NavbarLinkS to={link.to} {...link.restProps}>
+                  {link.name}
+                </S.NavbarLinkS>
+              </S.NavbarItem>
+            ))}
+          </S.NavbarMenu>
+
+          <S.NavbarBtnWrap>
+            <S.NavbarTextLink to={ROUTES.SIGN_IN}>Sign in</S.NavbarTextLink>
+            <S.Divider>|</S.Divider>
+            <Btn to={ROUTES.SIGN_UP} color={{ ...color.primary }}>
+              Sign up
+            </Btn>
+          </S.NavbarBtnWrap>
+
+          <S.HamburgerWrap>
+            <Hamburger toggled={isOpen} toggle={setOpen} size={25} />
+          </S.HamburgerWrap>
+        </S.NavbarContent>
       </Container>
     </S.Navbar>
   );

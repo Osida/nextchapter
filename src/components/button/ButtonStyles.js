@@ -17,7 +17,7 @@ export const ButtonLink = styled(LinkR)`
   text-decoration: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  padding: ${(props) => props.padding};
+  padding: ${({padding}) => padding};
 
   &:hover {
     transition: all 0.2s ease-in-out;

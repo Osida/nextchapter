@@ -1,6 +1,4 @@
 import styled from "styled-components/macro";
-import { Link as LinkS } from "react-scroll";
-import { Link as LinkR } from "react-router-dom";
 
 export const Hero = styled.div`
   background-color: ${(props) => props.theme.purpleGem};
@@ -14,7 +12,8 @@ export const HeroWrapper = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  min-height: 70vh;
+  /* min-height: 70vh; */
+  min-height: 90vh;
 `;
 
 export const Content = styled.div`
