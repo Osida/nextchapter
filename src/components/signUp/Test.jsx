@@ -3,7 +3,6 @@ import { Btn, btnColor, btnSize, Input } from "..";
 import { ROUTES } from "../../pages";
 import * as S from "./SignUpFormStyles";
 import { useAuth } from "../../context/AuthContext";
-import { ContactSupportOutlined } from "@material-ui/icons";
 
 export default function SignUpForm({ data }) {
   const firstNameRef = useRef();
@@ -16,23 +15,18 @@ export default function SignUpForm({ data }) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { signUp, currentUser } = useAuth();
+  const { signUp } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // console.log("handleSubmit");
-    // console.log(firstNameRef.current.value);
-    // console.log(lastNameRef.current.value);
-    // console.log(phoneNumberRef.current.value);
-    // console.log(universityRef.current.value);
-    // console.log(studentEmailRef.current.value);
-    // console.log(passwordRef.current.value);
+    console.log("handleSubmit");
+    console.log(firstNameRef);
 
     // validation(s)
-    if (passwordRef.current.value < 8) {
-      return setError("Password length is less than 8 characters");
-    }
+    // if (passwordRef.current.value > 8) {
+    //   return setError("Password length is less than 8 characters");
+    // }
 
     try {
       setError("");
@@ -58,9 +52,9 @@ export default function SignUpForm({ data }) {
 
   return (
     <>
+
       <S.SignUpForm>
         {error && alert("Error")}
-        {console.log("currentUser.email = ", currentUser?.email)}
         <S.SignUpLeft>
           <S.LinkWrap to={data.homeLinkTo}>{data.homeLinkText}</S.LinkWrap>
           <S.SignUpImage src={data.signUpImage} alt={data.signUpImageAlt} />
@@ -122,15 +116,14 @@ export default function SignUpForm({ data }) {
             </S.Row1>
 
             <S.BtnWrap>
-              {/* <Btn
+              <Btn
                 disabled={loading}
                 color={{ ...btnColor.primary }}
                 size={{ ...btnSize.md }}
                 type="submit"
               >
                 {data.btnText}
-              </Btn> */}
-              <button type="submit">Submit</button>
+              </Btn>
             </S.BtnWrap>
           </S.Form>
 

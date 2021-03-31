@@ -4,9 +4,27 @@ import Btn, { color, size } from "../button/Btn";
 import { Spin as Hamburger } from "hamburger-react";
 import * as S from "./NavbarStyles";
 import { Container } from "../../styles";
+import { useAuth } from "../../context/AuthContext";
+import { useHistory } from "react-router";
 
 export default function Navbar_({ linkR, linkS }) {
   const [isOpen, setOpen] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { signOut, currentUser } = useAuth();
+  const history = useHistory();
+
+  // sign out
+  const handleSignOut = async () => {
+    setError("");
+
+    try {
+      await signOut();
+      history.pushState("/signin");
+    } catch (error) {
+      setError("");
+    }
+  };
 
   return (
     <S.Navbar>

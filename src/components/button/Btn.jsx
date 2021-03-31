@@ -1,10 +1,10 @@
 import React from "react";
 import * as S from "./BtnStyles";
 
-export default function Btn({ children, color, size, to }) {
+export default function Btn({ children, color, size, to, ...restProps }) {
   return (
     <>
-      <S.Button to={to} {...color} {...size}>
+      <S.Button to={to} {...color} {...size} {...restProps}>
         {children}
       </S.Button>
     </>

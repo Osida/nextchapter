@@ -14,6 +14,8 @@ export const SignUpForm = styled.div`
   /* margin: 2em 2em; */
 `;
 
+export const Form = styled.form``;
+
 export const SignUpLeft = styled.div`
   /* background-color: lightblue; */
   width: 45%;
