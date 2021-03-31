@@ -1,8 +1,8 @@
 import React from "react";
-import { LinkButton } from "..";
-import { ROUTES } from "../../pages";
-import { Container } from "../../styles/utilities";
+import { ROUTES } from "../../../pages";
 import * as S from "./HomeFeatureStyles";
+import { Container } from "../../../styles";
+import { BtnLink, btnLinkColor } from "../..";
 
 export default function HomeFeature(props) {
   return (
@@ -22,9 +22,12 @@ export default function HomeFeature(props) {
               {props.description}
             </S.Description>
 
-            <LinkButton to={ROUTES.SIGN_IN} textColor={props.linkBtnColor}>
+            {/* <LinkButton to={ROUTES.SIGN_IN} textColor={props.linkBtnColor}>
               {props.linkBtnText}
-            </LinkButton>
+            </LinkButton> */}
+            <BtnLink color={props.btnLinkColor} to={ROUTES.SIGN_IN}>
+              {props.btnLinkText}
+            </BtnLink>
           </S.Content>
 
           <S.ImageWrap imageWrapSize={props.imageWrapSize}>

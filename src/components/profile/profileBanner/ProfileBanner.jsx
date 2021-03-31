@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "../../styles/utilities";
+import { Container } from "../../../styles";
 import * as S from "./ProfileBannerStyles";
 
 export default function ProfileBanner() {

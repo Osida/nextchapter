@@ -28,7 +28,8 @@ export const color = {
 
 export const size = {
   sm: {
-    max_width: "81px",
+    // max_width: "81px",
+    max_width: "auto",
     max_height: "28px",
     padding: "6px 14px",
     border_radius: "8px",
@@ -36,7 +37,8 @@ export const size = {
     font_weight: "700",
   },
   lg: {
-    max_width: "140px",
+    // max_width: "140px",
+    max_width: "auto",
     max_height: "62px",
     padding: "16px 26px",
     border_radius: "8px",

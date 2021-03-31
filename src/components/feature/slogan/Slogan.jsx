@@ -1,6 +1,6 @@
 import React from "react";
+import { Container } from "../../../styles";
 import * as S from "./SloganStyles";
-import { Container } from "../../styles/utilities";
 
 export default function Slogan() {
   return (

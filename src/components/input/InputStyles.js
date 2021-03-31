@@ -1,17 +1,17 @@
 import styled from "styled-components/macro";
 
 export const Input = styled.input`
-  border-radius: 100px;
-  border: 1px solid rgba(225, 225, 225, 0.3);
-  outline: none;
-  color: #99a3ba;
-  background: linear-gradient(0deg, #f0f0f0, #f0f0f0);
-  display: flex;
-  align-items: center;
-  transition: all 0.2s ease;
-  margin: 0;
-
-  &:focus {
-    border-color: ${(props) => props.theme.christmasPink};
-  }
+  border-radius: 50px;
+  border: 1px solid #d9d9d9;
+  /* outline: none; */
+  outline-width: 0;
+  color: #1f1f1f;
+  /* color: #f0f0f0; */
+  background: #f0f0f0;
+  /* display: flex;
+  align-items: center; */
+  padding: 0 2.5em;
+  max-height: 50px;
+  width: 100%;
+  /* max-width: 443px; */
 `;

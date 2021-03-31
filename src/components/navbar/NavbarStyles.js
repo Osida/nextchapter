@@ -1,56 +1,89 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 import { Link as LinkS } from "react-scroll";
 import { Link as LinkR } from "react-router-dom";
 
-export const Navbar = styled.div`
-  max-height: 72px;
-  box-shadow: 0px 4px 4px 0px #000000 25%;
-  color: white;
-  background-color: ${(props) => props.theme.gunpowderGray};
+// CSS helper functions from styled components
+export const linkHoverStyles = css`
+  &:hover,
+  &:focus,
+  &:active {
+    color: ${({ theme }) => theme.christmasPink};
+    border-bottom: 3px solid ${({ theme }) => theme.christmasPink};
+  }
 `;
 
-export const NavWrapper = styled.div`
+const mobileNavBar = css`
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`;
+
+export const Navbar = styled.nav`
+  width: 100%;
+  max-height: 75px;
+  /* padding: 15px 0; */
+  padding: 0.8em 0;
+  color: white;
+  background: ${({ theme }) => theme.gunpowderGray};
+  overflow: hidden;
+  font-size: 14px;
+`;
+
+export const NavbarContent = styled.div`
   display: flex;
-  flex-direction: row;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  padding: 0.5em 0;
+  overflow: hidden;
 `;
 
-export const NavLogo = styled(LinkR)`
+export const NavbarLogo = styled(LinkR)`
   font-size: 20px;
-  line-height: 24.38px;
-  font-weight: 700;
-  cursor: pointer;
-  text-decoration: none;
-  color: white;
+  font-weight: 400;
 `;
 
-export const NavMenu = styled.ul`
+export const NavbarMenu = styled.ul`
   display: flex;
   align-items: center;
-  list-style: none;
+  margin: 0 auto;
+
+  ${mobileNavBar}
 `;
 
-export const NavItem = styled.li`
+export const NavbarItem = styled.li`
   & + & {
-    margin-left: 3em;
+    margin-left: 65px;
   }
+
+  transition: all 0.2s ease-in-out;
+
+  ${linkHoverStyles}
 `;
 
-export const NavLinkS = styled(LinkS)`
-  text-decoration: none;
-  font-size: 0.875rem; // 14px
-  cursor: pointer;
+export const NavbarLinkS = styled(LinkS)``;
 
-  &.active {
-    border-bottom: 3px solid #01bf71;
-  }
+export const NavbarLinkR = styled(LinkR)``;
+
+export const NavbarBtnWrap = styled.div`
+  display: flex;
+  align-items: center;
+
+  ${mobileNavBar}
 `;
 
-export const NavLinkR = styled(LinkR)`
-  text-decoration: none;
-  font-size: 0.875rem; // 14px
-  cursor: pointer;
-  color: inherit;
+export const NavbarTextLink = styled(LinkR)`
+  transition: all 0.2s ease-in-out;
+
+  ${linkHoverStyles}
+`;
+
+export const Divider = styled.span`
+  margin: 0 20px;
+`;
+
+export const HamburgerWrap = styled.span`
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
 `;

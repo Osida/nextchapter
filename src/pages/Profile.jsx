@@ -6,7 +6,7 @@ export default function ProfilePage() {
     <div className="profile">
       <Navbar />
       <Profile />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

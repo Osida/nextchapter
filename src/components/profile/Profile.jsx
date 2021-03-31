@@ -1,7 +1,7 @@
 import React from "react";
-import { Container } from "../../styles/utilities";
+import { ProfileBanner, Input, Btn } from "..";
 import * as S from "./ProfileStyles";
-import { ProfileBanner, Input, ButtonLink, btnPadding } from "..";
+import { Container } from "../../styles";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import LockIcon from "@material-ui/icons/Lock";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
@@ -91,8 +91,8 @@ export default function Profile() {
           <S.Divider />
 
           <S.BtnWrap>
-            <ButtonLink padding={btnPadding.sm}>Save changes</ButtonLink>
-            <ButtonLink padding={btnPadding.sm}>Delete account</ButtonLink>
+            {/* <ButtonLink padding={btnPadding.sm}>Save changes</ButtonLink>
+            <ButtonLink padding={btnPadding.sm}>Delete account</ButtonLink> */}
           </S.BtnWrap>
         </S.ProfileForm>
       </Container>

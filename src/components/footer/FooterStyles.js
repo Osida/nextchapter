@@ -1,65 +1,65 @@
-import styled, { css } from "styled-components/macro";
-import { Link as LinkS } from "react-scroll";
-import { Link as LinkR } from "react-router-dom";
-import * as Navbar from "../navbar/NavbarStyles";
+// import styled, { css } from "styled-components/macro";
+// import { Link as LinkS } from "react-scroll";
+// import { Link as LinkR } from "react-router-dom";
+// import * as Navbar from "../navbar/NavbarStyles";
 
-export const Footer = styled.div`
-  color: #d9dbe1;
-  background-color: ${(props) => props.theme.gunpowderGray};
-`;
+// export const Footer = styled.div`
+//   color: #d9dbe1;
+//   background-color: ${(props) => props.theme.gunpowderGray};
+// `;
 
-export const Wrapper = styled.div`
-  padding: 1em 0;
-`;
+// export const Wrapper = styled.div`
+//   padding: 1em 0;
+// `;
 
-export const FooterTop = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+// export const FooterTop = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// `;
 
-export const FooterBottom = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
+// export const FooterBottom = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+// `;
 
-export const Logo = styled(Navbar.NavLogo)`
-  margin-top: 39px;
-  margin-bottom: 39px;
-`;
+// export const Logo = styled(Navbar.NavLogo)`
+//   margin-top: 39px;
+//   margin-bottom: 39px;
+// `;
 
-export const FooterMenu = styled(Navbar.NavMenu)`
-  margin-bottom: 34px;
-`;
+// export const FooterMenu = styled(Navbar.NavMenu)`
+//   margin-bottom: 34px;
+// `;
 
-export const FooterItem = styled(Navbar.NavItem)``;
+// export const FooterItem = styled(Navbar.NavItem)``;
 
-export const FooterLinkS = styled(LinkS)`
-  text-decoration: none;
-  font-size: 0.875rem;
-  cursor: pointer;
-`;
+// export const FooterLinkS = styled(LinkS)`
+//   text-decoration: none;
+//   font-size: 0.875rem;
+//   cursor: pointer;
+// `;
 
-export const FooterLinkR = styled(Navbar.NavLinkR)``;
+// export const FooterLinkR = styled(Navbar.NavLinkR)``;
 
-export const Line = styled.hr`
-  width: 100%;
-  opacity: 20%;
-  border: 0.5px solid white;
-  margin-bottom: 34px;
-`;
+// export const Line = styled.hr`
+//   width: 100%;
+//   opacity: 20%;
+//   border: 0.5px solid white;
+//   margin-bottom: 34px;
+// `;
 
-export const CopyrightText = styled.div`
-  font-size: 12px;
-  line-height: 22px;
-`;
+// export const CopyrightText = styled.div`
+//   font-size: 12px;
+//   line-height: 22px;
+// `;
 
-export const SocialLinks = styled.div`
-  cursor: pointer;
-`;
+// export const SocialLinks = styled.div`
+//   cursor: pointer;
+// `;
 
-export const OutLink = styled.a`
-  color: inherit;
-  text-decoration: none;
-`;
+// export const OutLink = styled.a`
+//   color: inherit;
+//   text-decoration: none;
+// `;

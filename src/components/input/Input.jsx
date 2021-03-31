@@ -1,8 +1,10 @@
 import React from "react";
 import * as S from "./InputStyles";
 
-export default function Input(props) {
+export default function Input({ ...restProps }) {
   return (
-    <S.Input type={props.type} placeholder={props.placeholder} id={props.id} />
+    <>
+      <S.Input {...restProps} />
+    </>
   );
 }

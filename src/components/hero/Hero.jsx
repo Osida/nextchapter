@@ -1,8 +1,7 @@
 import React from "react";
-import { ButtonLink } from "..";
+import { Btn, btnColor, btnSize } from "..";
 import { ROUTES } from "../../pages";
-import { Container } from "../../styles/utilities";
-import { btnPadding } from "../button/Button";
+import { Container } from "../../styles";
 import * as S from "./HeroStyles";
 
 const image = "/images/undraw_book_lover.svg";
@@ -19,9 +18,14 @@ export default function Hero() {
                 One location for all of your course textbooks.
               </S.HeroSubTitle>
             </S.TextWrap>
-            <ButtonLink to={ROUTES.SIGN_IN} padding={btnPadding.lg}>
+
+            <Btn
+              color={{ ...btnColor.primary }}
+              size={{ ...btnSize.lg }}
+              to={ROUTES.SIGN_IN}
+            >
               Join Today
-            </ButtonLink>
+            </Btn>
           </S.Content>
 
           <S.ImageWrap>

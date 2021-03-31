@@ -2,10 +2,10 @@ import React from "react";
 import * as S from "./BtnLinkStyles";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 
-export default function BtnLink({ children, color, size }) {
+export default function BtnLink({ children, color, size, to }) {
   return (
     <>
-      <S.ButtonLink {...color} {...size}>
+      <S.ButtonLink {...color} {...size} to={to}>
         <S.BtnLinkSpan>{children}</S.BtnLinkSpan>
         <ArrowRightAltIcon />
       </S.ButtonLink>
@@ -24,6 +24,10 @@ export const color = {
   },
   tertiary: {
     color: "#303030",
+    bg: "white",
+  },
+  white: {
+    color: "#fff",
     bg: "white",
   },
 };
