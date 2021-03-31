@@ -11,6 +11,8 @@ export const Book = ({ button, clas, book, backToClasses }) => {
       <S.BookInfoContainer>
         <S.BookImage src={Image}></S.BookImage>
         <S.BookP>Book Details</S.BookP>
+        <S.BookLabel>Type</S.BookLabel>
+        <S.BookDetail>{book.type}</S.BookDetail>
         <S.BookLabel>Title</S.BookLabel>
         <S.BookDetail>{book.title}</S.BookDetail>
         <S.BookLabel>Author</S.BookLabel>

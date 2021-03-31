@@ -12,12 +12,55 @@ export const Container = styled.div`
   border-radius: 6px;
 `;
 
-export const ClassesContainer = styled.div`
-  padding: 20px;
+export const SellOrTradeContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  margin-top: 30px;
+  background: #44318d;
+  border-radius: 12px;
+  width: 90%;
+`;
+
+export const FilterBy = styled.p`
+  font-size: 20px;
+  color: white;
+  text-align: center;
+`;
+
+export const FilterButtons = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-top: 8px;
+`;
+
+export const SellFilter = styled.p`
+  font-size: 20px;
+  color: #6ff53f;
+  cursor: pointer;
+`;
+
+export const TradeFilter = styled.p`
+  font-size: 20px;
+  color: #efad4b;
+  cursor: pointer;
+`;
+
+export const BothFilter = styled.p`
+  font-size: 20px;
+  cursor: pointer;
+  color: red;
+`;
+
+export const ClassesContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 `;
 
 export const ClassContainer = styled.div`
@@ -28,6 +71,7 @@ export const ClassContainer = styled.div`
   margin-top: 30px;
   background: #44318d;
   border-radius: 12px;
+  width: 90%;
 `;
 
 export const ClassTitle = styled.div`
@@ -49,7 +93,8 @@ export const BookImg = styled.img`
   height: 250px;
   background-image: url(Image);
   margin-right: 30px;
-  border: 3px solid transparent;
+  border: 4px solid ${(props) => props.primary};
+
   transition: all 0.5 ease;
 
   &:last-child {
@@ -57,7 +102,7 @@ export const BookImg = styled.img`
   }
 
   &:hover {
-    border: 3px solid #d83f87;
     cursor: pointer;
+    transform: scale(1.02);
   }
 `;

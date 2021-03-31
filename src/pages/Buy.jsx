@@ -33,6 +33,7 @@ export default function Buy() {
               edition: "Third",
               publisher: "McHill",
               image: "",
+              type: "sell",
             },
             {
               id: 12,
@@ -42,6 +43,7 @@ export default function Buy() {
               edition: "Third",
               publisher: "McHill",
               image: "",
+              type: "trade",
             },
             {
               id: 13,
@@ -51,6 +53,7 @@ export default function Buy() {
               edition: "Fourth",
               publisher: "McHill",
               image: "",
+              type: "sell",
             },
           ],
         },
@@ -66,6 +69,7 @@ export default function Buy() {
               edition: "Second",
               publisher: "BillBooks",
               image: "",
+              type: "trade",
             },
 
             {
@@ -76,6 +80,7 @@ export default function Buy() {
               edition: "Fourth",
               publisher: "JanesBooks",
               image: "",
+              type: "trade",
             },
 
             {
@@ -86,6 +91,7 @@ export default function Buy() {
               edition: "First",
               publisher: "BillBooks",
               image: "",
+              type: "sell",
             },
           ],
         },
@@ -101,6 +107,7 @@ export default function Buy() {
               edition: "Third",
               publisher: "MIT Press",
               image: "",
+              type: "sell",
             },
             {
               id: 1112,
@@ -110,6 +117,7 @@ export default function Buy() {
               edition: "Sixth",
               publisher: "McRib",
               image: "",
+              type: "sell",
             },
             {
               id: 1113,
@@ -119,6 +127,7 @@ export default function Buy() {
               edition: "Second",
               publisher: "FlyingHills",
               image: "",
+              type: "trade",
             },
           ],
         },
@@ -140,6 +149,7 @@ export default function Buy() {
               edition: "Fourth",
               publisher: "McHill",
               image: "",
+              type: "sell",
             },
             {
               id: 11112,
@@ -149,6 +159,7 @@ export default function Buy() {
               edition: "Seventh",
               publisher: "McHill",
               image: "",
+              type: "sell",
             },
             {
               id: 11113,
@@ -158,6 +169,7 @@ export default function Buy() {
               edition: "Sixth",
               publisher: "McHill",
               image: "",
+              type: "trade",
             },
           ],
         },
@@ -173,6 +185,7 @@ export default function Buy() {
               edition: "Second",
               publisher: "BillBooks",
               image: "",
+              type: "trade",
             },
 
             {
@@ -183,6 +196,7 @@ export default function Buy() {
               edition: "Fourth",
               publisher: "JanesBooks",
               image: "",
+              type: "sell",
             },
 
             {
@@ -193,6 +207,7 @@ export default function Buy() {
               edition: "Eighth",
               publisher: "BillBooks",
               image: "",
+              type: "sell",
             },
           ],
         },
@@ -208,6 +223,7 @@ export default function Buy() {
               edition: "Third",
               publisher: "MIT Press",
               image: "",
+              type: "sell",
             },
             {
               id: 52,
@@ -217,6 +233,7 @@ export default function Buy() {
               edition: "Sixth",
               publisher: "McRib",
               image: "",
+              type: "trade",
             },
             {
               id: 53,
@@ -226,6 +243,7 @@ export default function Buy() {
               edition: "Second",
               publisher: "FlyingHills",
               image: "",
+              type: "trade",
             },
           ],
         },
@@ -247,6 +265,7 @@ export default function Buy() {
               edition: "Second",
               publisher: "McHill",
               image: "",
+              type: "sell",
             },
             {
               id: 2,
@@ -256,6 +275,7 @@ export default function Buy() {
               edition: "Third",
               publisher: "Ronald",
               image: "",
+              type: "sell",
             },
             {
               id: 3,
@@ -265,6 +285,7 @@ export default function Buy() {
               edition: "Fourth",
               publisher: "McRib",
               image: "",
+              type: "sell",
             },
           ],
         },
@@ -280,6 +301,7 @@ export default function Buy() {
               edition: "Ninth",
               publisher: "BillBooks",
               image: "",
+              type: "trade",
             },
 
             {
@@ -290,6 +312,7 @@ export default function Buy() {
               edition: "Tenth",
               publisher: "JanesBooks",
               image: "",
+              type: "sell",
             },
 
             {
@@ -300,6 +323,7 @@ export default function Buy() {
               edition: "Third",
               publisher: "BillBooks",
               image: "",
+              type: "sell",
             },
           ],
         },
@@ -315,6 +339,7 @@ export default function Buy() {
               edition: "Third",
               publisher: "MIT Press",
               image: "",
+              type: "sell",
             },
             {
               id: 2,
@@ -324,6 +349,7 @@ export default function Buy() {
               edition: "Second",
               publisher: "McRib",
               image: "",
+              type: "sell",
             },
             {
               id: 3,
@@ -333,6 +359,7 @@ export default function Buy() {
               edition: "Fourth",
               publisher: "FlyingHills",
               image: "",
+              type: "trade",
             },
           ],
         },
@@ -380,7 +407,7 @@ export default function Buy() {
   };
 
   const getClass = (e, course, bk) => {
-    setBook((prevBook) => {
+    setBook(() => {
       return { ...bk };
     });
     setClss((prev) => (prev = course.course));
