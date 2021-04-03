@@ -25,34 +25,16 @@ export default function App() {
         <ThemeProvider theme={styleTheme}>
           <Router>
             <Switch>
+              <Route exact path={ROUTES.ABOUT} component={About} />
+              <Route exact path={ROUTES.SIGN_IN} component={SignIn} />
+              <Route exact path={ROUTES.SIGN_UP} component={SignUp} />
+              <Route exact path={ROUTES.PROFILE} component={Profile} />
+              <Route exact path={ROUTES.SELL} component={Sell} />
+              <Route exact path={ROUTES.BUY} component={Buy} />
+              <Route exact path={ROUTES.TRADE} component={Trade} />
+              <Route exact path={ROUTES.MAIN} component={Main} />
               <PrivateRoute exact path="/test" component={Test} />
-              <Route exact path={ROUTES.MAIN}>
-                <Main />
-              </Route>
-              <Route exact path={ROUTES.PROFILE}>
-                <Profile />
-              </Route>
-              <Route exact path={ROUTES.SIGN_UP}>
-                <SignUp />
-              </Route>
-              <Route exact path={ROUTES.SIGN_IN}>
-                <SignIn />
-              </Route>
-              <Route exact path={ROUTES.ABOUT}>
-                <About />
-              </Route>
-              <Route exact path={ROUTES.HOME}>
-                <Home />
-              </Route>
-              <Route exact path={ROUTES.SELL}>
-                <Sell />
-              </Route>
-              <Route exact path={ROUTES.BUY}>
-                <Buy />
-              </Route>
-              <Route exact path={ROUTES.TRADE}>
-                <Trade />
-              </Route>
+              <Route path={ROUTES.HOME} component={Home} />
             </Switch>
           </Router>
         </ThemeProvider>

@@ -7,19 +7,11 @@ import { ROUTES } from "./pages";
 export default function PrivateRoute({ component: Component, ...restProps }) {
   const { currentUser } = useAuth();
 
-  const checkCurrentUser = (props) => {
-    return currentUser ? (
-      <Component {...props} />
-    ) : (
-      <Redirect to={ROUTES.SIGN_IN} />
-    );
-  };
-
   return (
     <Route
       {...restProps}
       render={(props) => {
-        return checkCurrentUser(props);
+        return currentUser ? (<Component {...props} />) : (<Redirect to={ROUTES.SIGN_IN} />);
       }}
     ></Route>
   );

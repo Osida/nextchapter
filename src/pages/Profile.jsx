@@ -1,10 +1,10 @@
 import React from "react";
-import { Navbar, Footer, Profile } from "../components";
+import { Navbar, Footer, Profile, signedIn } from "../components";
 
 export default function ProfilePage() {
   return (
     <div className="profile">
-      <Navbar />
+      <Navbar linkR={{ ...signedIn.linkR }} linkS={{ ...signedIn.linkS }}/>
       <Profile />
       {/* <Footer /> */}
     </div>

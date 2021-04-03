@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Footer } from "../components";
+import { Navbar, Footer, signedIn } from "../components";
 import { BuyDepartment } from "../components/buySections/BuyDepartment";
 import { BuyClass } from "../components/buySections/class/BuyClass";
 import { Book } from "../components/buySections/book/Book";
@@ -434,7 +434,7 @@ export default function Buy() {
 
   return (
     <div className="buy" style={{ background: "#44318D" }}>
-      <Navbar />
+      <Navbar linkR={{ ...signedIn.linkR }} linkS={{ ...signedIn.linkS }}/>
       {depStatus ? (
         <BuyDepartment
           heading="Department"
