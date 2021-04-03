@@ -4,6 +4,7 @@ import { ROUTES } from "../../pages";
 import * as S from "./SignUpFormStyles";
 import { useAuth } from "../../context/AuthContext";
 import { ContactSupportOutlined } from "@material-ui/icons";
+import { useHistory } from "react-router";
 
 export default function SignUpForm({ data }) {
   const firstNameRef = useRef();
@@ -13,6 +14,8 @@ export default function SignUpForm({ data }) {
   const studentEmailRef = useRef();
   const passwordRef = useRef();
 
+  const history = useHistory()
+
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -20,14 +23,6 @@ export default function SignUpForm({ data }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // console.log("handleSubmit");
-    // console.log(firstNameRef.current.value);
-    // console.log(lastNameRef.current.value);
-    // console.log(phoneNumberRef.current.value);
-    // console.log(universityRef.current.value);
-    // console.log(studentEmailRef.current.value);
-    // console.log(passwordRef.current.value);
 
     // validation(s)
     if (passwordRef.current.value < 8) {
@@ -38,23 +33,13 @@ export default function SignUpForm({ data }) {
       setError("");
       setLoading(true);
       // async event
-      signUp(studentEmailRef.current.value, passwordRef.current.value);
+      await signUp(studentEmailRef.current.value, passwordRef.current.value);
+      history.push(ROUTES.HOME)
     } catch (error) {
       setError("Failed to create a account");
     }
     setLoading(false);
   };
-
-  // const [student, setStudent] = useState({
-  //   first_name: "",
-  //   last_name: "",
-  //   phone_number: "",
-  //   university: "",
-  //   student_email: "",
-  //   password: "",
-  // });
-
-  // const createUser = () => {};
 
   return (
     <>

@@ -26,6 +26,10 @@ export function AuthProvider({ children }) {
     return auth.signOut();
   }
 
+  function resetPassword(email) {
+    return auth.sendPasswordResetEmail(email);
+  }
+
   useEffect(() => {
     // auth.onAuthStateChanged() is a Firebase method - sets the user
     // unsubscribe = return method will unsubscribe the onAuthStateChanged() event
@@ -41,6 +45,7 @@ export function AuthProvider({ children }) {
     signUp,
     signIn,
     signOut,
+    resetPassword
   };
 
   return (

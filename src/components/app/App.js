@@ -33,7 +33,8 @@ export default function App() {
               <Route exact path={ROUTES.BUY} component={Buy} />
               <Route exact path={ROUTES.TRADE} component={Trade} />
               <Route exact path={ROUTES.MAIN} component={Main} />
-              <PrivateRoute exact path="/test" component={Test} />
+              {/* <PrivateRoute exact path="/test" component={Test} /> */}
+              <Route exact path="/test" component={Test} />
               <Route path={ROUTES.HOME} component={Home} />
             </Switch>
           </Router>

@@ -12,6 +12,8 @@ import {
   signUpData,
 } from "../components/signUp/signUpData";
 import SignIn from "./SignIn";
+import Forgot from "../components/signUp/Forgot";
+import { forgotData } from "../components/signUp/forgotData";
 
 export default function Test() {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,6 +41,8 @@ export default function Test() {
         // FullInputData={FullInputData}
         data={signUpData}
       ></SignUpForm>
+
+      <Forgot data={forgotData} />
 
       {/* <SignInForm FullInputData={x} data={signInData}></SignInForm> */}
     </>
