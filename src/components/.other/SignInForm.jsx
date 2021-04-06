@@ -2,11 +2,11 @@ import React from "react";
 import { Btn, btnColor, btnSize, Input } from "..";
 import { ROUTES } from "../../pages";
 import PersonIcon from "@material-ui/icons/Person";
-import * as S from "./SignUpFormStyles";
+import * as S from "../signUp/SignUpFormStyles";
 import { useHistory } from "react-router";
 
 export default function SignInForm({ x, data }) {
-  const history = useHistory()
+  const history = useHistory();
   // history.push(ROUTES.HOME)
 
   return (
@@ -40,6 +40,8 @@ export default function SignInForm({ x, data }) {
           </S.Text>
         </S.SignUpRight>
       </S.SignUpForm>
+
+      {/* <SignInForm FullInputData={x} data={signInData}></SignInForm> */}
     </>
   );
 }
