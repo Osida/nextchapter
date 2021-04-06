@@ -434,7 +434,7 @@ export default function Buy() {
 
   return (
     <div className="buy" style={{ background: "#44318D" }}>
-      <Navbar linkR={{ ...signedIn.linkR }} linkS={{ ...signedIn.linkS }}/>
+      <Navbar linkR={{ ...signedIn.linkR }} linkS={{ ...signedIn.linkS }} />
       {depStatus ? (
         <BuyDepartment
           heading="Department"
@@ -468,7 +468,7 @@ export default function Buy() {
       ) : (
         ""
       )}
-      {/* <Footer /> */}
+      <Footer linkR={{ ...signedIn.linkR }} linkS={{ ...signedIn.linkS }} />
     </div>
   );
 }

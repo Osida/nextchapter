@@ -7,7 +7,7 @@ export default function Sell() {
     <div className="sell" style={{ background: "#44318D" }}>
       <Navbar linkR={{ ...signedIn.linkR }} linkS={{ ...signedIn.linkS }} />
       <SellBookForm />
-      {/* <Footer /> */}
+      <Footer linkR={{ ...signedIn.linkR }} linkS={{ ...signedIn.linkS }} />
     </div>
   );
 }
