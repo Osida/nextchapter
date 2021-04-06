@@ -6,7 +6,7 @@ export default function Trade() {
     <div className="trade">
       <Navbar linkR={{ ...signedIn.linkR }} linkS={{ ...signedIn.linkS }} />
       <h1>This is the Trade page</h1>
-      {/* <Footer /> */}
+      <Footer linkR={{ ...signedIn.linkR }} linkS={{ ...signedIn.linkS }} />
     </div>
   );
 }

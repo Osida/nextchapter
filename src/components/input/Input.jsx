@@ -1,10 +1,12 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import * as S from "./InputStyles";
 
-export default function Input({ ...restProps }) {
+function Input(props, ref) {
   return (
     <>
-      <S.Input {...restProps} />
+      <S.Input {...props} ref={ref} />
     </>
   );
 }
+
+export default forwardRef(Input);

@@ -1,6 +1,5 @@
 import { ROUTES } from "../../pages";
 import { featureOne, featureTwo } from "../feature/home/homeData";
-// import { featureOne, featureTwo } from "../feature/aboutData";
 
 export const home_signedOut = {
   linkR: [
@@ -72,19 +71,19 @@ export const signedIn = {
   linkR: [
     {
       name: "Dashboard",
-      to: "#",
+      to: ROUTES.PROFILE,
     },
     {
       name: "Sell Books",
-      to: "#",
+      to: ROUTES.SELL,
     },
     {
       name: "Buy Books",
-      to: "#",
+      to: ROUTES.BUY,
     },
     {
       name: "Trade Books",
-      to: "#",
+      to: ROUTES.TRADE,
     },
   ],
   linkS: [{}],

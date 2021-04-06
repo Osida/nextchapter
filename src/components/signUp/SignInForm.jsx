@@ -3,8 +3,12 @@ import { Btn, btnColor, btnSize, Input } from "..";
 import { ROUTES } from "../../pages";
 import PersonIcon from "@material-ui/icons/Person";
 import * as S from "./SignUpFormStyles";
+import { useHistory } from "react-router";
 
 export default function SignInForm({ x, data }) {
+  const history = useHistory()
+  // history.push(ROUTES.HOME)
+
   return (
     <>
       <S.SignUpForm>

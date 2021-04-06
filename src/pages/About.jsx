@@ -9,7 +9,10 @@ export default function About() {
         linkS={{ ...about_signedOut.linkS }}
       />
       <Slogan />
-      {/* <Footer /> */}
+      <Footer
+        linkR={{ ...about_signedOut.linkR }}
+        linkS={{ ...about_signedOut.linkS }}
+      />
     </div>
   );
 }
