@@ -24,7 +24,7 @@ export const ProfileLeft = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  /* border: 2px solid lightgreen; */
+  border: 2px solid lightgreen;
   margin-right: 1em;
 `;
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { SignUp } from ".";
-import { Input, SignUpForm } from "../components";
+import { home_signedOut, Input, SignUpForm } from "../components";
 import SignInForm from "../components/signUp/SignInForm";
 import {
   FullInputData as x,
@@ -14,6 +14,8 @@ import {
 import SignIn from "./SignIn";
 import Forgot from "../components/signUp/Forgot";
 import { forgotData } from "../components/signUp/forgotData";
+import Profile_ from "../components/profile/Profile";
+import { Navbar } from "../components/navbar/NavbarStyles";
 
 export default function Test() {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,13 +38,14 @@ export default function Test() {
       </Btn> */}
       {/* <BtnLink color={{ ...btnLinkColor.primary }}>Sign In</BtnLink> */}
       {/* <Input /> */}
+      {/*
       <SignUpForm
         // halfInputData={halfInputData}
         // FullInputData={FullInputData}
         data={signUpData}
-      ></SignUpForm>
+      ></SignUpForm> */}
 
-      <Forgot data={forgotData} />
+      {/* <Forgot data={forgotData} /> */}
 
       {/* <SignInForm FullInputData={x} data={signInData}></SignInForm> */}
     </>

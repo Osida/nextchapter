@@ -70,7 +70,7 @@ export const about_signedOut = {
 export const signedIn = {
   linkR: [
     {
-      name: "Dashboard",
+      name: "Profile",
       to: ROUTES.PROFILE,
     },
     {
