@@ -1,6 +1,5 @@
 import { ROUTES } from "../../pages";
 import { featureOne, featureTwo } from "../feature/home/homeData";
-// import { featureOne, featureTwo } from "../feature/aboutData";
 
 export const home_signedOut = {
   linkR: [
