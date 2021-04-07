@@ -6,8 +6,10 @@ import { useHistory } from "react-router";
 import { Spin as Hamburger } from "hamburger-react";
 import { Container } from "../../styles";
 import * as S from "./NavbarStyles";
+import { useStateValue } from "../../context/StateProvider";
 
 export default function Navbar_({ linkR, linkS }) {
+  const [{ user }, dispatch] = useStateValue();
   const [isOpen, setOpen] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -52,7 +54,7 @@ export default function Navbar_({ linkR, linkS }) {
 
           <S.NavbarBtnWrap>
             <S.NavbarTextLink to={ROUTES.SIGN_IN}>
-              {currentUser ? "Hello, User" : "Sign in"}
+              {user ? "Hello, User" : "Sign in"}
             </S.NavbarTextLink>
             <S.Divider>|</S.Divider>
             <LinkBtn
@@ -60,7 +62,7 @@ export default function Navbar_({ linkR, linkS }) {
               {...btnColor.primary}
               onClick={handleSignOut}
             >
-              {currentUser ? "Sign out" : "Sign up"}
+              {user ? "Sign out" : "Sign up"}
             </LinkBtn>
           </S.NavbarBtnWrap>
 

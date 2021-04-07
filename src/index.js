@@ -3,11 +3,18 @@ import ReactDOM from "react-dom";
 import "./styles/index.scss";
 import { App } from "./components";
 import reportWebVitals from "./reportWebVitals";
+import { StateProvider } from "./context/StateProvider";
+import reducer, { initialState } from "./context/reducer";
+import { AuthProvider } from "./context/AuthContext";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <StateProvider initialState={initialState} reducer={reducer}>
+    <AuthProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </AuthProvider>
+  </StateProvider>,
   document.getElementById("root")
 );
 
