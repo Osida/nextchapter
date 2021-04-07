@@ -16,13 +16,15 @@ export default function Navbar_({ linkR, linkS }) {
 
   // sign out
   const handleSignOut = async () => {
-    setError("");
-
-    try {
-      await signOut();
-      history.pushState("/signin");
-    } catch (error) {
+    if (currentUser) {
       setError("");
+
+      try {
+        await signOut();
+        history.push(ROUTES.HOME);
+      } catch (error) {
+        setError("");
+      }
     }
   };
 
@@ -49,10 +51,16 @@ export default function Navbar_({ linkR, linkS }) {
           </S.NavbarMenu>
 
           <S.NavbarBtnWrap>
-            <S.NavbarTextLink to={ROUTES.SIGN_IN}>Sign in</S.NavbarTextLink>
+            <S.NavbarTextLink to={ROUTES.SIGN_IN}>
+              {currentUser ? "Hello, User" : "Sign in"}
+            </S.NavbarTextLink>
             <S.Divider>|</S.Divider>
-            <LinkBtn to={ROUTES.SIGN_UP} color={{ ...btnColor.primary }}>
-              Sign up
+            <LinkBtn
+              to={ROUTES.SIGN_UP}
+              {...btnColor.primary}
+              onClick={handleSignOut}
+            >
+              {currentUser ? "Sign out" : "Sign up"}
             </LinkBtn>
           </S.NavbarBtnWrap>
 

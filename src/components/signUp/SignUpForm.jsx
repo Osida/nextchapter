@@ -47,18 +47,7 @@ export default function SignUpForm({ data }) {
   };
 
   const addUser = () => {
-    const newUser = {
-      email: studentEmailRef.current.value,
-      favorited_books: [],
-      first_name: firstNameRef.current.value,
-      last_name: lastNameRef.current.value,
-      password: passwordRef.current.value,
-      phone_number: phoneNumberRef.current.value,
-      student_id: "243",
-      university: universityRef.current.value,
-    };
-
-    console.log("newUser = ", newUser);
+    console.log("newUser");
     db.collection("Students")
       .add({
         email: studentEmailRef.current.value,
@@ -83,7 +72,7 @@ export default function SignUpForm({ data }) {
       <S.SignUpContainer>
         <S.SignUpForm>
           {error && alert("Error")}
-          {console.log("currentUser.email = ", currentUser?.email)}
+          {currentUser?.email && console.log("currentUser.email = ", currentUser?.email)}
           <S.SignUpLeft>
             <S.LinkWrap to={ROUTES.HOME}>{data.homeLinkText}</S.LinkWrap>
             <S.SignUpImage src={data.signUpImage} alt={data.signUpImageAlt} />

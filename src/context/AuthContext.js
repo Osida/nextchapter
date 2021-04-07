@@ -45,7 +45,7 @@ export function AuthProvider({ children }) {
     signUp,
     signIn,
     signOut,
-    resetPassword
+    resetPassword,
   };
 
   return (
