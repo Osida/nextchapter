@@ -1,9 +1,8 @@
 import React from "react";
-import { Btn, btnColor, btnSize, Input } from "..";
-import { ROUTES } from "../../pages";
-import PersonIcon from "@material-ui/icons/Person";
-import * as S from "../signUp/SignUpFormStyles";
 import { useHistory } from "react-router";
+import { Btn, btnColor, btnSize } from "..";
+import ROUTES from "../../pages";
+import * as S from "../signUp/SignUpFormStyles";
 
 export default function SignInForm({ x, data }) {
   const history = useHistory();

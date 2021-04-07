@@ -1,8 +1,8 @@
 import React from "react";
-import * as S from "./BtnLinkStyles";
+import * as S from "./BtnLinkStyles_";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 
-export default function BtnLink({ children, color, size, to }) {
+export default function BtnLink_({ children, color, size, to }) {
   return (
     <>
       <S.ButtonLink {...color} {...size} to={to}>

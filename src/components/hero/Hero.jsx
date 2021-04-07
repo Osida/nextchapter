@@ -1,6 +1,6 @@
 import React from "react";
-import { Btn, btnColor, btnSize } from "..";
-import { ROUTES } from "../../pages";
+import { LinkBtn, btnColor, btnSize } from "..";
+import ROUTES from "../../pages";
 import { Container } from "../../styles";
 import * as S from "./HeroStyles";
 
@@ -19,13 +19,9 @@ export default function Hero() {
               </S.HeroSubTitle>
             </S.TextWrap>
 
-            <Btn
-              color={{ ...btnColor.primary }}
-              size={{ ...btnSize.lg }}
-              to={ROUTES.SIGN_IN}
-            >
+            <LinkBtn to={ROUTES.SIGN_IN} {...btnColor.primary} {...btnSize.lg}>
               Join Today
-            </Btn>
+            </LinkBtn>
           </S.Content>
 
           <S.ImageWrap>

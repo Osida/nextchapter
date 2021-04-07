@@ -36,12 +36,12 @@ export const FooterMenu = styled(Navbar.NavbarMenu)`
 export const FooterItem = styled(Navbar.NavbarItem)``;
 
 export const FooterLinkS = styled(LinkS)`
-  text-decoration: none;
+  /* text-decoration: none;
   font-size: 0.875rem;
-  cursor: pointer;
+  cursor: pointer; */
 `;
 
-export const FooterLinkR = styled(Navbar.NavbarLinkR)``;
+export const FooterLinkR = styled(LinkR)``;
 
 export const Line = styled.hr`
   width: 100%;

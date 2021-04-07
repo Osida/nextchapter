@@ -2,12 +2,12 @@ import React from "react";
 import { Container } from "../../styles/utilities";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import * as S from "./FooterStyles";
-import { ROUTES } from "../../pages";
+import ROUTES from "../../pages";
 
 const footerLinkSProps = {
-  smooth: true,
+  smooth: "true",
   duration: 500,
-  spy: true,
+  spy: "true",
   exact: "true",
   offset: -80,
 };
@@ -29,7 +29,7 @@ export default function Footer({ linkR, linkS }) {
 
               {Object.values(linkS).map((link, index) => (
                 <S.FooterItem key={index}>
-                  <S.FooterLinkR to={link.to} {...link.restProps}>
+                  <S.FooterLinkR to={link.to} {...footerLinkSProps}>
                     {link.name}
                   </S.FooterLinkR>
                 </S.FooterItem>

@@ -3,15 +3,20 @@ import { Link as LinkS } from "react-scroll";
 import { Link as LinkR } from "react-router-dom";
 import PersonIcon from "@material-ui/icons/Person";
 
+export const SignUpContainer = styled.div`
+  display: grid;
+  place-items: center;
+`;
+
 export const SignUpForm = styled.div`
-  max-width: 1130px;
+  max-width: 1000px;
   height: auto;
   background: #ffffff;
   box-shadow: 30px 30px 60px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   display: flex;
-  padding: 2em 2em;
-  /* margin: 2em 2em; */
+  padding: 2em;
+  margin-top: 0.8em;
 `;
 
 export const Form = styled.form``;

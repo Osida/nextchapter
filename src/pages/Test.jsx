@@ -1,8 +1,4 @@
 import React, { useState } from "react";
-import { SignUpForm } from "../components";
-import {
-  signUpData
-} from "../components/signUp/signUpData";
 
 export default function Test() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,11 +22,11 @@ export default function Test() {
       {/* <BtnLink color={{ ...btnLinkColor.primary }}>Sign In</BtnLink> */}
       {/* <Input /> */}
 
-      <SignUpForm
+      {/* <SignUpForm
         // halfInputData={halfInputData}
         // FullInputData={FullInputData}
         data={signUpData}
-      ></SignUpForm>
+      ></SignUpForm> */}
 
       {/* <Forgot data={forgotData} /> */}
     </>

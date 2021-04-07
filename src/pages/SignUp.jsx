@@ -1,11 +1,11 @@
 import React from "react";
+import { SignUpForm } from "../components";
+import { signUpData } from "../components/signUp/signUpData";
 
 export default function SignUp() {
   return (
-    <div>
-      <div className="login">
-        <h1>SignUp.js in working</h1>
-      </div>
-    </div>
+    <>
+      <SignUpForm data={signUpData}></SignUpForm>
+    </>
   );
 }

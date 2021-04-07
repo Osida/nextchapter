@@ -1,8 +1,7 @@
-import { ROUTES } from "../../pages";
+import ROUTES from "../../pages";
 
 export const signUpData = {
   homeLinkText: "N | nextchapter",
-  homeLinkTo: ROUTES.HOME,
   signUpImage: "/images/undraw_sign_in.svg",
   signUpImageAlt: "Sign Up",
   headerText: "Create an account",

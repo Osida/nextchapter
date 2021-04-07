@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { ROUTES } from "../../pages";
-import Btn, { color, size } from "../button/Btn";
-import { Spin as Hamburger } from "hamburger-react";
-import * as S from "./NavbarStyles";
-import { Container } from "../../styles";
+import ROUTES from "../../pages";
+import { LinkBtn, btnColor } from "..";
 import { useAuth } from "../../context/AuthContext";
 import { useHistory } from "react-router";
+import { Spin as Hamburger } from "hamburger-react";
+import { Container } from "../../styles";
+import * as S from "./NavbarStyles";
 
 export default function Navbar_({ linkR, linkS }) {
   const [isOpen, setOpen] = useState(false);
@@ -51,9 +51,9 @@ export default function Navbar_({ linkR, linkS }) {
           <S.NavbarBtnWrap>
             <S.NavbarTextLink to={ROUTES.SIGN_IN}>Sign in</S.NavbarTextLink>
             <S.Divider>|</S.Divider>
-            <Btn to={ROUTES.SIGN_UP} color={{ ...color.primary }}>
+            <LinkBtn to={ROUTES.SIGN_UP} color={{ ...btnColor.primary }}>
               Sign up
-            </Btn>
+            </LinkBtn>
           </S.NavbarBtnWrap>
 
           <S.HamburgerWrap>

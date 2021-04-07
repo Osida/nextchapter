@@ -1,12 +1,7 @@
 import React, { useRef } from "react";
-import Footer from "../footer/Footer";
-import { Input } from "..";
-import { home_signedOut } from "../navbar/navbarData";
-import { Navbar } from "../navbar/NavbarStyles";
-import ProfileBanner from "./profileBanner/ProfileBanner";
-import * as S from "./ProfileStyles_";
-import Btn, { color } from "../button/Btn";
-import { ROUTES } from "../../pages";
+import { Btn, btnColor, Input, ProfileBanner } from "..";
+import ROUTES from "../../pages";
+import * as S from "./ProfileStyles";
 
 export default function Profile_() {
   const displayNameRef = useRef();
@@ -153,13 +148,13 @@ export default function Profile_() {
           <S.Divider />
 
           <S.BtnRow>
-            <Btn to={ROUTES.SIGN_UP} color={{ ...color.primary }}>
+            <Btn to={ROUTES.SIGN_UP} type="Submit" {...btnColor.primary}>
               Save changes
             </Btn>
 
             <S.BtnDivider />
 
-            <Btn to={ROUTES.SIGN_UP} color={{ ...color.primary }}>
+            <Btn to={ROUTES.SIGN_UP} type="Submit" {...btnColor.primary}>
               Delete account
             </Btn>
           </S.BtnRow>

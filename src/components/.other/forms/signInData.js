@@ -1,4 +1,4 @@
-import { ROUTES } from "../../pages";
+import ROUTES from "../../../pages";
 
 export const signInData = {
   homeLinkText: "N | nextchapter",

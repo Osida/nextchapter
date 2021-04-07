@@ -1,4 +1,4 @@
-export const ROUTES = {
+const ROUTES = {
   HOME: "/",
   ABOUT: "/about",
   SIGN_UP: "/signup",
@@ -9,3 +9,5 @@ export const ROUTES = {
   SELL: "/sell",
   TRADE: "/trade",
 };
+
+export default ROUTES;

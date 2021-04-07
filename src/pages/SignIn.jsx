@@ -1,9 +1,7 @@
-import { Height } from "@material-ui/icons";
 import React, { useRef, useState } from "react";
 import { useHistory } from "react-router";
-import { Navbar } from "../components";
 import { useAuth } from "../context/AuthContext";
-import { ROUTES } from "./routes";
+import ROUTES from "../pages";
 import "./SignIn.css";
 
 export default function SignIn() {

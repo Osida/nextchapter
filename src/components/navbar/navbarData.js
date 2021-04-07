@@ -1,5 +1,13 @@
-import { ROUTES } from "../../pages";
+import ROUTES from "../../pages";
 import { featureOne, featureTwo } from "../feature/home/homeData";
+
+const restProps = {
+  smooth: true,
+  duration: 500,
+  spy: true,
+  exact: "true",
+  offset: -80,
+};
 
 export const home_signedOut = {
   linkR: [
@@ -12,24 +20,12 @@ export const home_signedOut = {
     {
       name: "Access",
       to: featureOne.id,
-      restProps: {
-        smooth: true,
-        duration: 500,
-        spy: true,
-        exact: "true",
-        offset: -80,
-      },
+      restProps,
     },
     {
       name: "Messaging",
       to: featureTwo.id,
-      restProps: {
-        smooth: true,
-        duration: 500,
-        spy: true,
-        exact: "true",
-        offset: -80,
-      },
+      restProps,
     },
   ],
 };
@@ -45,24 +41,12 @@ export const about_signedOut = {
     {
       name: "What we do",
       to: featureOne.id,
-      restProps: {
-        smooth: true,
-        duration: 500,
-        spy: true,
-        exact: "true",
-        offset: -80,
-      },
+      restProps,
     },
     {
       name: "How we do it",
       to: featureTwo.id,
-      restProps: {
-        smooth: true,
-        duration: 500,
-        spy: true,
-        exact: "true",
-        offset: -80,
-      },
+      restProps,
     },
   ],
 };
