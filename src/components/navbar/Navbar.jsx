@@ -13,12 +13,12 @@ export default function Navbar_({ linkR, linkS }) {
   const [isOpen, setOpen] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { signOut, currentUser } = useAuth();
+  const { signOut } = useAuth();
   const history = useHistory();
 
   // sign out
   const handleSignOut = async () => {
-    if (currentUser) {
+    if (user) {
       setError("");
 
       try {

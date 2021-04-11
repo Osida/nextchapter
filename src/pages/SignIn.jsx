@@ -26,7 +26,7 @@ export default function SignIn() {
       setLoading(true);
       // async event
       signIn(studentEmailRef.current.value, passwordRef.current.value);
-      console.log("Signed in", currentUser?.email);
+      // console.log("Signed in", currentUser?.email);
       history.push(ROUTES.HOME);
     } catch (error) {
       setError("Failed to create a account");

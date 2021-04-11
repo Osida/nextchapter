@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
 import { useHistory } from "react-router";
 import { Btn, btnColor, Input } from "..";
-import ROUTES from "../../pages";
-import { db } from "../../database/firebaseConfig";
 import { useAuth } from "../../context/AuthContext";
+import { db } from "../../database/firebaseConfig";
+import ROUTES from "../../pages";
 import * as S from "./SignUpFormStyles";
 
 export default function SignUpForm({ data }) {
@@ -19,7 +19,7 @@ export default function SignUpForm({ data }) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { signUp, currentUser } = useAuth();
+  const { signUp } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,7 +38,7 @@ export default function SignUpForm({ data }) {
         passwordRef.current.value
       );
       history.push(ROUTES.HOME);
-      console.log("unsubscribe = ", unsubscribe);
+      // console.log("unsubscribe = ", unsubscribe);
       return unsubscribe;
     } catch (error) {
       setError("Failed to create a account");
@@ -47,10 +47,12 @@ export default function SignUpForm({ data }) {
   };
 
   const addUser = () => {
-    console.log("newUser");
+    console.log("addUser()");
+    var username = studentEmailRef.current.value.substring(0, studentEmailRef.current.value.indexOf("@"));
     db.collection("Students")
       .add({
         email: studentEmailRef.current.value,
+        display_name: username,
         favorited_books: [],
         first_name: firstNameRef.current.value,
         last_name: lastNameRef.current.value,
@@ -71,8 +73,8 @@ export default function SignUpForm({ data }) {
     <>
       <S.SignUpContainer>
         <S.SignUpForm>
-          {error && alert("Error")}
-          {currentUser?.email && console.log("currentUser.email = ", currentUser?.email)}
+          {error && alert("Sign up error ", error)}
+          {error && console.log(error)}
           <S.SignUpLeft>
             <S.LinkWrap to={ROUTES.HOME}>{data.homeLinkText}</S.LinkWrap>
             <S.SignUpImage src={data.signUpImage} alt={data.signUpImageAlt} />
@@ -132,7 +134,7 @@ export default function SignUpForm({ data }) {
 
               <S.BtnWrap>
                 <Btn type="submit" {...btnColor.primary} onClick={addUser}>
-                  Submit
+                  Create account
                 </Btn>
               </S.BtnWrap>
             </S.Form>

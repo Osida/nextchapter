@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import { NotFound } from "..";
+import { actionTypes } from "../../context/reducer";
+import { useStateValue } from "../../context/StateProvider";
+import { auth } from "../../database/firebaseConfig";
 import ROUTES, * as PAGE from "../../pages";
 import { styleTheme } from "../../styles";
-import { ThemeProvider } from "styled-components";
-import { AuthProvider, useAuth } from "../../context/AuthContext";
-import PrivateRoute from "../../PrivateRoute";
-import { auth } from "../../database/firebaseConfig";
-import { StateProvider, useStateValue } from "../../context/StateProvider";
-import reducer, { actionTypes, initialState } from "../../context/reducer";
 
 export default function App() {
   // Call this to access global state
@@ -49,7 +48,8 @@ export default function App() {
             <Route exact path={ROUTES.MAIN} component={PAGE.Main} />
             {/* <PrivateRoute exact path="/test" component={Test} /> */}
             <Route exact path="/test" component={PAGE.Test} />
-            <Route path={ROUTES.HOME} component={PAGE.Home} />
+            <Route exact path={ROUTES.HOME} component={PAGE.Home} />
+            <Route component={NotFound} />
           </Switch>
         </Router>
       </ThemeProvider>

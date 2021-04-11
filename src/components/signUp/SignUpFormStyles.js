@@ -6,6 +6,8 @@ import PersonIcon from "@material-ui/icons/Person";
 export const SignUpContainer = styled.div`
   display: grid;
   place-items: center;
+  width: 100vw;
+  height: 100vh;
 `;
 
 export const SignUpForm = styled.div`
@@ -16,7 +18,7 @@ export const SignUpForm = styled.div`
   border-radius: 20px;
   display: flex;
   padding: 2em;
-  margin-top: 0.8em;
+  /* margin-top: 0.8em; */
 `;
 
 export const Form = styled.form``;

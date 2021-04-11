@@ -7,6 +7,7 @@ export { default as Btn } from "./button/Btn";
 export { default as LinkBtnArrow } from "./button/LinkBtnArrow";
 export { default as Input } from "./input/Input";
 
+export { default as NotFound } from "./404/NotFound";
 export { default as Hero } from "./hero/Hero";
 export { default as Navbar } from "./navbar/Navbar";
 export { default as Footer } from "./footer/Footer";
