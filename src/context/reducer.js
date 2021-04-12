@@ -1,9 +1,11 @@
 export const initialState = {
   user: null,
+  student: null,
 };
 
 export const actionTypes = {
   SET_USER: "SET_USER",
+  SET_STUDENT: "SET_STUDENT",
 };
 
 const reducer = (state, action) => {
@@ -14,6 +16,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         user: action.user,
+      };
+
+    case actionTypes.SET_STUDENT:
+      return {
+        ...state,
+        student: action.student,
       };
 
     default:

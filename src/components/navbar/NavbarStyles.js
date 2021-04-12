@@ -87,3 +87,7 @@ export const HamburgerWrap = styled.span`
     display: block;
   }
 `;
+
+export const ColorText = styled.span`
+  color: ${(props) => (props ? props.theme.christmasPink : "black")};
+`;

@@ -1,12 +1,26 @@
-import React, { useState } from "react";
-import ROUTES from "../../pages";
-import { LinkBtn, btnColor } from "..";
-import { useAuth } from "../../context/AuthContext";
-import { useHistory } from "react-router";
 import { Spin as Hamburger } from "hamburger-react";
+import React, { useState } from "react";
+import { useHistory } from "react-router";
+import { btnColor, LinkBtn } from "..";
+import { useAuth } from "../../context/AuthContext";
+import { useStateValue } from "../../context/StateProvider";
+import ROUTES from "../../pages";
 import { Container } from "../../styles";
 import * as S from "./NavbarStyles";
-import { useStateValue } from "../../context/StateProvider";
+
+const SignedIn = (props) => {
+  const [{ user }] = useStateValue();
+
+  return (
+    <S.NavbarTextLink to={ROUTES.PROFILE}>
+      Hello, <S.ColorText>loggedIn</S.ColorText>
+    </S.NavbarTextLink>
+  );
+};
+
+const SignedOut = () => {
+  return <S.NavbarTextLink to={ROUTES.SIGN_IN}>Sign in</S.NavbarTextLink>;
+};
 
 export default function Navbar_({ linkR, linkS }) {
   const [{ user }, dispatch] = useStateValue();
@@ -16,7 +30,6 @@ export default function Navbar_({ linkR, linkS }) {
   const { signOut } = useAuth();
   const history = useHistory();
 
-  // sign out
   const handleSignOut = async () => {
     if (user) {
       setError("");
@@ -25,7 +38,7 @@ export default function Navbar_({ linkR, linkS }) {
         await signOut();
         history.push(ROUTES.HOME);
       } catch (error) {
-        setError("");
+        setError(error);
       }
     }
   };
@@ -53,9 +66,7 @@ export default function Navbar_({ linkR, linkS }) {
           </S.NavbarMenu>
 
           <S.NavbarBtnWrap>
-            <S.NavbarTextLink to={ROUTES.SIGN_IN}>
-              {user ? "Hello, User" : "Sign in"}
-            </S.NavbarTextLink>
+            {user ? <SignedIn /> : <SignedOut />}
             <S.Divider>|</S.Divider>
             <LinkBtn
               to={ROUTES.SIGN_UP}

@@ -13,24 +13,27 @@ export default function App() {
   const [state, dispatch] = useStateValue();
 
   useEffect(() => {
-    auth.onAuthStateChanged((authUser) => {
+    // auth.onAuthStateChanged() is a Firebase method - sets the user
+    // unsubscribe = return method will unsubscribe the onAuthStateChanged() event
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
       // For dev purposes
       console.log("THE USER IS >>", authUser);
-
-      // If user add user to global state else set user to null
+      // a user exist then set global state user
       if (authUser) {
         dispatch({
           type: actionTypes.SET_USER,
           user: authUser,
         });
-      } else {
-        // user is logged out
+      }
+      // a user doesn't exist then set global state user
+      else {
         dispatch({
           type: actionTypes.SET_USER,
           user: null,
         });
       }
     });
+    return unsubscribe;
   }, []);
 
   return (
