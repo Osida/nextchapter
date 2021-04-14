@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { db } from '../../database/firebaseConfig';
 import * as S from './SellBookFormStyle';
 
 export const SellBookForm = () => {
@@ -58,6 +59,15 @@ export const SellBookForm = () => {
     });
   };
 
+  //write function here
+  function sellPageDB(){
+    db.collection("Post").add({...inputs})
+    .then(console.log("added to the database"))
+    .catch(function (err)
+    {console.log(err)});
+  }
+
+  //call db function inside onSubmit
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -71,7 +81,7 @@ export const SellBookForm = () => {
       courseUsedIn
     ) {
       console.log('filled out');
-      return;
+      return sellPageDB();
     }
     console.log('failed');
 
@@ -81,6 +91,7 @@ export const SellBookForm = () => {
       setWarn((prewarn) => (prewarn = !prewarn));
     }, 4000);
   };
+
 
   return (
     <S.Container>
