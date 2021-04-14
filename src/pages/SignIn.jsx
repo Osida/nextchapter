@@ -1,21 +1,18 @@
 import React, { useRef, useState } from "react";
 import { useHistory } from "react-router";
+import { Btn, btnColor } from "../components";
 import { useAuth } from "../context/AuthContext";
 import ROUTES from "../pages";
 import "./SignIn.css";
 
 export default function SignIn() {
-  const firstNameRef = useRef();
-  const lastNameRef = useRef();
-  const phoneNumberRef = useRef();
-  const universityRef = useRef();
   const studentEmailRef = useRef();
   const passwordRef = useRef();
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { signIn, currentUser } = useAuth();
+  const { signIn } = useAuth();
   const history = useHistory();
 
   const handleSubmit = async (e) => {
@@ -24,9 +21,7 @@ export default function SignIn() {
     try {
       setError("");
       setLoading(true);
-      // async event
-      signIn(studentEmailRef.current.value, passwordRef.current.value);
-      // console.log("Signed in", currentUser?.email);
+      await signIn(studentEmailRef.current.value, passwordRef.current.value);
       history.push(ROUTES.HOME);
     } catch (error) {
       setError("Failed to create a account");
@@ -38,7 +33,7 @@ export default function SignIn() {
     <div className="signIn">
       <div className="leftDiv">
         <div className="catimg">
-          <img src="/images/undraw_welcome_cats.svg" alt="Cat Picture"></img>
+          <img src="/images/undraw_welcome_cats.svg" alt="Cat Picture" />
         </div>
       </div>
       <div className="rightDiv">
@@ -75,14 +70,16 @@ export default function SignIn() {
             </div>
           </div>
           <div className="button">
-            <button type="submit">SignIn</button>
+            <Btn type="submit" {...btnColor.primary}>
+              Sign in
+            </Btn>
           </div>
           <div className="forgotContainer">
-            <a href="#">Forgot Username/Password</a>
+            <a href={ROUTES.RESET_PASSWORD}>Forgot your Password ?</a>
           </div>
           <div className="signuphere">
             <p>
-              Dont have an account signup <a href="#">Here</a>
+              Don't have an account<a href={ROUTES.SIGN_UP}> sign up Here</a>
             </p>
           </div>
         </form>

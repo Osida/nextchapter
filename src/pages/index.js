@@ -4,7 +4,7 @@ import ROUTES from "./routes";
 // Components
 export { default as Home } from "./Home";
 export { default as About } from "./About";
-export { default as Main } from "./Main";
+export { default as ResetPassword } from "./ResetPassword";
 export { default as Buy } from "./Buy";
 export { default as Sell } from "./Sell";
 export { default as Trade } from "./Trade";

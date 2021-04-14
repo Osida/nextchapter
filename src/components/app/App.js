@@ -44,15 +44,15 @@ export default function App() {
             <Route exact path={ROUTES.ABOUT} component={PAGE.About} />
             <Route exact path={ROUTES.SIGN_IN} component={PAGE.SignIn} />
             <Route exact path={ROUTES.SIGN_UP} component={PAGE.SignUp} />
+            <Route exact path={ROUTES.RESET_PASSWORD} component={PAGE.ResetPassword} />
             <Route exact path={ROUTES.PROFILE} component={PAGE.Profile} />
             <Route exact path={ROUTES.SELL} component={PAGE.Sell} />
             <Route exact path={ROUTES.BUY} component={PAGE.Buy} />
             <Route exact path={ROUTES.TRADE} component={PAGE.Trade} />
-            <Route exact path={ROUTES.MAIN} component={PAGE.Main} />
-            {/* <PrivateRoute exact path="/test" component={Test} /> */}
-            <Route exact path="/test" component={PAGE.Test} />
             <Route exact path={ROUTES.HOME} component={PAGE.Home} />
+            <Route exact path="/test" component={PAGE.Test} />
             <Route component={NotFound} />
+            {/* <PrivateRoute exact path="/test" component={Test} /> */}
           </Switch>
         </Router>
       </ThemeProvider>

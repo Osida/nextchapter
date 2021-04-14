@@ -17,7 +17,9 @@ export { default as Profile } from "./profile/Profile";
 export { default as SignUpForm } from "./signUp/SignUpForm";
 export { default as HomeFeature } from "./feature/home/HomeFeature";
 export { featureOne, featureTwo } from "./feature/home/homeData";
+export { default as PasswordReset } from "./signUp/PasswordReset";
 
 // Components data
 export { btnColor, btnSize } from "./button/LinkBtnData";
 export { home_signedOut, about_signedOut, signedIn } from "./navbar/navbarData";
+export { forgotData } from "./signUp/forgotData";

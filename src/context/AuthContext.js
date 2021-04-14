@@ -1,31 +1,47 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { auth } from "../database/firebaseConfig";
+import { auth, db } from "../database/firebaseConfig";
 
 const AuthContext = React.createContext();
 
-export const useAuth = () => {
+export function useAuth() {
   return useContext(AuthContext);
-};
+}
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  const signup = (email, password) => {
-    return auth.createUserWithEmailAndPassword(email, password);
-  };
+  function signUp(newUser) {
+    return auth
+      .createUserWithEmailAndPassword(newUser?.email, newUser?.password)
+      .then((cred) => {
+        return db
+          .collection("Students")
+          .doc(cred?.user?.uid)
+          .set({
+            ...newUser,
+            uid: cred?.user?.uid,
+          });
+      })
+      .then(() => {
+        console.log("1 student added");
+      })
+      .catch((error) => {
+        console.log("Error = ", error);
+      });
+  }
 
-  const login = (email, password) => {
+  function signIn(email, password) {
     return auth.signInWithEmailAndPassword(email, password);
-  };
+  }
 
-  const logout = () => {
+  function signOut() {
     return auth.signOut();
-  };
+  }
 
-  const resetPassword = (email) => {
+  function resetPassword(email) {
     return auth.sendPasswordResetEmail(email);
-  };
+  }
 
   // function updateEmail(email) {
   //   return currentUser.updateEmail(email);
@@ -46,9 +62,9 @@ export function AuthProvider({ children }) {
 
   const value = {
     // currentUser,
-    login,
-    signup,
-    logout,
+    signIn,
+    signUp,
+    signOut,
     resetPassword,
     // updateEmail,
     // updatePassword

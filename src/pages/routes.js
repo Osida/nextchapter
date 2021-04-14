@@ -3,7 +3,7 @@ const ROUTES = {
   ABOUT: "/about",
   SIGN_UP: "/signup",
   SIGN_IN: "/signin",
-  MAIN: "/main",
+  RESET_PASSWORD: "/resetpassword",
   PROFILE: "/profile",
   BUY: "/buy",
   SELL: "/sell",

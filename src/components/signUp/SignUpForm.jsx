@@ -23,6 +23,7 @@ export default function SignUpForm({ data }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("handleSubmit");
 
     // validation(s)
     if (passwordRef.current.value < 8) {
@@ -32,34 +33,54 @@ export default function SignUpForm({ data }) {
     try {
       setError("");
       setLoading(true);
+      let username = studentEmailRef.current.value.substring(0,studentEmailRef.current.value.indexOf("@"));
+      let newUser = {
+        email: studentEmailRef.current.value,
+        favorite_books: [],
+        firstName: firstNameRef.current.value,
+        lastName: lastNameRef.current.value,
+        password: passwordRef.current.value,
+        phoneNumber: phoneNumberRef.current.value,
+        university: universityRef.current.value,
+        username: username,
+      }
       // async event
-      let unsubscribe = await signUp(
-        studentEmailRef.current.value,
-        passwordRef.current.value
-      );
+      let unsubscribe = await signUp(newUser);
       history.push(ROUTES.HOME);
       // console.log("unsubscribe = ", unsubscribe);
       return unsubscribe;
     } catch (error) {
-      setError("Failed to create a account");
+      setError("Failed to create a account = ", error);
+      console.log("error = ", error);
     }
     setLoading(false);
   };
 
   const addUser = () => {
-    console.log("addUser()");
-    var username = studentEmailRef.current.value.substring(0, studentEmailRef.current.value.indexOf("@"));
+    // console.log("addUser()");
+    let username = studentEmailRef.current.value.substring(0,studentEmailRef.current.value.indexOf("@"));
+    // let newUser = {
+    //   email: studentEmailRef.current.value,
+    //   favorite_books: [],
+    //   firstName: firstNameRef.current.value,
+    //   lastName: lastNameRef.current.value,
+    //   password: passwordRef.current.value,
+    //   phoneNumber: phoneNumberRef.current.value,
+    //   uid: "",
+    //   university: universityRef.current.value,
+    //   username: username,
+    // }
     db.collection("Students")
       .add({
         email: studentEmailRef.current.value,
-        display_name: username,
-        favorited_books: [],
-        first_name: firstNameRef.current.value,
-        last_name: lastNameRef.current.value,
+        favorite_books: [],
+        firstName: firstNameRef.current.value,
+        lastName: lastNameRef.current.value,
         password: passwordRef.current.value,
-        phone_number: phoneNumberRef.current.value,
-        student_id: "243",
+        phoneNumber: phoneNumberRef.current.value,
+        uid: "",
         university: universityRef.current.value,
+        username: username,
       })
       .then((docRef) => {
         console.log("Doc has been added: ", docRef);
@@ -73,8 +94,6 @@ export default function SignUpForm({ data }) {
     <>
       <S.SignUpContainer>
         <S.SignUpForm>
-          {error && alert("Sign up error ", error)}
-          {error && console.log(error)}
           <S.SignUpLeft>
             <S.LinkWrap to={ROUTES.HOME}>{data.homeLinkText}</S.LinkWrap>
             <S.SignUpImage src={data.signUpImage} alt={data.signUpImageAlt} />
@@ -133,7 +152,7 @@ export default function SignUpForm({ data }) {
               </S.Row1>
 
               <S.BtnWrap>
-                <Btn type="submit" {...btnColor.primary} onClick={addUser}>
+                <Btn type="submit" {...btnColor.primary}>
                   Create account
                 </Btn>
               </S.BtnWrap>

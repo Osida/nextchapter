@@ -4,7 +4,7 @@ import * as S from "./AboutFeatureOneStyles";
 export default function AboutFeatureOne() {
   return (
     <S.FeatureOne>
-      <S.Section>
+      <S.Section id="what_we_do">
         <S.Left>
           <S.TitleWrap>
             <S.Line />

@@ -40,12 +40,12 @@ export const about_signedOut = {
   linkS: [
     {
       name: "What we do",
-      to: featureOne.id,
+      to: "what_we_do",
       restProps,
     },
     {
       name: "How we do it",
-      to: featureTwo.id,
+      to: "how_we_do_it",
       restProps,
     },
   ],
