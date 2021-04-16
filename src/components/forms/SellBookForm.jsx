@@ -1,25 +1,65 @@
-import React, { useState } from 'react';
-import { db } from '../../database/firebaseConfig';
+import React, { useState, useEffect } from 'react';
 import * as S from './SellBookFormStyle';
+import { useStateValue } from './../../context/StateProvider';
+import { db } from '../../database/firebaseConfig';
+import { actionTypes } from '../../context/reducer';
+import { TramRounded } from '@material-ui/icons';
 
 export const SellBookForm = () => {
+  const [{ departments }, dispatch] = useStateValue();
   const [warning, setWarn] = useState(false);
+  const [courses, setCourses] = useState([]);
+  const [types, setType] = useState(false);
   const [inputs, setInput] = useState({
     title: '',
     author: '',
-    ispn: '',
+    ispn: 0,
     edition: '',
     publisher: '',
     department: '',
     courseUsedIn: '',
+    type: 'sell',
+    price: 0,
   });
+
   const title = inputs.title;
   const author = inputs.author;
   const ispn = inputs.ispn;
   const edition = inputs.edition;
   const publisher = inputs.publisher;
-  const department = inputs.department;
-  const courseUsedIn = inputs.courseUsedIn;
+  const type = inputs.type;
+  const price = inputs.price;
+
+  useEffect(() => {
+    console.log('useEffect ran on sell / trade page');
+    getDepartments();
+  }, []);
+
+  async function getDepartments() {
+    const response = db.collection('University');
+    const data = await response.get();
+    const depts = [];
+    data.docs.forEach((dept) => {
+      depts.push(dept.data());
+    });
+    console.log('just fetched data from FireBase');
+    addDepartmentsToDataLayer(depts);
+    setCourses(depts[0].courses);
+    setInput((prevState) => {
+      return {
+        ...prevState,
+        department: depts[0].department_name,
+        courseUsedIn: depts[0].courses[0],
+      };
+    });
+  }
+
+  function addDepartmentsToDataLayer(depts) {
+    dispatch({
+      type: actionTypes.SET_DEPARTMENTS,
+      departments: [...depts],
+    });
+  }
 
   const changeTitle = (e) => {
     setInput((prevState) => {
@@ -49,22 +89,58 @@ export const SellBookForm = () => {
     });
   };
   const changeDepartment = (e) => {
+    const courses = departments.find(
+      (dept) => dept.department_name === e.target.value
+    );
+    console.log(e.target.value);
+    setCourses(courses.courses);
     setInput((prevState) => {
-      return { ...prevState, department: e.target.value };
+      return {
+        ...prevState,
+        department: e.target.value,
+        courseUsedIn: courses.courses[0],
+      };
     });
   };
   const changeCourseUsedIn = (e) => {
+    console.log(e.target.value);
     setInput((prevState) => {
       return { ...prevState, courseUsedIn: e.target.value };
     });
   };
 
+  const changeType = (e) => {
+    setInput((prevState) => {
+      return { ...prevState, type: e.target.value };
+    });
+    if (e.target.value === 'trade') {
+      document.getElementById('price').disabled = true;
+    } else {
+      document.getElementById('price').disabled = false;
+      setType(true);
+    }
+  };
+
+  const changePrice = (e) => {
+    setInput((prevState) => {
+      return { ...prevState, price: e.target.value };
+    });
+  };
+
   //write function here
-  function sellPageDB(){
-    db.collection("Post").add({...inputs})
-    .then(console.log("added to the database"))
-    .catch(function (err)
-    {console.log(err)});
+  function sellPageDB() {
+    db.collection('Post')
+      .add({ ...inputs })
+      .then(console.log('added to the database'))
+      .catch(function (err) {
+        console.log(err);
+      });
+    db.collection('Books')
+      .add({ ...inputs })
+      .then(console.log('added to books collection database'))
+      .catch(function (err) {
+        console.log(err);
+      });
   }
 
   //call db function inside onSubmit
@@ -77,14 +153,23 @@ export const SellBookForm = () => {
       ispn &&
       edition &&
       publisher &&
-      department &&
-      courseUsedIn
+      (price >= 0 || types === 'trade')
     ) {
       console.log('filled out');
+      console.log(inputs);
       return sellPageDB();
     }
     console.log('failed');
 
+    if (price < 0) {
+      document.getElementById('warning').innerHTML =
+        'A Book Must Cost A Positive Price';
+    }
+
+    if (price > 0) {
+      document.getElementById('warning').innerHTML =
+        'Make Sure All Fields Are Filled Out and In Correct Format';
+    }
     setWarn((prewarn) => (prewarn = !prewarn));
 
     setTimeout(() => {
@@ -92,15 +177,14 @@ export const SellBookForm = () => {
     }, 4000);
   };
 
-
   return (
     <S.Container>
       {warning === true ? (
-        <S.WarningDiv>
+        <S.WarningDiv id="warning">
           Make Sure All Fields Are Filled Out and In Correct Format
         </S.WarningDiv>
       ) : (
-        <S.WarningDiv style={{ opacity: 0 }}>
+        <S.WarningDiv id="warning" style={{ opacity: 0 }}>
           Make Sure All Fields Are Filled Out and In Correct Format
         </S.WarningDiv>
       )}
@@ -151,24 +235,24 @@ export const SellBookForm = () => {
           onChange={changePublisher}
           placeholder="MIT Press"
         ></S.Input>
-        <S.Label HTMLFor="department">Department</S.Label>
-        <S.Input
-          type="text"
-          id="department"
-          name="department"
-          value={department}
-          onChange={changeDepartment}
-          placeholder="Computer"
-        ></S.Input>
-        <S.Label HTMLFor="courseUsedIn">Course Used In</S.Label>
-        <S.Input
-          type="text"
-          id="courseUsedIn"
-          name="courseused"
-          value={courseUsedIn}
-          onChange={changeCourseUsedIn}
-          placeholder="COSC 336"
-        ></S.Input>
+
+        <S.Label>Department</S.Label>
+        <S.Select id="department" onChange={changeDepartment}>
+          {departments.map((dept) => {
+            return (
+              <S.Option value={dept.department_name}>
+                {dept.department_name}
+              </S.Option>
+            );
+          })}
+        </S.Select>
+        <S.Label>Course Used In</S.Label>
+        <S.Select id="course" onChange={changeCourseUsedIn}>
+          {courses.map((course) => {
+            return <S.Option value={course}>{course}</S.Option>;
+          })}
+        </S.Select>
+
         <S.SaleOrTradeContainer>
           <S.Label>Sell or Trade</S.Label>
           <S.RadioButtonContainer>
@@ -176,7 +260,8 @@ export const SellBookForm = () => {
               type="radio"
               name="type"
               value="sell"
-              id="type"
+              className="type"
+              onChange={changeType}
               defaultChecked
             ></S.RadioButton>
             <S.RadioLabel HMLTFor="type">Sell</S.RadioLabel>
@@ -184,10 +269,19 @@ export const SellBookForm = () => {
               type="radio"
               name="type"
               value="trade"
-              id="type"
+              className="type"
+              onChange={changeType}
             ></S.RadioButton>
             <S.RadioLabel HMLTFor="type">Trade</S.RadioLabel>
           </S.RadioButtonContainer>
+          <S.Label HTMLFor="price">Price</S.Label>
+          <S.Input
+            type="number"
+            id="price"
+            name="price"
+            value={price}
+            onChange={changePrice}
+          ></S.Input>
         </S.SaleOrTradeContainer>
         <S.Label HTMLFor="book-img">Choose Image of Book</S.Label>
         <S.InputFile type="file" accept="image/png, image/jpeg"></S.InputFile>

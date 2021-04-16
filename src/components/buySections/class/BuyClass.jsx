@@ -4,19 +4,11 @@ import { BuyHeading } from './../BuyHeading';
 import { CatHeadAndSearch } from './../CatHeadAndSearch';
 import { ClassList } from './ClassList';
 
-export const BuyClass = ({
-  heading,
-  button,
-  classInfo,
-  backToDept,
-  getClass,
-  searchClass,
-}) => {
+export const BuyClass = ({ button, classInfo, getClass, searchClass }) => {
   return (
     <S.Container>
-      <BuyHeading button={button} backToDept={backToDept} />
+      <BuyHeading button={button} />
       <CatHeadAndSearch
-        heading={heading}
         department={classInfo.department}
         searchClass={searchClass}
         classInfo={classInfo}

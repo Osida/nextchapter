@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './BuyClassStyle';
 import { Books } from './Books';
 
@@ -10,17 +10,17 @@ export const Class = ({ filter, course, getClass }) => {
 
   return (
     <S.ClassContainer>
-      <S.ClassTitle>{course.course}</S.ClassTitle>
-      <S.BooksContainer>
-        {books.map((book) => (
-          <Books
-            key={Math.floor(Math.random() * 10000)}
-            book={book}
-            course={course}
-            getClass={getClass}
-          />
-        ))}
-      </S.BooksContainer>
+      <S.ClassTitle>{course}</S.ClassTitle>
+      <S.BooksContainer></S.BooksContainer>
     </S.ClassContainer>
   );
 };
+
+// {books.map((book) => (
+//   <Books
+//     key={Math.floor(Math.random() * 10000)}
+//     book={book}
+//     course={course}
+//     getClass={getClass}
+//   />
+// ))}

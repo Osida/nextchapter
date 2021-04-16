@@ -50,6 +50,24 @@ export const Input = styled.input`
   }
 `;
 
+export const Select = styled.select`
+  padding: 12px 20px;
+  background: #c4c4c4;
+  outline: 0;
+  border: 1px solid transparent;
+  font-size: 18px;
+  transition: all 0.4s ease;
+  width: 100%;
+  border-radius: 0;
+
+  &:hover,
+  :focus {
+    border-bottom: 1px solid #d83f87;
+  }
+`;
+
+export const Option = styled.option``;
+
 export const SaleOrTradeContainer = styled.div`
   display: flex;
   flex-direction: column;

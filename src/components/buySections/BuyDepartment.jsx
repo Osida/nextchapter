@@ -4,18 +4,12 @@ import { BuyHeading } from './BuyHeading';
 import { CatHeadAndSearch } from './CatHeadAndSearch';
 import { DepartmentList } from './DepartmentList';
 
-export const BuyDepartment = ({
-  heading,
-  button,
-  depInfo,
-  clickedDept,
-  search,
-}) => {
+export const BuyDepartment = ({ heading, button, search }) => {
   return (
     <S.Container>
       <BuyHeading button={button} />
       <CatHeadAndSearch heading={heading} search={search} />
-      <DepartmentList depInfo={depInfo} clickedDept={clickedDept} />
+      <DepartmentList />
     </S.Container>
   );
 };

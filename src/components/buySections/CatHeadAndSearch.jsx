@@ -1,17 +1,19 @@
 import React from 'react';
 import * as S from './CatHeadAndSearchStyle';
+import { actionTypes } from './../../context/reducer';
+import { useStateValue } from './../../context/StateProvider';
 
 export const CatHeadAndSearch = ({
-  heading,
-  department = '',
   search = '',
   searchClass = '',
   classInfo,
 }) => {
+  const [{ department }, dispatch] = useStateValue();
+
   return (
     <S.Container>
-      <S.Header>{`${department ? department : heading}`}</S.Header>
-      <S.SearchLabel>Search {heading}</S.SearchLabel>
+      <S.Header>{`${department}`}</S.Header>
+      <S.SearchLabel>Search {department}</S.SearchLabel>
       <S.SearchBar
         type="text"
         onChange={(e) =>
