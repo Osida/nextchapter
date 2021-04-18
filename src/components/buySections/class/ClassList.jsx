@@ -3,33 +3,49 @@ import { useStateValue } from '../../../context/StateProvider';
 import * as S from './BuyClassStyle';
 import { Class } from './Class';
 import { db } from './../../../database/firebaseConfig';
+import { actionTypes } from '../../../context/reducer';
+import { Books } from './Books';
 
 export const ClassList = ({ classes, getClass }) => {
-  const [{ courses }, dispatch] = useStateValue();
-  console.log(courses);
+  const [{ books, courses, coursesDisplay }, dispatch] = useStateValue();
   const [filterType, setFilterType] = useState('both');
+  const [data, setData] = useState(books);
 
-  const getFilter = (e) => {
-    setFilterType(e.target.dataset.filterType);
+  const setBooks = (books) => {
+    setData(books);
   };
 
-  useEffect(() => {
-    console.log('get books use effect just ran');
-    getBooks();
-  }, []);
+  const getFilter = (e) => {
+    if (e.target.dataset.filterType === 'both') {
+      setBooks(books);
+      dispatch({
+        type: actionTypes.SET_BOOKS_DISPLAYED,
+        bookDisplayed: books,
+      });
+    }
+    if (e.target.dataset.filterType === 'sell') {
+      const b = books.filter((book) => book.type === 'sell');
+      setBooks(b);
+      console.log(b);
 
-  async function getBooks() {
-    const response = db.collection('Books');
-    const data = await response.get();
-    const depts = [];
-    data.docs.forEach((dept) => {
-      depts.push(dept.data());
-    });
-    console.log('just fetched data from FireBase');
-    console.log(depts);
-    // setData(depts);
-    // addDepartmentsToDataLayer(depts);
-  }
+      dispatch({
+        type: actionTypes.SET_BOOKS_DISPLAYED,
+        bookDisplayed: [...b],
+      });
+    }
+
+    if (e.target.dataset.filterType === 'trade') {
+      const b = books.filter((book) => book.type === 'trade');
+      setBooks(b);
+      console.log(b);
+
+      dispatch({
+        type: actionTypes.SET_BOOKS_DISPLAYED,
+        bookDisplayed: [...b],
+      });
+    }
+    setFilterType(e.target.dataset.filterType);
+  };
 
   return (
     <S.ClassesContainer>
@@ -47,14 +63,18 @@ export const ClassList = ({ classes, getClass }) => {
           </S.TradeFilter>
         </S.FilterButtons>
       </S.SellOrTradeContainer>
-      {courses.map((course) => (
-        <Class
-          key={Math.floor(Math.random() * 10000)}
-          filter={filterType}
-          course={course}
-          getClass={getClass}
-        />
-      ))}
+      {coursesDisplay.map((course) =>
+        data.filter((book) => book.courseUsedIn === course).length !== 0 ? (
+          <Class
+            key={Math.floor(Math.random() * 10000)}
+            filter={filterType}
+            course={course}
+            getClass={getClass}
+          />
+        ) : (
+          ''
+        )
+      )}
     </S.ClassesContainer>
   );
 };

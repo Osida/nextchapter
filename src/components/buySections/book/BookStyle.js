@@ -29,7 +29,7 @@ export const BookInfoContainer = styled.div`
 `;
 
 export const BookImage = styled.img`
-  grid-row: 1 / span 12;
+  grid-row: 1 / span 14;
   width: 200px;
   height: 330px;
 `;

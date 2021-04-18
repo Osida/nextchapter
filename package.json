@@ -17,6 +17,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "react-scroll": "^1.8.2",
+    "react-select": "^4.3.0",
     "react-sidebar-ui": "^1.2.1",
     "sass": "^1.32.8",
     "styled-components": "^5.2.1",

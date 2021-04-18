@@ -29,10 +29,10 @@ export const BuyHeading = ({ button, backToDept = '', backToClasses = '' }) => {
   };
 
   function goToDepartmentsPage() {
-    dispatch({
-      type: actionTypes.SET_DEPARTMENT,
-      department: 'Department',
-    });
+    // dispatch({
+    //   type: actionTypes.SET_DEPARTMENT,
+    //   department: 'Department',
+    // });
     dispatch({
       type: actionTypes.SET_ON_DEPT_PAGE,
       onDepartmentPage: true,
@@ -46,11 +46,11 @@ export const BuyHeading = ({ button, backToDept = '', backToClasses = '' }) => {
   const goToClassesPage = () => {
     dispatch({
       type: actionTypes.SET_ON_CLASSES_PAGE,
-      onDepartmentPage: true,
+      onClassesPage: true,
     });
     dispatch({
       type: actionTypes.SET_ON_BOOK_PAGE,
-      onClassesPage: false,
+      onBookPage: false,
     });
   };
 

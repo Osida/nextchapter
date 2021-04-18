@@ -4,9 +4,8 @@ import { Department } from './department/Department';
 import { useStateValue } from '../../context/StateProvider';
 
 export const DepartmentList = ({ depInfo, clickedDept }) => {
-  const [{ departments }, dispatch] = useStateValue();
-  const depts = departments;
-  console.log(depts);
+  const [{ departmentsDisplay }, dispatch] = useStateValue();
+  const depts = departmentsDisplay;
   return (
     <S.Container>
       {depts.map((dept) => (

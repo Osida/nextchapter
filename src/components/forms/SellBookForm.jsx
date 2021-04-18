@@ -10,10 +10,11 @@ export const SellBookForm = () => {
   const [warning, setWarn] = useState(false);
   const [courses, setCourses] = useState([]);
   const [types, setType] = useState(false);
+  const [selected, setSelected] = useState(0);
   const [inputs, setInput] = useState({
     title: '',
     author: '',
-    ispn: 0,
+    isbn: 0,
     edition: '',
     publisher: '',
     department: '',
@@ -24,7 +25,7 @@ export const SellBookForm = () => {
 
   const title = inputs.title;
   const author = inputs.author;
-  const ispn = inputs.ispn;
+  const isbn = inputs.ispn;
   const edition = inputs.edition;
   const publisher = inputs.publisher;
   const type = inputs.type;
@@ -72,7 +73,7 @@ export const SellBookForm = () => {
       return { ...prevState, author: e.target.value };
     });
   };
-  const changeISPN = (e) => {
+  const changeISBN = (e) => {
     setInput((prevState) => {
       return { ...prevState, ispn: e.target.value };
     });
@@ -92,7 +93,7 @@ export const SellBookForm = () => {
     const courses = departments.find(
       (dept) => dept.department_name === e.target.value
     );
-    console.log(e.target.value);
+    setSelected(e.target.options.selectedIndex);
     setCourses(courses.courses);
     setInput((prevState) => {
       return {
@@ -146,11 +147,13 @@ export const SellBookForm = () => {
   //call db function inside onSubmit
   const onSubmit = (e) => {
     e.preventDefault();
+    const image = document.getElementById('picture').value;
+    console.log(image);
 
     if (
       title &&
       author &&
-      ispn &&
+      isbn &&
       edition &&
       publisher &&
       (price >= 0 || types === 'trade')
@@ -208,13 +211,13 @@ export const SellBookForm = () => {
           onChange={changeAuthor}
           placeholder="Thomas Cormen"
         ></S.Input>
-        <S.Label HTMLFor="ispn">ISPN</S.Label>
+        <S.Label HTMLFor="isbn">ISBN</S.Label>
         <S.Input
           type="number"
-          id="ispn"
-          name="ispn"
-          value={ispn}
-          onChange={changeISPN}
+          id="isbn"
+          name="isbn"
+          value={isbn}
+          onChange={changeISBN}
           placeholder="9780140274059"
         ></S.Input>
         <S.Label HTMLFor="edition">Edition</S.Label>
@@ -238,18 +241,41 @@ export const SellBookForm = () => {
 
         <S.Label>Department</S.Label>
         <S.Select id="department" onChange={changeDepartment}>
-          {departments.map((dept) => {
-            return (
-              <S.Option value={dept.department_name}>
-                {dept.department_name}
-              </S.Option>
-            );
+          {departments.map((dept, i) => {
+            if (i === selected) {
+              return (
+                <S.Option
+                  key={Math.floor(Math.random() * 10000) + 1}
+                  value={dept.department_name}
+                  selected
+                >
+                  {dept.department_name}
+                </S.Option>
+              );
+            } else {
+              return (
+                <S.Option
+                  key={Math.floor(Math.random() * 10000) + 1}
+                  value={dept.department_name}
+                >
+                  {dept.department_name}
+                </S.Option>
+              );
+            }
           })}
         </S.Select>
+
         <S.Label>Course Used In</S.Label>
         <S.Select id="course" onChange={changeCourseUsedIn}>
           {courses.map((course) => {
-            return <S.Option value={course}>{course}</S.Option>;
+            return (
+              <S.Option
+                key={Math.floor(Math.random() * 10000) + 1}
+                value={course}
+              >
+                {course}
+              </S.Option>
+            );
           })}
         </S.Select>
 
@@ -284,7 +310,11 @@ export const SellBookForm = () => {
           ></S.Input>
         </S.SaleOrTradeContainer>
         <S.Label HTMLFor="book-img">Choose Image of Book</S.Label>
-        <S.InputFile type="file" accept="image/png, image/jpeg"></S.InputFile>
+        <S.InputFile
+          type="file"
+          accept="image/png, image/jpeg"
+          id="picture"
+        ></S.InputFile>
         <S.PostButton type="submit">Post Book</S.PostButton>
       </S.Form>
     </S.Container>

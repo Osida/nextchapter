@@ -3,8 +3,12 @@ export const initialState = {
   student: null,
   departments: [],
   selectDepartment: '',
+  departmentsDisplay: [],
   courses: [],
+  coursesDisplay: [],
   books: [],
+  bookTypePicked: 'both',
+  bookDisplayed: [],
   selectedBook: {},
   onDepartmentPage: false,
   onClassesPage: false,
@@ -16,8 +20,12 @@ export const actionTypes = {
   SET_STUDENT: 'SET_STUDENT',
   SET_DEPARTMENTS: 'SET_DEPARTMENTS',
   SET_DEPARTMENT: 'SET_DEPARTMENT',
+  SET_DEPARTMENTS_DISPLAYED: 'SET_DEPARTMENTS_DISPLAYED',
   SET_COURSES: 'SET_COURSES',
+  SET_COURSESDISPLAY: 'SET_COURSESDISPLAY',
   SET_BOOKS: 'SET_BOOKS',
+  SET_BOOKS_TYPE_PICKED: 'SET_BOOKS_TYPE_PICKED',
+  SET_BOOKS_DISPLAYED: 'SET_BOOKS_DISPLAYED',
   SET_SELECTED_BOOK: 'SET_SELECTED_BOOK',
   SET_ON_DEPT_PAGE: 'SET_ON_DEPT_PAGE',
   SET_ON_CLASSES_PAGE: 'SET_ON_CLASSES_PAGE',
@@ -47,22 +55,42 @@ const reducer = (state, action) => {
     case actionTypes.SET_DEPARTMENT:
       return {
         ...state,
-        department: action.department,
+        selectDepartment: action.department,
+      };
+    case actionTypes.SET_DEPARTMENTS_DISPLAYED:
+      return {
+        ...state,
+        departmentsDisplay: [...action.departmentsDisplay],
       };
     case actionTypes.SET_COURSES:
       return {
         ...state,
         courses: [...action.courses],
       };
+    case actionTypes.SET_COURSESDISPLAY:
+      return {
+        ...state,
+        coursesDisplay: [...action.coursesDisplay],
+      };
     case actionTypes.SET_BOOKS:
       return {
         ...state,
-        books: [action.books],
+        books: [...action.books],
+      };
+    case actionTypes.SET_BOOKS_TYPE_PICKED:
+      return {
+        ...state,
+        bookTypePicked: action.bookTypePicked,
+      };
+    case actionTypes.SET_BOOKS_DISPLAYED:
+      return {
+        ...state,
+        bookDisplayed: [...action.bookDisplayed],
       };
     case actionTypes.SET_SELECTED_BOOK:
       return {
         ...state,
-        selectedBook: [action.selectedBook],
+        selectedBook: action.selectedBook,
       };
     case actionTypes.SET_ON_DEPT_PAGE:
       return {

@@ -2,6 +2,7 @@ import React from 'react';
 import { actionTypes } from '../../../context/reducer';
 import { useStateValue } from '../../../context/StateProvider';
 import * as S from './DepartmentStyle';
+import { db } from '../../../database/firebaseConfig';
 
 export const Department = ({ dept, clickedDept }) => {
   const [
@@ -9,10 +10,28 @@ export const Department = ({ dept, clickedDept }) => {
     dispatch,
   ] = useStateValue();
 
-  const setClickedDept = () => {
+
+  const setClickedDept = async () => {
+    const response = db
+      .collection('Books')
+      .where('department', '==', dept.department_name);
+    const data = await response.get();
+    const books = [];
+    data.docs.forEach((book) => {
+      books.push(book.data());
+    });
+
     dispatch({
       type: actionTypes.SET_COURSES,
       courses: [...dept.courses],
+    });
+    dispatch({
+      type: actionTypes.SET_BOOKS,
+      books: [...books],
+    });
+    dispatch({
+      type: actionTypes.SET_BOOKS_DISPLAYED,
+      bookDisplayed: [...books],
     });
     dispatch({
       type: actionTypes.SET_DEPARTMENT,
