@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import * as S from './SellBookFormStyle';
 import { useStateValue } from './../../context/StateProvider';
-import { db } from '../../database/firebaseConfig';
+import { db, storage } from '../../database/firebaseConfig';
 import { actionTypes } from '../../context/reducer';
 import { TramRounded } from '@material-ui/icons';
 
 export const SellBookForm = () => {
-  const [{ departments }, dispatch] = useStateValue();
+  const [{ departments, user }, dispatch] = useStateValue();
   const [warning, setWarn] = useState(false);
   const [courses, setCourses] = useState([]);
   const [types, setType] = useState(false);
@@ -21,6 +21,8 @@ export const SellBookForm = () => {
     courseUsedIn: '',
     type: 'sell',
     price: 0,
+    bookImg: '',
+    bookPostedById: '',
   });
 
   const title = inputs.title;
@@ -30,10 +32,12 @@ export const SellBookForm = () => {
   const publisher = inputs.publisher;
   const type = inputs.type;
   const price = inputs.price;
+  const bookImg = inputs.bookImg;
 
   useEffect(() => {
     console.log('useEffect ran on sell / trade page');
     getDepartments();
+    console.log(user);
   }, []);
 
   async function getDepartments() {
@@ -75,7 +79,7 @@ export const SellBookForm = () => {
   };
   const changeISBN = (e) => {
     setInput((prevState) => {
-      return { ...prevState, ispn: e.target.value };
+      return { ...prevState, isbn: e.target.value };
     });
   };
 
@@ -128,6 +132,17 @@ export const SellBookForm = () => {
     });
   };
 
+  const onFilechange = async (e) => {
+    const file = e.target.files[0];
+    const storageRef = storage.ref();
+    const fileRef = storageRef.child(file.name);
+    await fileRef.put(file);
+    const fileUrl = await fileRef.getDownloadURL();
+    setInput((prevState) => {
+      return { ...prevState, bookImg: fileUrl };
+    });
+  };
+
   //write function here
   function sellPageDB() {
     db.collection('Post')
@@ -156,8 +171,12 @@ export const SellBookForm = () => {
       isbn &&
       edition &&
       publisher &&
+      bookImg &&
       (price >= 0 || types === 'trade')
     ) {
+      setInput((prevState) => {
+        return { ...prevState, bookPostedById: user.uid };
+      });
       console.log('filled out');
       console.log(inputs);
       return sellPageDB();
@@ -314,6 +333,7 @@ export const SellBookForm = () => {
           type="file"
           accept="image/png, image/jpeg"
           id="picture"
+          onChange={onFilechange}
         ></S.InputFile>
         <S.PostButton type="submit">Post Book</S.PostButton>
       </S.Form>

@@ -6,10 +6,16 @@ import { db } from './../../../database/firebaseConfig';
 import { actionTypes } from '../../../context/reducer';
 import { Books } from './Books';
 
-export const ClassList = ({ classes, getClass }) => {
+export const ClassList = () => {
   const [{ books, courses, coursesDisplay }, dispatch] = useStateValue();
   const [filterType, setFilterType] = useState('both');
   const [data, setData] = useState(books);
+  const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    displayLoader();
+  }, []);
 
   const setBooks = (books) => {
     setData(books);
@@ -47,6 +53,12 @@ export const ClassList = ({ classes, getClass }) => {
     setFilterType(e.target.dataset.filterType);
   };
 
+  const displayLoader = () => {
+    setTimeout(() => {
+      setShow(!show);
+    }, 2000);
+  };
+
   return (
     <S.ClassesContainer>
       <S.SellOrTradeContainer>
@@ -63,18 +75,22 @@ export const ClassList = ({ classes, getClass }) => {
           </S.TradeFilter>
         </S.FilterButtons>
       </S.SellOrTradeContainer>
-      {coursesDisplay.map((course) =>
-        data.filter((book) => book.courseUsedIn === course).length !== 0 ? (
-          <Class
-            key={Math.floor(Math.random() * 10000)}
-            filter={filterType}
-            course={course}
-            getClass={getClass}
-          />
-        ) : (
-          ''
-        )
+      {show &&
+        coursesDisplay.map((course) =>
+          data.filter((book) => book.courseUsedIn === course).length !== 0 ? (
+            <Class key={Math.floor(Math.random() * 10000)} course={course} />
+          ) : (
+            ''
+          )
+        )}
+      {show && coursesDisplay.length === 0 && (
+        <S.NoBooks>No Classes with Books Were Found</S.NoBooks>
       )}
+
+      {show && data.length === 0 && (
+        <S.NoBooks>No Classes with Books Were Found</S.NoBooks>
+      )}
+      {!show && <S.Loader />}
     </S.ClassesContainer>
   );
 };

@@ -3,11 +3,7 @@ import * as S from './CatHeadAndSearchStyle';
 import { actionTypes } from './../../context/reducer';
 import { useStateValue } from './../../context/StateProvider';
 
-export const CatHeadAndSearch = ({
-  search = '',
-  searchClass = '',
-  classInfo,
-}) => {
+export const CatHeadAndSearch = () => {
   const [
     {
       departments,
@@ -20,6 +16,8 @@ export const CatHeadAndSearch = ({
     dispatch,
   ] = useStateValue();
   const [state, setState] = useState('Department');
+  const [dept, setDept] = useState([...departments]);
+  const [course, setCourse] = useState([...courses]);
 
   useEffect(() => {
     setState(() => {
@@ -32,30 +30,44 @@ export const CatHeadAndSearch = ({
     });
   }, []);
 
+  useEffect(() => {
+    setDisplayDepts();
+  }, [dept.length]);
+
+  useEffect(() => {
+    setDisplayCourses();
+  }, [course.length]);
+
   function setSearchData(e) {
     if (onDepartmentPage) {
       const searchDept = departments.filter((dept) =>
         dept.department_name.toLowerCase().includes(e.target.value)
       );
-
-      dispatch({
-        type: actionTypes.SET_DEPARTMENTS_DISPLAYED,
-        departmentsDisplay: [...searchDept],
-      });
+      setDept(searchDept);
       return;
     }
     if (onClassesPage) {
       const searchCourse = courses.filter((course) =>
         course.toLowerCase().includes(e.target.value)
       );
-
-      dispatch({
-        type: actionTypes.SET_COURSESDISPLAY,
-        coursesDisplay: [...searchCourse],
-      });
+      setCourse(searchCourse);
       return;
     }
   }
+
+  const setDisplayDepts = () => {
+    dispatch({
+      type: actionTypes.SET_DEPARTMENTS_DISPLAYED,
+      departmentsDisplay: [...dept],
+    });
+  };
+
+  const setDisplayCourses = () => {
+    dispatch({
+      type: actionTypes.SET_COURSESDISPLAY,
+      coursesDisplay: [...course],
+    });
+  };
 
   return (
     <S.Container>

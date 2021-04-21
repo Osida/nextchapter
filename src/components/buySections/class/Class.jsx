@@ -4,7 +4,7 @@ import { Books } from './Books';
 import { useStateValue } from '../../../context/StateProvider';
 import { actionTypes } from '../../../context/reducer';
 
-export const Class = ({ filter, course, getClass }) => {
+export const Class = ({ course }) => {
   const [{ bookDisplayed }, dispatch] = useStateValue();
   const books = bookDisplayed.filter((book) => book.courseUsedIn === course);
   return (

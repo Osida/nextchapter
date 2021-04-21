@@ -2,6 +2,7 @@ import styled from 'styled-components/macro';
 
 export const Container = styled.div`
   max-width: 1100px;
+  min-height: 65vh;
   overflow: auto;
   margin: 2em auto;
   padding: 1em 3em 2em;

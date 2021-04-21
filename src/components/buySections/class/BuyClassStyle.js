@@ -1,7 +1,8 @@
-import styled from 'styled-components/macro';
+import styled, { keyframes } from 'styled-components/macro';
 
 export const Container = styled.div`
   max-width: 1100px;
+  min-height: 90vh;
   overflow: auto;
   margin: 2em auto;
   padding: 1em 3em 2em;
@@ -89,10 +90,11 @@ export const BooksContainer = styled.div`
 `;
 
 export const BookImg = styled.img`
-  width: 200px;
-  height: 250px;
+  width: 175px;
+  height: 225px;
   background-image: url(Image);
-  margin-right: 30px;
+  margin-right: 15px;
+  margin-bottom: 15px;
   border: 4px solid ${(props) => props.primary};
 
   transition: all 0.5 ease;
@@ -105,4 +107,31 @@ export const BookImg = styled.img`
     cursor: pointer;
     transform: scale(1.02);
   }
+`;
+
+const spinSafari = keyframes`
+0% { -webkit-transform: rotate(0deg); }
+100% { -webkit-transform: rotate(360deg); }
+`;
+
+const spin = keyframes`
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+`;
+
+export const Loader = styled.div`
+  margin: 90px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #d83f87;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: ${spinSafari} 2s linear infinite; /* Safari */
+  animation: ${spin} 2s linear infinite;
+`;
+
+export const NoBooks = styled.h1`
+  margin: 100px;
+  color: #d83f87;
+  font-size: 30px;
 `;

@@ -2,7 +2,6 @@ import React from 'react';
 import { actionTypes } from '../../../context/reducer';
 import { useStateValue } from '../../../context/StateProvider';
 import * as S from './BuyClassStyle';
-import Image from './imgs/bookImg.PNG';
 
 export const Books = ({ book }) => {
   const [{ bookDisplayed }, dispatch] = useStateValue();
@@ -26,6 +25,10 @@ export const Books = ({ book }) => {
   };
 
   return (
-    <S.BookImg src={Image} onClick={setBook} primary={primary}></S.BookImg>
+    <S.BookImg
+      src={book.bookImg}
+      onClick={setBook}
+      primary={primary}
+    ></S.BookImg>
   );
 };

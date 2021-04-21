@@ -3,7 +3,7 @@ import * as S from './BuyHeadingStyle';
 import { actionTypes } from './../../context/reducer';
 import { useStateValue } from './../../context/StateProvider';
 
-export const BuyHeading = ({ button, backToDept = '', backToClasses = '' }) => {
+export const BuyHeading = ({ button }) => {
   const [buttonStatus, setButtonStatus] = useState(false);
   const [
     { onDepartmentPage, onClassesPage, onBookPage },
@@ -29,10 +29,10 @@ export const BuyHeading = ({ button, backToDept = '', backToClasses = '' }) => {
   };
 
   function goToDepartmentsPage() {
-    // dispatch({
-    //   type: actionTypes.SET_DEPARTMENT,
-    //   department: 'Department',
-    // });
+    dispatch({
+      type: actionTypes.SET_DEPARTMENT,
+      department: 'Department',
+    });
     dispatch({
       type: actionTypes.SET_ON_DEPT_PAGE,
       onDepartmentPage: true,

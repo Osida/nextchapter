@@ -1,18 +1,17 @@
 import React from 'react';
 import * as S from './BookStyle';
 import { BuyHeading } from './../BuyHeading';
-import Image from './../class/imgs/bookImg.PNG';
 import { useStateValue } from '../../../context/StateProvider';
 
-export const Book = ({ button, clas, book, backToClasses }) => {
+export const Book = ({ button }) => {
   const [{ selectedBook }, dispatch] = useStateValue();
   console.log(selectedBook);
   return (
     <S.Container>
-      <BuyHeading button={button} backToClasses={backToClasses} />
-      <S.Class>{clas}</S.Class>
+      <BuyHeading button={button} />
+
       <S.BookInfoContainer>
-        <S.BookImage src={Image}></S.BookImage>
+        <S.BookImage src={selectedBook.bookImg}></S.BookImage>
         <S.BookP>Book Details</S.BookP>
         <S.BookLabel>Type</S.BookLabel>
         <S.BookDetail>

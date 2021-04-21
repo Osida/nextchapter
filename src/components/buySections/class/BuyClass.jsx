@@ -6,7 +6,7 @@ import { ClassList } from './ClassList';
 import { useStateValue } from '../../../context/StateProvider';
 import { actionTypes } from '../../../context/reducer';
 
-export const BuyClass = ({ button, classInfo, getClass, searchClass }) => {
+export const BuyClass = ({ button }) => {
   const [{ bookDisplayed, courses }, dispatch] = useStateValue();
 
   const getCourses = () => {
@@ -23,13 +23,9 @@ export const BuyClass = ({ button, classInfo, getClass, searchClass }) => {
   return (
     <S.Container>
       <BuyHeading button={button} />
-      <CatHeadAndSearch
-        department={classInfo.department}
-        searchClass={searchClass}
-        classInfo={classInfo}
-      />
+      <CatHeadAndSearch />
 
-      <ClassList classes={classInfo.classes} getClass={getClass} />
+      <ClassList />
     </S.Container>
   );
 };
