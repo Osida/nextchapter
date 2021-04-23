@@ -7,7 +7,6 @@ const ROUTES = {
   PROFILE: "/profile",
   BUY: "/buy",
   SELL: "/sell",
-  TRADE: "/trade",
 };
 
 export default ROUTES;
