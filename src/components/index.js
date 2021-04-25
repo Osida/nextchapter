@@ -22,4 +22,6 @@ export { default as PasswordReset } from "./signUp/PasswordReset";
 // Components data
 export { btnColor, btnSize } from "./button/LinkBtnData";
 export { home_signedOut, about_signedOut, signedIn } from "./navbar/navbarData";
+export { signInData } from "./signInForm/signInData";
 export { forgotData } from "./signUp/forgotData";
+//export { SignInForm } from "./signInForm/SignInForm";
