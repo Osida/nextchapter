@@ -65,10 +65,6 @@ export const signedIn = {
       name: "Buy Books",
       to: ROUTES.BUY,
     },
-    {
-      name: "Trade Books",
-      to: ROUTES.TRADE,
-    },
   ],
   linkS: [{}],
 };

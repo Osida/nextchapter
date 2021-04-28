@@ -48,7 +48,6 @@ export default function App() {
             <Route exact path={ROUTES.PROFILE} component={PAGE.Profile} />
             <Route exact path={ROUTES.SELL} component={PAGE.Sell} />
             <Route exact path={ROUTES.BUY} component={PAGE.Buy} />
-            <Route exact path={ROUTES.TRADE} component={PAGE.Trade} />
             <Route exact path={ROUTES.HOME} component={PAGE.Home} />
             <Route exact path="/test" component={PAGE.Test} />
             <Route component={NotFound} />
