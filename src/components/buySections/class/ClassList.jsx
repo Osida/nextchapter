@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useStateValue } from '../../../context/StateProvider';
 import * as S from './BuyClassStyle';
 import { Class } from './Class';
-import { db } from './../../../database/firebaseConfig';
+import { db } from './../../../database';
 import { actionTypes } from '../../../context/reducer';
 import { Books } from './Books';
 

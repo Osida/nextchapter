@@ -4,37 +4,56 @@ import { ThemeProvider } from "styled-components";
 import { NotFound } from "..";
 import { actionTypes } from "../../context/reducer";
 import { useStateValue } from "../../context/StateProvider";
-import { auth } from "../../database/firebaseConfig";
+import { auth, db, collections } from "../../database";
 import ROUTES, * as PAGE from "../../pages";
 import { styleTheme } from "../../styles";
 
 export default function App() {
-  // Call this to access global state
-  const [state, dispatch] = useStateValue();
+  const [{ user, student }, dispatch] = useStateValue();
 
   useEffect(() => {
+    let unsubscribeAuth;
     // auth.onAuthStateChanged() is a Firebase method - sets the user
     // unsubscribe = return method will unsubscribe the onAuthStateChanged() event
-    const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      // For dev purposes
+    unsubscribeAuth = auth.onAuthStateChanged((authUser) => {
       console.log("THE USER IS >>", authUser);
-      // a user exist then set global state user
+
       if (authUser) {
         dispatch({
           type: actionTypes.SET_USER,
           user: authUser,
         });
-      }
-      // a user doesn't exist then set global state user
-      else {
+      } else {
         dispatch({
           type: actionTypes.SET_USER,
           user: null,
         });
       }
     });
-    return unsubscribe;
+    return () => unsubscribeAuth;
   }, []);
+
+  useEffect(() => {
+    let unsubscribeDB;
+
+    if (user) {
+      unsubscribeDB = db
+        .collection(collections.students)
+        .doc(user?.uid)
+        .onSnapshot((doc) => {
+          dispatch({
+            type: actionTypes.SET_STUDENT,
+            student: doc.data(),
+          });
+        });
+    } else {
+      dispatch({
+        type: actionTypes.SET_STUDENT,
+        student: null,
+      });
+    }
+    return () => unsubscribeDB;
+  }, [user]);
 
   return (
     <>
@@ -44,7 +63,11 @@ export default function App() {
             <Route exact path={ROUTES.ABOUT} component={PAGE.About} />
             <Route exact path={ROUTES.SIGN_IN} component={PAGE.SignIn} />
             <Route exact path={ROUTES.SIGN_UP} component={PAGE.SignUp} />
-            <Route exact path={ROUTES.RESET_PASSWORD} component={PAGE.ResetPassword} />
+            <Route
+              exact
+              path={ROUTES.RESET_PASSWORD}
+              component={PAGE.ResetPassword}
+            />
             <Route exact path={ROUTES.PROFILE} component={PAGE.Profile} />
             <Route exact path={ROUTES.SELL} component={PAGE.Sell} />
             <Route exact path={ROUTES.BUY} component={PAGE.Buy} />

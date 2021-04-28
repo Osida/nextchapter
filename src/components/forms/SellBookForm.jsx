@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as S from './SellBookFormStyle';
 import { useStateValue } from './../../context/StateProvider';
-import { db, storage } from '../../database/firebaseConfig';
+import { db, storage } from '../../database';
 import { actionTypes } from '../../context/reducer';
 import { TramRounded } from '@material-ui/icons';
 

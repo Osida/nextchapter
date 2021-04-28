@@ -3,10 +3,10 @@ import { useStateValue } from "../../../context/StateProvider";
 import { Container } from "../../../styles";
 import * as S from "./ProfileBannerStyles";
 
-const SignedIn = (props) => {
+const SignedIn = ({ name }) => {
   return (
     <S.Title>
-      Hi, <S.ColorText>loggedIn</S.ColorText>
+      Hi, <S.ColorText>{name}</S.ColorText>
     </S.Title>
   );
 };
@@ -20,14 +20,14 @@ const SignedOut = () => {
 };
 
 export default function ProfileBanner() {
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user, student }, dispatch] = useStateValue();
 
   return (
     <S.ProfileBanner>
       <Container>
         <S.Wrapper>
           <S.Content>
-            {user ? <SignedIn /> : <SignedOut />}
+            {user ? <SignedIn name={student?.username} /> : <SignedOut />}
             <S.SubTitle>Welcome back!</S.SubTitle>
           </S.Content>
 
