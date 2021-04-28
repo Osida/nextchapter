@@ -10,7 +10,8 @@ export const SellBookForm = () => {
   const [warning, setWarn] = useState(false);
   const [courses, setCourses] = useState([]);
   const [types, setType] = useState(false);
-  const [selected, setSelected] = useState(0);
+  const [selectedDept, setSelectedDept] = useState(0);
+  const [selectedCourse, setSelectedCourse] = useState(0);
   const [inputs, setInput] = useState({
     title: '',
     author: '',
@@ -22,12 +23,12 @@ export const SellBookForm = () => {
     type: 'sell',
     price: 0,
     bookImg: '',
-    bookPostedById: '',
+    bookPostedById: user.uid,
   });
 
   const title = inputs.title;
   const author = inputs.author;
-  const isbn = inputs.ispn;
+  const isbn = inputs.isbn;
   const edition = inputs.edition;
   const publisher = inputs.publisher;
   const type = inputs.type;
@@ -38,6 +39,7 @@ export const SellBookForm = () => {
     console.log('useEffect ran on sell / trade page');
     getDepartments();
     console.log(user);
+    clearFields();
   }, []);
 
   async function getDepartments() {
@@ -97,7 +99,8 @@ export const SellBookForm = () => {
     const courses = departments.find(
       (dept) => dept.department_name === e.target.value
     );
-    setSelected(e.target.options.selectedIndex);
+    setSelectedDept(e.target.options.selectedIndex);
+    setSelectedCourse(0);
     setCourses(courses.courses);
     setInput((prevState) => {
       return {
@@ -108,7 +111,7 @@ export const SellBookForm = () => {
     });
   };
   const changeCourseUsedIn = (e) => {
-    console.log(e.target.value);
+    setSelectedCourse(e.target.options.selectedIndex);
     setInput((prevState) => {
       return { ...prevState, courseUsedIn: e.target.value };
     });
@@ -120,6 +123,7 @@ export const SellBookForm = () => {
     });
     if (e.target.value === 'trade') {
       document.getElementById('price').disabled = true;
+      setType(false);
     } else {
       document.getElementById('price').disabled = false;
       setType(true);
@@ -150,20 +154,58 @@ export const SellBookForm = () => {
       .then(console.log('added to the database'))
       .catch(function (err) {
         console.log(err);
+        document.getElementById('warning').innerHTML =
+          'Sorry Unable to Post Book, Try Back Later';
+        document.getElementById('warning').style.background = '#9c6868';
+        document.getElementById('warning').style.borderColor = '#ff0000';
+        setWarn((prewarn) => (prewarn = !prewarn));
+
+        setTimeout(() => {
+          setWarn((prewarn) => (prewarn = !prewarn));
+        }, 4000);
       });
     db.collection('Books')
       .add({ ...inputs })
       .then(console.log('added to books collection database'))
       .catch(function (err) {
         console.log(err);
+        document.getElementById('warning').innerHTML =
+          'Sorry Unable to Post Book, Try Back Later';
+        document.getElementById('warning').style.background = '#9c6868';
+        document.getElementById('warning').style.borderColor = '#ff0000';
+        setWarn((prewarn) => (prewarn = !prewarn));
+
+        setTimeout(() => {
+          setWarn((prewarn) => (prewarn = !prewarn));
+        }, 4000);
       });
+
+    document.getElementById('warning').innerHTML = 'Successfully Posted Book';
+    document.getElementById('warning').style.background = '#96d468';
+    document.getElementById('warning').style.borderColor = '#6dff00';
+    setWarn((prewarn) => (prewarn = !prewarn));
+
+    setTimeout(() => {
+      setWarn((prewarn) => (prewarn = !prewarn));
+      clearFields();
+    }, 4000);
+    setTimeout(() => {
+      clearFields();
+    }, 0);
   }
+
+  const clearFields = () => {
+    document.getElementById('title').value = '';
+    document.getElementById('author').value = '';
+    document.getElementById('isbn').value = 0;
+    document.getElementById('edition').value = '';
+    document.getElementById('publisher').value = '';
+    document.getElementById('price').value = 0;
+  };
 
   //call db function inside onSubmit
   const onSubmit = (e) => {
     e.preventDefault();
-    const image = document.getElementById('picture').value;
-    console.log(image);
 
     if (
       title &&
@@ -172,23 +214,24 @@ export const SellBookForm = () => {
       edition &&
       publisher &&
       bookImg &&
-      (price >= 0 || types === 'trade')
+      (price >= 0 || type === 'trade')
     ) {
-      setInput((prevState) => {
-        return { ...prevState, bookPostedById: user.uid };
-      });
       console.log('filled out');
-      console.log(inputs);
+
       return sellPageDB();
     }
     console.log('failed');
 
     if (price < 0) {
+      document.getElementById('warning').style.background = '#9c6868';
+      document.getElementById('warning').style.borderColor = '#ff0000';
       document.getElementById('warning').innerHTML =
         'A Book Must Cost A Positive Price';
     }
 
     if (price > 0) {
+      document.getElementById('warning').style.background = '#9c6868';
+      document.getElementById('warning').style.borderColor = '#ff0000';
       document.getElementById('warning').innerHTML =
         'Make Sure All Fields Are Filled Out and In Correct Format';
     }
@@ -246,7 +289,7 @@ export const SellBookForm = () => {
           name="edition"
           value={edition}
           onChange={changeEdition}
-          placeholder="3"
+          placeholder="Third"
         ></S.Input>
         <S.Label HTMLFor="publisher">Publisher</S.Label>
         <S.Input
@@ -261,10 +304,10 @@ export const SellBookForm = () => {
         <S.Label>Department</S.Label>
         <S.Select id="department" onChange={changeDepartment}>
           {departments.map((dept, i) => {
-            if (i === selected) {
+            if (i === selectedDept) {
               return (
                 <S.Option
-                  key={Math.floor(Math.random() * 10000) + 1}
+                  key={Math.floor(Math.random() * 100000) + 1}
                   value={dept.department_name}
                   selected
                 >
@@ -274,7 +317,7 @@ export const SellBookForm = () => {
             } else {
               return (
                 <S.Option
-                  key={Math.floor(Math.random() * 10000) + 1}
+                  key={Math.floor(Math.random() * 100000) + 1}
                   value={dept.department_name}
                 >
                   {dept.department_name}
@@ -286,15 +329,27 @@ export const SellBookForm = () => {
 
         <S.Label>Course Used In</S.Label>
         <S.Select id="course" onChange={changeCourseUsedIn}>
-          {courses.map((course) => {
-            return (
-              <S.Option
-                key={Math.floor(Math.random() * 10000) + 1}
-                value={course}
-              >
-                {course}
-              </S.Option>
-            );
+          {courses.map((course, i) => {
+            if (i === selectedCourse) {
+              return (
+                <S.Option
+                  key={Math.floor(Math.random() * 100000) + 1}
+                  value={course}
+                  selected
+                >
+                  {course}
+                </S.Option>
+              );
+            } else {
+              return (
+                <S.Option
+                  key={Math.floor(Math.random() * 100000) + 1}
+                  value={course}
+                >
+                  {course}
+                </S.Option>
+              );
+            }
           })}
         </S.Select>
 
