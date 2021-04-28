@@ -10,8 +10,9 @@ export const Input = styled.input`
   background: #f0f0f0;
   /* display: flex;
   align-items: center; */
-  padding: 0 2.5em;
-  max-height: 50px;
+  padding: 1.5em 2.5em;
+  /* max-height: 50px; */
+  height: 100%;
   width: 100%;
   /* max-width: 443px; */
 `;

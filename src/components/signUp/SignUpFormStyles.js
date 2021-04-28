@@ -71,7 +71,7 @@ export const Row1 = styled.div`
 `;
 
 export const HalfInput = styled.div`
-  width: 37%;
+  width: 40%;
   /* background-color: red; */
   display: flex;
 
@@ -97,7 +97,8 @@ export const Icon = styled(PersonIcon)`
 `;
 
 export const FullInput = styled.div`
-  width: 77%;
+  width: 82%;
+  height: 100%;
   /* background-color: blue; */
 
   &:nth-child(1) {
