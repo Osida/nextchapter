@@ -4,7 +4,7 @@ import { BuyDepartment } from '../components/buySections/BuyDepartment';
 import { BuyClass } from '../components/buySections/class/BuyClass';
 import { Book } from '../components/buySections/book/Book';
 import { useStateValue } from '../context/StateProvider';
-import { db } from '../database/firebaseConfig';
+import { db } from '../database';
 import { actionTypes } from '../context/reducer';
 
 export default function Buy() {

@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { useHistory } from "react-router";
 import { Btn, btnColor, Input } from "..";
 import { useAuth } from "../../context/AuthContext";
-import { db } from "../../database/firebaseConfig";
+import { db } from "../../database";
 import ROUTES from "../../pages";
 import * as S from "./SignUpFormStyles";
 
@@ -36,14 +36,26 @@ export default function SignUpForm({ data }) {
       let username = studentEmailRef.current.value.substring(0,studentEmailRef.current.value.indexOf("@"));
       let newUser = {
         email: studentEmailRef.current.value,
+        password: passwordRef.current.value,
         favorite_books: [],
         firstName: firstNameRef.current.value,
         lastName: lastNameRef.current.value,
-        password: passwordRef.current.value,
         phoneNumber: phoneNumberRef.current.value,
         university: universityRef.current.value,
         username: username,
-      }
+      };
+      let newUserPublic = {
+        email: studentEmailRef.current.value,
+        favorite_books: [],
+        firstName: firstNameRef.current.value,
+        lastName: lastNameRef.current.value,
+        phoneNumber: phoneNumberRef.current.value,
+        university: universityRef.current.value,
+        username: username,
+      };
+      let newUserPrivate = {
+        password: passwordRef.current.value,
+      };
       // async event
       let unsubscribe = await signUp(newUser);
       history.push(ROUTES.HOME);
@@ -54,40 +66,6 @@ export default function SignUpForm({ data }) {
       console.log("error = ", error);
     }
     setLoading(false);
-  };
-
-  const addUser = () => {
-    // console.log("addUser()");
-    let username = studentEmailRef.current.value.substring(0,studentEmailRef.current.value.indexOf("@"));
-    // let newUser = {
-    //   email: studentEmailRef.current.value,
-    //   favorite_books: [],
-    //   firstName: firstNameRef.current.value,
-    //   lastName: lastNameRef.current.value,
-    //   password: passwordRef.current.value,
-    //   phoneNumber: phoneNumberRef.current.value,
-    //   uid: "",
-    //   university: universityRef.current.value,
-    //   username: username,
-    // }
-    db.collection("Students")
-      .add({
-        email: studentEmailRef.current.value,
-        favorite_books: [],
-        firstName: firstNameRef.current.value,
-        lastName: lastNameRef.current.value,
-        password: passwordRef.current.value,
-        phoneNumber: phoneNumberRef.current.value,
-        uid: "",
-        university: universityRef.current.value,
-        username: username,
-      })
-      .then((docRef) => {
-        console.log("Doc has been added: ", docRef);
-      })
-      .catch((error) => {
-        console.log("Error adding doc: ", error);
-      });
   };
 
   return (

@@ -15,13 +15,13 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+const firebaseApp_prod = firebase.initializeApp(firebaseConfig);
 // firebase.analytics();
 
 // Access the firestore instance of the app (basically connects to the db)
-export const db = firebaseApp.firestore();
+export const db_prod = firebaseApp_prod.firestore();
 
 // Responsible for setting up the authentication
-export const auth = firebaseApp.auth();
+export const auth_prod = firebaseApp_prod.auth();
 
-export const storage = firebaseApp.storage();
+export const storage_prod = firebaseApp_prod.storage();

@@ -8,12 +8,10 @@ import ROUTES from "../../pages";
 import { Container } from "../../styles";
 import * as S from "./NavbarStyles";
 
-const SignedIn = (props) => {
-  const [{ user }] = useStateValue();
-
+const SignedIn = ({ name }) => {
   return (
     <S.NavbarTextLink to={ROUTES.PROFILE}>
-      Hello, <S.ColorText>loggedIn</S.ColorText>
+      Hello, <S.ColorText>{name}</S.ColorText>
     </S.NavbarTextLink>
   );
 };
@@ -23,7 +21,7 @@ const SignedOut = () => {
 };
 
 export default function Navbar_({ linkR, linkS }) {
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user, student }, dispatch] = useStateValue();
   const [isOpen, setOpen] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -66,7 +64,7 @@ export default function Navbar_({ linkR, linkS }) {
           </S.NavbarMenu>
 
           <S.NavbarBtnWrap>
-            {user ? <SignedIn /> : <SignedOut />}
+            {user ? <SignedIn name={student?.username} /> : <SignedOut />}
             <S.Divider>|</S.Divider>
             <LinkBtn
               to={ROUTES.SIGN_UP}

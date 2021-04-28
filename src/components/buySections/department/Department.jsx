@@ -2,7 +2,7 @@ import React from 'react';
 import { actionTypes } from '../../../context/reducer';
 import { useStateValue } from '../../../context/StateProvider';
 import * as S from './DepartmentStyle';
-import { db } from '../../../database/firebaseConfig';
+import { db } from '../../../database';
 
 export const Department = ({ dept, clickedDept }) => {
   const [
