@@ -13,47 +13,37 @@ export default function App() {
 
   useEffect(() => {
     let unsubscribeAuth;
+    let unsubscribeDB;
     // auth.onAuthStateChanged() is a Firebase method - sets the user
     // unsubscribe = return method will unsubscribe the onAuthStateChanged() event
     unsubscribeAuth = auth.onAuthStateChanged((authUser) => {
-      console.log("THE USER IS >>", authUser);
-
       if (authUser) {
         dispatch({
           type: actionTypes.SET_USER,
           user: authUser,
         });
+        unsubscribeDB = db
+          .collection(collections.students)
+          .doc(authUser?.uid)
+          .onSnapshot((doc) => {
+            dispatch({
+              type: actionTypes.SET_STUDENT,
+              student: doc.data(),
+            });
+          });
       } else {
         dispatch({
           type: actionTypes.SET_USER,
           user: null,
         });
+        dispatch({
+          type: actionTypes.SET_STUDENT,
+          student: null,
+        });
       }
     });
-    return () => unsubscribeAuth;
+    return { unsubscribeAuth, unsubscribeDB };
   }, []);
-
-  useEffect(() => {
-    let unsubscribeDB;
-
-    if (user) {
-      unsubscribeDB = db
-        .collection(collections.students)
-        .doc(user?.uid)
-        .onSnapshot((doc) => {
-          dispatch({
-            type: actionTypes.SET_STUDENT,
-            student: doc.data(),
-          });
-        });
-    } else {
-      dispatch({
-        type: actionTypes.SET_STUDENT,
-        student: null,
-      });
-    }
-    return () => unsubscribeDB;
-  }, [user]);
 
   return (
     <>

@@ -6,7 +6,7 @@ import * as S from "./ProfileBannerStyles";
 const SignedIn = ({ name }) => {
   return (
     <S.Title>
-      Hi, <S.ColorText>{name}</S.ColorText>
+      Hi, <S.ColorText>{name ? name : "user"}</S.ColorText>
     </S.Title>
   );
 };

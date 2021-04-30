@@ -8,17 +8,15 @@ import ROUTES from "../../pages";
 import { Container } from "../../styles";
 import * as S from "./NavbarStyles";
 
-const SignedIn = ({ name }) => {
-  return (
-    <S.NavbarTextLink to={ROUTES.PROFILE}>
-      Hello, <S.ColorText>{name}</S.ColorText>
-    </S.NavbarTextLink>
-  );
-};
+const SignedIn = ({ name }) => (
+  <S.NavbarTextLink to={ROUTES.PROFILE}>
+    Hello, <S.ColorText>{name ? name : "user"}</S.ColorText>
+  </S.NavbarTextLink>
+);
 
-const SignedOut = () => {
-  return <S.NavbarTextLink to={ROUTES.SIGN_IN}>Sign in</S.NavbarTextLink>;
-};
+const SignedOut = () => (
+  <S.NavbarTextLink to={ROUTES.SIGN_IN}>Sign in</S.NavbarTextLink>
+);
 
 export default function Navbar_({ linkR, linkS }) {
   const [{ user, student }, dispatch] = useStateValue();
