@@ -72,7 +72,7 @@ export default function SignIn({ data }) {
 
             <S.Text>
               {data.text}
-              <S.TextLink to={ROUTES.SIGN_IN}> {data.textLink}</S.TextLink>
+              <S.TextLink to={ROUTES.SIGN_UP}> {data.textLink}</S.TextLink>
             </S.Text>
           </S.SignUpRight>
         </S.SignUpForm>
