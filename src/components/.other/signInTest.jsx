@@ -4,8 +4,27 @@ import { useAuth } from "../../context/AuthContext";
 import ROUTES from "../../pages";
 import { Btn, btnColor, Input } from "../index";
 import * as S from "../signUp/SignUpFormStyles";
+import { InputAdornment, makeStyles, TextField } from "@material-ui/core";
+import { AccountCircle } from "@material-ui/icons";
+
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     marginBottom: "1em",
+//     width: "100%",
+//     // "& fieldset": {
+//     //   borderRadius: "100px",
+//     // },
+//   },
+//   fieldset: {
+//     "& fieldset": {
+//       borderRadius: "100px",
+//     },
+//   },
+// }));
 
 export default function SignIn({ data }) {
+  const classes = useStyles();
+
   const studentEmailRef = useRef();
   const passwordRef = useRef();
 
@@ -43,20 +62,40 @@ export default function SignIn({ data }) {
 
             <S.Form onSubmit={handleSubmit}>
               <S.Row1>
-                <S.FullInput>
+                {/* <S.FullInput>
                   <Input
                     type={data.typeEmail}
                     placeholder={data.studentEmail}
                     ref={studentEmailRef}
                   />
-                </S.FullInput>
-                <S.FullInput>
+                </S.FullInput> */}
+                <TextField
+                  // error
+                  // helperText="Incorrect entry."
+                  className={`${classes.root}  ${classes.fieldset}`}
+                  id="standard-basic"
+                  label="Email"
+                  variant="outlined"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <AccountCircle />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <TextField
+                  id="standard-basic"
+                  label="Password"
+                  variant="outlined"
+                />
+                {/* <S.FullInput>
                   <Input
                     type={data.typePassword}
                     placeholder={data.password}
                     ref={passwordRef}
                   />
-                </S.FullInput>
+                </S.FullInput> */}
               </S.Row1>
 
               <S.BtnWrap>
@@ -66,13 +105,9 @@ export default function SignIn({ data }) {
               </S.BtnWrap>
             </S.Form>
 
-            <S.ResetText to={ROUTES.RESET_PASSWORD}>
-              {data.resetPassword}
-            </S.ResetText>
-
             <S.Text>
               {data.text}
-              <S.TextLink to={ROUTES.SIGN_UP}> {data.textLink}</S.TextLink>
+              <S.TextLink to={ROUTES.SIGN_IN}> {data.textLink}</S.TextLink>
             </S.Text>
           </S.SignUpRight>
         </S.SignUpForm>

@@ -8,6 +8,7 @@ export const signInData = {
   btnText: "Sign In",
   text: "Already have an account?",
   textLink: "Sign up here!",
+  resetPassword: "Forgot password?",
   typeText: "text",
   typeEmail: "email",
   typePassword: "password",
