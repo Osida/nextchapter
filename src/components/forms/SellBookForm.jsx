@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as S from './SellBookFormStyle';
 import { useStateValue } from './../../context/StateProvider';
-import { db, storage } from '../../database';
+import { collections, db, storage } from '../../database';
 import { actionTypes } from '../../context/reducer';
 import { TramRounded } from '@material-ui/icons';
 
@@ -43,7 +43,7 @@ export const SellBookForm = () => {
   }, []);
 
   async function getDepartments() {
-    const response = db.collection('University');
+    const response = db.collection(collections.university);
     const data = await response.get();
     const depts = [];
     data.docs.forEach((dept) => {
@@ -149,7 +149,7 @@ export const SellBookForm = () => {
 
   //write function here
   function sellPageDB() {
-    db.collection('Post')
+    db.collection(collections.posts)
       .add({ ...inputs })
       .then(console.log('added to the database'))
       .catch(function (err) {
@@ -164,7 +164,7 @@ export const SellBookForm = () => {
           setWarn((prewarn) => (prewarn = !prewarn));
         }, 4000);
       });
-    db.collection('Books')
+    db.collection(collections.books)
       .add({ ...inputs })
       .then(console.log('added to books collection database'))
       .catch(function (err) {

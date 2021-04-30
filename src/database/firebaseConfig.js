@@ -15,14 +15,14 @@ const firebaseConfig = {
   measurementId: "G-KW8XME2XD6",
 };
 
-const firebaseConfig_prod = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY_PROD,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN_PROD,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID_PROD,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET_PROD,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID_PROD,
-  appId: process.env.REACT_APP_FIREBASE_API_ID_PROD,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID_PROD,
+const firebaseConfigProd = {
+  apiKey: "AIzaSyCB9-NoevmHTNIHxwzM-rZFvn1dVH4OVSA",
+  authDomain: "nextchapter-production.firebaseapp.com",
+  projectId: "nextchapter-production",
+  storageBucket: "nextchapter-production.appspot.com",
+  messagingSenderId: "573213888142",
+  appId: "1:573213888142:web:72a83b37c77091ae16c3df",
+  measurementId: "G-MW0N46KCCV",
 };
 
 // Initialize Firebase
