@@ -66,6 +66,10 @@ export default function SignIn({ data }) {
               </S.BtnWrap>
             </S.Form>
 
+            <S.ResetText to={ROUTES.RESET_PASSWORD}>
+              {data.resetPassword}
+            </S.ResetText>
+
             <S.Text>
               {data.text}
               <S.TextLink to={ROUTES.SIGN_IN}> {data.textLink}</S.TextLink>

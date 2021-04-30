@@ -145,5 +145,11 @@ export const BtnWrap = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 45px;
-  margin-bottom: 45px;
+  margin-bottom: 25px;
+`;
+
+export const ResetText = styled(LinkR)`
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 25px;
 `;
