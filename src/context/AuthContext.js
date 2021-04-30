@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { auth, db } from "../database";
+import { auth, collections, db } from "../database";
 
 const AuthContext = React.createContext();
 
@@ -16,7 +16,7 @@ export function AuthProvider({ children }) {
       .createUserWithEmailAndPassword(newUser?.email, newUser?.password)
       .then((cred) => {
         return db
-          .collection("Students")
+          .collection(collections.students)
           .doc(cred?.user?.uid)
           .set({
             ...newUser,

@@ -2,7 +2,7 @@ import React from 'react';
 import { actionTypes } from '../../../context/reducer';
 import { useStateValue } from '../../../context/StateProvider';
 import * as S from './DepartmentStyle';
-import { db } from '../../../database';
+import { collections, db } from '../../../database';
 
 export const Department = ({ dept, clickedDept }) => {
   const [
@@ -13,7 +13,7 @@ export const Department = ({ dept, clickedDept }) => {
 
   const setClickedDept = async () => {
     const response = db
-      .collection('Books')
+      .collection(collections.books)
       .where('department', '==', dept.department_name);
     const data = await response.get();
     const books = [];

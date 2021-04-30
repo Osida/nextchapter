@@ -4,7 +4,7 @@ import { BuyDepartment } from '../components/buySections/BuyDepartment';
 import { BuyClass } from '../components/buySections/class/BuyClass';
 import { Book } from '../components/buySections/book/Book';
 import { useStateValue } from '../context/StateProvider';
-import { db } from '../database';
+import { collections, db } from '../database';
 import { actionTypes } from '../context/reducer';
 
 export default function Buy() {
@@ -21,7 +21,7 @@ export default function Buy() {
   }, []);
 
   async function getDepartments() {
-    const response = db.collection('University');
+    const response = db.collection(collections.university);
     const data = await response.get();
     const depts = [];
     data.docs.forEach((dept) => {
