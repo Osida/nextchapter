@@ -27,16 +27,28 @@ export default function Buy() {
     data.docs.forEach((dept) => {
       depts.push(dept.data());
     });
-    console.log('just fetched data from FireBase');
     setData(depts);
     addDepartmentsToDataLayer(depts);
   }
 
   function addDepartmentsToDataLayer(depts) {
+    if (onClassesPage) {
+      dispatch({
+        type: actionTypes.SET_ON_CLASSES_PAGE,
+        onClassesPage: false,
+      });
+    }
+    if (onBookPage) {
+      dispatch({
+        type: actionTypes.SET_ON_BOOK_PAGE,
+        onBookPage: false,
+      });
+    }
     dispatch({
       type: actionTypes.SET_DEPARTMENTS,
       departments: [...depts],
     });
+
     dispatch({
       type: actionTypes.SET_ON_DEPT_PAGE,
       onDepartmentPage: true,
