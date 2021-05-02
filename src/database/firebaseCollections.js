@@ -1,17 +1,19 @@
 // For referencing production collections
-// export const collections = {
-//   books: "books",
-//   conversations: "conversations",
-//   posts: "posts",
-//   students: "students",
-//   university: "university",
-// };
+export const collections = {
+   books: "books",
+   conversations: "conversations",
+   posts: "posts",
+    students: "students",
+   university: "university",
+};
+
 
 // For referencing nextchapter collections
-export const collections = {
+/*export const collections = {
   books: "Books",
   conversations: "Conversations",
   posts: "Posts",
   students: "Students",
   university: "University",
-};
+ };
+*/

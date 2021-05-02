@@ -26,7 +26,7 @@ const firebaseConfigProd = {
 };
 
 // Initialize Firebase
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+const firebaseApp = firebase.initializeApp(firebaseConfigProd);
 // firebase.analytics();
 
 // Access the firestore instance of the app (basically connects to the db)
