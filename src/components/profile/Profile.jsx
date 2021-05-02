@@ -1,9 +1,23 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Btn, btnColor, Input, ProfileBanner } from "..";
+import { useStateValue } from "../../context/StateProvider";
 import ROUTES from "../../pages";
 import * as S from "./ProfileStyles";
+import { Alert, AlertTitle } from "@material-ui/lab";
+import { Grid } from "@material-ui/core";
+import NewProfile from "./NewProfile";
+
+const AlertError = ({ title, message }) => (
+  <Alert severity="error">
+    <AlertTitle>{title}</AlertTitle>
+    {message} — <strong>check it out!</strong>
+  </Alert>
+);
 
 export default function Profile_() {
+  const [{ student }, dispatch] = useStateValue();
+  const [error, setError] = useState("");
+
   const displayNameRef = useRef();
   const universityRef = useRef();
   const firstNameRef = useRef();
@@ -13,12 +27,35 @@ export default function Profile_() {
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
 
+  const handleUpdateProfile = async (e) => {
+    e.preventDefault();
+
+    try {
+      if (passwordRef.current.value !== confirmPasswordRef.current.value) {
+        setError("Passwords to not match");
+        // <AlertError title="Mismatched passwords" message={error} />;
+        console.log(error);
+        setError("");
+      }
+    } catch (error) {
+      setError(error);
+      return <AlertError title="catch" message={error.message()} />;
+    }
+  };
+
   return (
     <>
+      {/* <NewProfile /> */}
       <S.Profile>
         <ProfileBanner />
 
-        <S.ProfileForm>
+        <Alert severity="error">
+          <AlertTitle>Error</AlertTitle>
+          This is an error alert — <strong>check it out!</strong>
+        </Alert>
+
+        <NewProfile />
+        <S.ProfileForm onSubmit={handleUpdateProfile}>
           <S.Row>
             <S.RowLeft>
               <S.Header>
@@ -36,7 +73,7 @@ export default function Profile_() {
                   <Input
                     type="text"
                     ref={displayNameRef}
-                    placeholder="Username"
+                    placeholder={student?.username}
                   />
                 </S.InputWrap>
               </S.ContentWrap>
@@ -46,7 +83,7 @@ export default function Profile_() {
                   <Input
                     type="text"
                     ref={universityRef}
-                    placeholder="Towson University"
+                    placeholder={student?.university}
                   />
                 </S.InputWrap>
               </S.ContentWrap>
@@ -72,7 +109,7 @@ export default function Profile_() {
                   <Input
                     type="text"
                     ref={firstNameRef}
-                    placeholder="First Name"
+                    placeholder={student?.firstName}
                   />
                 </S.InputWrap>
               </S.ContentWrap>
@@ -82,7 +119,7 @@ export default function Profile_() {
                   <Input
                     type="text"
                     ref={lastNameRef}
-                    placeholder="Last Name"
+                    placeholder={student?.lastName}
                   />
                 </S.InputWrap>
               </S.ContentWrap>
@@ -92,7 +129,7 @@ export default function Profile_() {
                   <Input
                     type="email"
                     ref={emailRef}
-                    placeholder="user@students.towson.edu"
+                    placeholder={student?.email}
                   />
                 </S.InputWrap>
               </S.ContentWrap>
@@ -102,7 +139,7 @@ export default function Profile_() {
                   <Input
                     type="tel"
                     ref={phoneNumberRef}
-                    placeholder="243-789-2234"
+                    placeholder={student?.phoneNumber}
                   />
                 </S.InputWrap>
               </S.ContentWrap>

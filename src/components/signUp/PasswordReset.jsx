@@ -3,6 +3,8 @@ import { useAuth } from "../../context/AuthContext";
 import { Btn, btnColor, btnSize, Input } from "..";
 import ROUTES from "../../pages";
 import * as S from "./SignUpFormStyles";
+import { InputAdornment, TextField } from "@material-ui/core";
+import { AccountCircle } from "@material-ui/icons";
 
 export default function PasswordReset({ data }) {
   const studentEmailRef = useRef();
@@ -46,10 +48,22 @@ export default function PasswordReset({ data }) {
             <S.Form onSubmit={handleSubmit}>
               <S.Row1>
                 <S.FullInput>
-                  <Input
+                  {/* <Input
                     type={data.typeEmail}
                     placeholder={data.studentEmail}
                     ref={studentEmailRef}
+                  /> */}
+                  <TextField
+                    variant="standard"
+                    label="Display name"
+                    name="displayName"
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <AccountCircle />
+                        </InputAdornment>
+                      ),
+                    }}
                   />
                 </S.FullInput>
               </S.Row1>

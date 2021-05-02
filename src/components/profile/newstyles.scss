@@ -1,0 +1,11 @@
+.removeScrollBar {
+  overflow: scroll;
+
+  /* Hides scroll bar for Chrome, Safari, Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hides scroll bar for IE, Edge, Firefox */
+  --ms-overflow-style: none; /* IE, Edge, */
+  scrollbar-width: none; /* Firefox */
+}

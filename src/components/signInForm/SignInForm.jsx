@@ -1,3 +1,5 @@
+import { ButtonBase, InputAdornment, TextField } from "@material-ui/core";
+import { AccountCircle } from "@material-ui/icons";
 import React, { useRef, useState } from "react";
 import { useHistory } from "react-router";
 import { useAuth } from "../../context/AuthContext";
@@ -44,25 +46,51 @@ export default function SignIn({ data }) {
             <S.Form onSubmit={handleSubmit}>
               <S.Row1>
                 <S.FullInput>
-                  <Input
+                  {/* <Input
                     type={data.typeEmail}
                     placeholder={data.studentEmail}
                     ref={studentEmailRef}
+                  /> */}
+                  <TextField
+                    variant="standard"
+                    label="Display name"
+                    name="displayName"
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <AccountCircle />
+                        </InputAdornment>
+                      ),
+                    }}
                   />
                 </S.FullInput>
                 <S.FullInput>
-                  <Input
+                  {/* <Input
                     type={data.typePassword}
                     placeholder={data.password}
                     ref={passwordRef}
+                  /> */}
+                  <TextField
+                    variant="standard"
+                    label="Display name"
+                    name="displayName"
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <AccountCircle />
+                        </InputAdornment>
+                      ),
+                    }}
                   />
                 </S.FullInput>
               </S.Row1>
 
               <S.BtnWrap>
-                <Btn type="submit" {...btnColor.primary}>
-                  Sign In
-                </Btn>
+                <ButtonBase>
+                  <Btn type="submit" {...btnColor.primary}>
+                    Sign In
+                  </Btn>
+                </ButtonBase>
               </S.BtnWrap>
             </S.Form>
 
