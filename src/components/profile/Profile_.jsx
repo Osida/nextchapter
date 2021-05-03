@@ -67,11 +67,10 @@ export default function Profile_() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    let unsub = db.collection(collections.posts).onSnapshot((doc) => {
-      getPosts();
-    });
+    let unsub;
+    let unsub2;
 
-    let unsub2 = db
+    unsub2 = db
       .collection(collections.students)
       .doc(user?.uid)
       .onSnapshot((doc) => {
@@ -80,14 +79,19 @@ export default function Profile_() {
           student: doc.data(),
         });
       });
+
+    if (student) {
+      unsub = db.collection(collections.posts).onSnapshot((doc) => {
+        getPosts();
+      });
+    }
+
     return { unsub, unsub2 };
   }, []);
 
   const getPosts = async () => {
     // let id = '6lJts64PZtfiT5zISVftTYw5rNt2'
-    let res = db
-      .collection("Post")
-      .where("bookPostedById", "==", student.uid);
+    let res = db.collection("Post").where("bookPostedById", "==", student?.uid);
     let data = await res.get();
     let userPosts = [];
     data.docs.forEach((doc) => {
@@ -162,26 +166,26 @@ export default function Profile_() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("isEmpty1 ", update);
+    // console.log("isEmpty1 ", update);
     let x = isEmptyObj(update);
-    console.log("isEmpty2 ", update);
-    console.log("isEmptyObj(update)", x);
+    // console.log("isEmpty2 ", update);
+    // console.log("isEmptyObj(update)", x);
 
     if (validate2() && !isEmptyObj(update)) {
-      console.log("info update ", update);
-      console.log("updates = ", { ...update });
+      // console.log("info update ", update);
+      // console.log("updates = ", { ...update });
 
       if (!isEmptyObj(update)) {
         try {
           console.log("try update, >> ", update);
 
           db.collection(collections.students)
-            .doc(student.uid)
+            .doc(student?.uid)
             .update({
               ...update,
             })
             .then(() => {
-              console.log("Doc update uid = ", student.uid);
+              console.log("Doc update uid = ", student?.uid);
             })
             .then(() => {
               setValues(initialFValues2);
@@ -196,7 +200,7 @@ export default function Profile_() {
       setValues(initialFValues2);
     } else {
       console.log("No updates");
-      console.log("update = ", update);
+      // console.log("update = ", update);
     }
   };
 

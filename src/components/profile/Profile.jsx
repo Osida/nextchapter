@@ -1,11 +1,9 @@
+import { Alert, AlertTitle } from "@material-ui/lab";
 import React, { useRef, useState } from "react";
 import { Btn, btnColor, Input, ProfileBanner } from "..";
 import { useStateValue } from "../../context/StateProvider";
 import ROUTES from "../../pages";
 import * as S from "./ProfileStyles";
-import { Alert, AlertTitle } from "@material-ui/lab";
-import { Grid } from "@material-ui/core";
-import NewProfile from "./NewProfile";
 
 const AlertError = ({ title, message }) => (
   <Alert severity="error">
@@ -45,7 +43,6 @@ export default function Profile_() {
 
   return (
     <>
-      {/* <NewProfile /> */}
       <S.Profile>
         <ProfileBanner />
 
@@ -54,7 +51,6 @@ export default function Profile_() {
           This is an error alert — <strong>check it out!</strong>
         </Alert>
 
-        <NewProfile />
         <S.ProfileForm onSubmit={handleUpdateProfile}>
           <S.Row>
             <S.RowLeft>
