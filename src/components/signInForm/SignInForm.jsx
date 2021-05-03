@@ -46,41 +46,17 @@ export default function SignIn({ data }) {
             <S.Form onSubmit={handleSubmit}>
               <S.Row1>
                 <S.FullInput>
-                  {/* <Input
+                  <Input
                     type={data.typeEmail}
                     placeholder={data.studentEmail}
                     ref={studentEmailRef}
-                  /> */}
-                  <TextField
-                    variant="standard"
-                    label="Display name"
-                    name="displayName"
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <AccountCircle />
-                        </InputAdornment>
-                      ),
-                    }}
                   />
                 </S.FullInput>
                 <S.FullInput>
-                  {/* <Input
+                  <Input
                     type={data.typePassword}
                     placeholder={data.password}
                     ref={passwordRef}
-                  /> */}
-                  <TextField
-                    variant="standard"
-                    label="Display name"
-                    name="displayName"
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <AccountCircle />
-                        </InputAdornment>
-                      ),
-                    }}
                   />
                 </S.FullInput>
               </S.Row1>
