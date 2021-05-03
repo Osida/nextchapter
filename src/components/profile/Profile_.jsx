@@ -1,34 +1,23 @@
-import {
-  ButtonBase,
-  Grid,
-  makeStyles,
-  Menu,
-  MenuItem,
-  Paper,
-} from "@material-ui/core";
+import { Grid, makeStyles, Paper } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import Controls from "../../components/controls/Controls";
-import { Form, useForm } from "./useForm_";
-import * as S from "./Profile_styles";
-import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
-import { useStateValue } from "../../context/StateProvider";
 import { Btn } from "..";
-import ROUTES from "../../pages";
-import { btnColor } from "../button/LinkBtnData";
+import Controls from "../../components/controls/Controls";
+import { actionTypes } from "../../context/reducer";
+import { useStateValue } from "../../context/StateProvider";
 import { collections, db } from "../../database";
-import { ContactSupportOutlined } from "@material-ui/icons";
-import DeleteIcon from "@material-ui/icons/Delete";
-import ProfileBanner from "./profileBanner/ProfileBanner";
+import Posts from "./profilePosts/Posts";
 import { useProfileData } from "./profile_Data";
-// import { sections } from "./profile_Data";
+import * as S from "./Profile_styles";
+import Spinner from "./Spinner";
+import { Form, useForm } from "./useForm_";
 
 const initialFValues2 = {
-  displayName: "",
+  username: "",
   university: "",
   firstName: "",
   lastName: "",
   email: "",
-  mobile: "",
+  phoneNumber: "",
   password: "",
 };
 
@@ -50,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     marginBottom: "1.2em",
+    textAlign: "center",
   },
   btnText: {
     padding: "0",
@@ -72,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Profile_() {
   const classes = useStyles();
-  const [{ student }, dispatch] = useStateValue();
+  const [{ student, user }, dispatch] = useStateValue();
   const [update, setUpdate] = useState({});
   const [posts, setPosts] = useState([]);
 
@@ -80,13 +70,24 @@ export default function Profile_() {
     let unsub = db.collection(collections.posts).onSnapshot((doc) => {
       getPosts();
     });
-    return unsub;
+
+    let unsub2 = db
+      .collection(collections.students)
+      .doc(user?.uid)
+      .onSnapshot((doc) => {
+        dispatch({
+          type: actionTypes.SET_STUDENT,
+          student: doc.data(),
+        });
+      });
+    return { unsub, unsub2 };
   }, []);
 
   const getPosts = async () => {
+    // let id = '6lJts64PZtfiT5zISVftTYw5rNt2'
     let res = db
-      .collection(collections.posts)
-      .where("bookPostedById", "==", "6lJts64PZtfiT5zISVftTYw5rNt2");
+      .collection("Post")
+      .where("bookPostedById", "==", student.uid);
     let data = await res.get();
     let userPosts = [];
     data.docs.forEach((doc) => {
@@ -97,9 +98,26 @@ export default function Profile_() {
     setPosts(userPosts);
   };
 
+  const isEmptyObj = (obj) => {
+    return JSON.stringify(obj) === "{}";
+  };
+
+  const handleSetUpdate = () => {
+    for (const [key, value] of Object.entries(values)) {
+      // console.log(`${key}: ${value}`);
+
+      if (!(values[key] === student[key] || values[key] === "")) {
+        console.log(`update ${key}`);
+        let newObj = { [key]: values[key] };
+        console.log("newObj = ", newObj);
+        setUpdate((prevState) => ({ ...prevState, ...newObj }));
+      }
+    }
+  };
+
   const validate2 = (fieldValues = values) => {
     let temp = { ...errors };
-    console.log("temp = ", temp);
+    // console.log("temp = ", temp);
     console.log("fieldValues = ", fieldValues);
 
     if ("email" in fieldValues)
@@ -107,9 +125,9 @@ export default function Profile_() {
         /$^|.+@.+..+/.test(fieldValues.email) || fieldValues.email === ""
           ? ""
           : "Email is not valid.";
-    if ("mobile" in fieldValues)
-      temp.mobile =
-        fieldValues.mobile.length > 9 || fieldValues.mobile === ""
+    if ("phoneNumber" in fieldValues)
+      temp.phoneNumber =
+        fieldValues.phoneNumber.length > 9 || fieldValues.phoneNumber === ""
           ? ""
           : "Minimum 10 numbers required.";
     if ("password" in fieldValues)
@@ -134,7 +152,7 @@ export default function Profile_() {
     // resetForm,
   } = useForm(initialFValues2, true, validate2);
 
-  const { sections } = useProfileData(
+  const { sections, buttonSection } = useProfileData(
     classes,
     values,
     handleInputChange,
@@ -142,171 +160,45 @@ export default function Profile_() {
     student
   );
 
-  const handleUpdate = () => {
-    if (update) {
-      try {
-        console.log("try update, >> ", update);
-
-        db.collection(collections.students)
-          .doc(student.uid)
-          .update({
-            ...update,
-          })
-          .then(() => {
-            console.log("Doc update uid = ", student.uid);
-          })
-          .catch((error) => {
-            console.error("Error updating document: ", error);
-          });
-      } catch (error) {
-        console.log("error = ", error);
-      }
-    }
-    console.log("out of if");
-  };
-
   const handleSubmit = (e) => {
-    // e.preventDefault();
-    if (validate2()) {
-      console.log("values >> ", values);
+    e.preventDefault();
+    console.log("isEmpty1 ", update);
+    let x = isEmptyObj(update);
+    console.log("isEmpty2 ", update);
+    console.log("isEmptyObj(update)", x);
 
-      if (
-        !(values.displayName === student.username || values.displayName === "")
-      ) {
-        console.log("update displayName");
-        let newObj = { username: values.displayName };
-        setUpdate((prevState) => ({ ...prevState, ...newObj }));
-      }
-      if (
-        !(values.university === student.university || values.university === "")
-      ) {
-        console.log("update university");
-        let newObj = { university: values.university };
-        setUpdate((prevState) => ({ ...prevState, ...newObj }));
-      }
-      if (
-        !(values.firstName === student.firstName || values.firstName === "")
-      ) {
-        console.log("update firstName");
-        let newObj = { firstName: values.firstName };
-        setUpdate((prevState) => ({ ...prevState, ...newObj }));
-      }
-      if (!(values.lastName === student.lastName || values.lastName === "")) {
-        console.log("update lastName");
-        let newObj = { lastName: values.lastName };
-        setUpdate((prevState) => ({ ...prevState, ...newObj }));
-      }
-      if (!(values.email === student.email || values.email === "")) {
-        console.log("update email");
-        let newObj = { email: values.email };
-        setUpdate((prevState) => ({ ...prevState, ...newObj }));
-      }
-      if (!(values.mobile === student.phoneNumber || values.mobile === "")) {
-        console.log("update phoneNumber");
-        let newObj = { phoneNumber: values.mobile };
-        setUpdate((prevState) => ({ ...prevState, ...newObj }));
-      }
-      if (!(values.password === student.password || values.password === "")) {
-        console.log("update password");
-        let newObj = { password: values.password };
-        setUpdate((prevState) => ({ ...prevState, ...newObj }));
-      }
+    if (validate2() && !isEmptyObj(update)) {
+      console.log("info update ", update);
+      console.log("updates = ", { ...update });
 
-      handleUpdate();
+      if (!isEmptyObj(update)) {
+        try {
+          console.log("try update, >> ", update);
+
+          db.collection(collections.students)
+            .doc(student.uid)
+            .update({
+              ...update,
+            })
+            .then(() => {
+              console.log("Doc update uid = ", student.uid);
+            })
+            .then(() => {
+              setValues(initialFValues2);
+            })
+            .catch((error) => {
+              console.error("Error updating document: ", error);
+            });
+        } catch (error) {
+          console.log("error = ", error);
+        }
+      }
+      setValues(initialFValues2);
+    } else {
+      console.log("No updates");
+      console.log("update = ", update);
     }
   };
-
-  const rowOne = [
-    {
-      className: classes.inputBorder,
-      variant: "outlined",
-      label: "Display Name",
-      name: "displayName",
-      value: values.displayName,
-      onChange: handleInputChange,
-      error: errors.displayName,
-      placeholder: student?.username !== "" ? student?.username : "username",
-    },
-    {
-      className: classes.inputBorder,
-      variant: "outlined",
-      label: "University",
-      name: "university",
-      value: values.university,
-      onChange: handleInputChange,
-      error: errors.university,
-      placeholder:
-        student?.university !== "" ? student?.university : "university",
-    },
-  ];
-
-  const rowTwo = [
-    {
-      className: classes.inputBorder,
-      variant: "outlined",
-      label: "First Name",
-      name: "firstName",
-      value: values.firstName,
-      onChange: handleInputChange,
-      error: errors.firstName,
-      placeholder:
-        student?.firstName !== "" ? student?.firstName : "first name",
-    },
-    {
-      className: classes.inputBorder,
-      variant: "outlined",
-      label: "Last Name",
-      name: "lastName",
-      value: values.lastName,
-      onChange: handleInputChange,
-      error: errors.lastName,
-      placeholder: student?.lastName !== "" ? student?.lastName : "last name",
-    },
-    {
-      className: classes.inputBorder,
-      variant: "outlined",
-      label: "Email",
-      name: "email",
-      value: values.email,
-      onChange: handleInputChange,
-      error: errors.email,
-      placeholder: student?.email !== "" ? student?.email : "email@example.com",
-    },
-    {
-      className: classes.inputBorder,
-      variant: "outlined",
-      label: "Phone Number",
-      name: "mobile",
-      value: values.mobile,
-      onChange: handleInputChange,
-      error: errors.mobile,
-      placeholder:
-        student?.phoneNumber !== "" ? student?.phoneNumber : "2435558888",
-    },
-  ];
-
-  const rowThree = [
-    {
-      className: classes.inputBorder,
-      variant: "outlined",
-      label: "Password",
-      name: "password",
-      value: values.password,
-      onChange: handleInputChange,
-      error: errors.password,
-    },
-    // {
-    //   className: classes.inputBorder,
-    //   variant: "outlined",
-    //   label: "Confirm Password",
-    //   name: "confirmPassword",
-    //   value: values.confirmPassword,
-    //   onChange: handleInputChange,
-    //   error: errors.confirmPassword,
-    // },
-  ];
-
-  const rows = [...rowOne, ...rowTwo, ...rowThree];
 
   const handleClick = (props) => {
     try {
@@ -327,15 +219,12 @@ export default function Profile_() {
 
   return (
     <div>
-      {/* {console.log("rows = ", rows)} */}
-      {/* <ProfileBanner /> */}
       <S.Container>
         <Paper className={classes.paperStyle1}>
           <Form onSubmit={handleSubmit}>
             <Grid container>
               {sections.map((item, key) => (
                 <React.Fragment key={key}>
-                  {console.log("item =", item)}
                   <Grid item xs={4}>
                     <h1>
                       <span>
@@ -358,121 +247,37 @@ export default function Profile_() {
                             onChange={element?.onChange}
                             error={element?.error}
                             placeholder={element?.placeholder}
+                            type={element?.type}
                             InputLabelProps={{
                               shrink: true,
                             }}
                           />
                         </Grid>
-                        // console.log("element =", element)
                       );
                     })}
                   </Grid>
                   <S.Divider />
+
+                  {item?.beforeBtn && (
+                    <React.Fragment>
+                      <Grid container item justify="center">
+                        <Btn
+                          type={buttonSection?.type}
+                          {...buttonSection?.color}
+                          onClick={() => handleSetUpdate()}
+                        >
+                          {buttonSection?.text}
+                        </Btn>
+                      </Grid>
+                    </React.Fragment>
+                  )}
                 </React.Fragment>
               ))}
-
-              {/* <Grid item xs={4}>
-                <h1>
-                  <span>Personal Details 🎭</span>
-                </h1>
-                <p>
-                  Your user profile information will be shown to other users.
-                </p>
-              </Grid>
-
-              <Grid container item xs={8}>
-                {rowTwo.map((element, key) => (
-                  <Grid key={key} item xs={6}>
-                    <Controls.Input
-                      className={element?.className}
-                      variant={element?.variant}
-                      label={element?.label}
-                      name={element?.name}
-                      value={element?.value}
-                      onChange={element?.onChange}
-                      error={element?.error}
-                      placeholder={element?.placeholder}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
-                  </Grid>
-                ))}
-              </Grid>
-              <S.Divider />
-
-              <Grid item xs={4}>
-                <h1>
-                  <span>Password 🔑</span>
-                </h1>
-                <p>
-                  Your user profile information will be shown to other users.
-                </p>
-              </Grid>
-
-              <Grid container item xs={8}>
-                {rowThree.map((element, key) => (
-                  <Grid key={key} item xs={12}>
-                    <Controls.Input
-                      type="password"
-                      className={element?.className}
-                      variant={element?.variant}
-                      label={element?.label}
-                      name={element?.name}
-                      value={element?.value}
-                      onChange={element?.onChange}
-                      error={element?.error}
-                    />
-                  </Grid>
-                ))}
-              </Grid>
-              <S.Divider />
-
-              <Grid container item spacing={3} justify="center">
-                <Grid item>
-                  <Btn type="Submit" {...btnColor.primary}>
-                    Save changes
-                  </Btn>
-                </Grid>
-              </Grid> */}
             </Grid>
           </Form>
         </Paper>
 
-        <Paper className={`${classes.paperStyle2} ${classes.scroll}`}>
-          <Grid container direction="column" alignItems="center">
-            <Grid item>
-              <h2 className={classes.header}>Your Post</h2>
-            </Grid>
-
-            {posts &&
-              posts.map((element, key) => (
-                <div key={key}>
-                  <Grid container wrap="nowrap" spacing={2}>
-                    <ButtonBase
-                      className={classes.btnText}
-                      onClick={() => handleClick(element?.uid)}
-                    >
-                      <Grid item>
-                        <DeleteIcon />
-                      </Grid>
-                    </ButtonBase>
-                    <Grid item>
-                      <p style={{ fontSize: "12px" }}>{element?.uid} dfddddd</p>
-                    </Grid>
-                  </Grid>
-                  <hr
-                    style={{
-                      background: "linear-gradient(0deg, #303030, #303030)",
-                      opacity: "0.2",
-                      width: "100%",
-                      margin: "1em 0",
-                    }}
-                  />
-                </div>
-              ))}
-          </Grid>
-        </Paper>
+        <Posts posts={posts} classes={classes} handleClick={handleClick} />
       </S.Container>
     </div>
   );

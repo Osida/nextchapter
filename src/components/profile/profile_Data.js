@@ -24,13 +24,14 @@ export function useProfileData(
           xs: 6,
           className: classes.inputBorder,
           variant: "outlined",
-          label: "Display Name",
-          name: "displayName",
-          value: values.displayName,
+          label: "Username",
+          name: "username",
+          value: values.username,
           onChange: handleInputChange,
-          error: errors.displayName,
+          error: errors.username,
           placeholder:
             student?.username !== "" ? student?.username : "username",
+          type: "text",
         },
         {
           xs: 6,
@@ -43,6 +44,7 @@ export function useProfileData(
           error: errors.university,
           placeholder:
             student?.university !== "" ? student?.university : "university",
+          type: "text",
         },
       ],
     },
@@ -63,6 +65,7 @@ export function useProfileData(
           error: errors.firstName,
           placeholder:
             student?.firstName !== "" ? student?.firstName : "first name",
+          type: "text",
         },
         {
           xs: 6,
@@ -75,6 +78,7 @@ export function useProfileData(
           error: errors.lastName,
           placeholder:
             student?.lastName !== "" ? student?.lastName : "last name",
+          type: "text",
         },
         {
           xs: 6,
@@ -87,18 +91,20 @@ export function useProfileData(
           error: errors.email,
           placeholder:
             student?.email !== "" ? student?.email : "email@example.com",
+          type: "email",
         },
         {
           xs: 6,
           className: classes.inputBorder,
           variant: "outlined",
           label: "Phone Number",
-          name: "mobile",
-          value: values.mobile,
+          name: "phoneNumber",
+          value: values.phoneNumber,
           onChange: handleInputChange,
-          error: errors.mobile,
+          error: errors.phoneNumber,
           placeholder:
             student?.phoneNumber !== "" ? student?.phoneNumber : "2435558888",
+          type: "tel",
         },
       ],
     },
@@ -118,18 +124,27 @@ export function useProfileData(
           onChange: handleInputChange,
           error: errors.password,
           placeholder: "Password",
+          type: "password",
         },
       ],
+      beforeBtn: true,
     },
-    {
-      section: "button",
-      text: "Save changes",
-      type: "Submit",
-      color: btnColor.primary,
-    },
+    // {
+    //   section: "button",
+    //   text: "Save changes",
+    //   type: "Submit",
+    //   color: btnColor.primary,
+    // },
   ];
+  const buttonSection = {
+    section: "button",
+    text: "Save changes",
+    type: "Submit",
+    color: btnColor.primary,
+  };
 
   return {
     sections,
+    buttonSection,
   };
 }
