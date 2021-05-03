@@ -65,42 +65,55 @@ export default function Profile_() {
   const [{ student, user }, dispatch] = useStateValue();
   const [update, setUpdate] = useState({});
   const [posts, setPosts] = useState([]);
+  const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    let unsub;
     let unsub2;
-
-    unsub2 = db
-      .collection(collections.students)
-      .doc(user?.uid)
-      .onSnapshot((doc) => {
-        dispatch({
-          type: actionTypes.SET_STUDENT,
-          student: doc.data(),
+    if (!student) {
+      console.log("! student = ");
+      unsub2 = db
+        .collection(collections.students)
+        .doc(user?.uid)
+        .onSnapshot((doc) => {
+          dispatch({
+            type: actionTypes.SET_STUDENT,
+            student: doc.data(),
+          });
         });
-      });
-
-    if (student) {
-      unsub = db.collection(collections.posts).onSnapshot((doc) => {
-        getPosts();
-      });
     }
-
-    return { unsub, unsub2 };
+    return unsub2;
+    // return { unsub, unsub2 };
   }, []);
 
-  const getPosts = async () => {
-    // let id = '6lJts64PZtfiT5zISVftTYw5rNt2'
-    let res = db.collection("Post").where("bookPostedById", "==", student?.uid);
-    let data = await res.get();
-    let userPosts = [];
-    data.docs.forEach((doc) => {
-      let obj = { uid: doc.id, ...doc.data() };
-      userPosts.push(obj);
-    });
-    console.log("just fetched data from FireBase");
-    setPosts(userPosts);
-  };
+  useEffect(() => {
+    console.log("if student posts");
+    let unsub = db
+      .collection(collections.posts)
+      .where("bookPostedById", "==", student?.uid)
+      .onSnapshot((query) => {
+        const items = [];
+        query.forEach((doc) => {
+          items.push({ uid: doc.id, ...doc.data() });
+        });
+        setPosts(items);
+      });
+    return unsub;
+  }, []);
+
+  useEffect(() => {
+    console.log("if student books");
+    let unsub = db
+      .collection(collections.books)
+      .where("bookPostedById", "==", student?.uid)
+      .onSnapshot((query) => {
+        const items = [];
+        query.forEach((doc) => {
+          items.push({ uid: doc.id, ...doc.data() });
+        });
+        setBooks(items);
+      });
+    return unsub;
+  }, []);
 
   const isEmptyObj = (obj) => {
     return JSON.stringify(obj) === "{}";
@@ -204,18 +217,44 @@ export default function Profile_() {
     }
   };
 
-  const handleClick = (props) => {
+  const handleClick = ({ post }) => {
     try {
-      db.collection(collections.posts)
-        .doc(props)
+      let postsRef = db.collection(collections.posts).doc(post?.uid);
+      let booksUID;
+      books.forEach((doc) => {
+        if (
+          doc.title === post?.title &&
+          doc.isbn === post?.isbn &&
+          doc.bookImg === post?.bookImg
+        ) {
+          // console.log("doc.uid =", doc.uid);
+          booksUID = doc.uid;
+        }
+      });
+
+      postsRef
         .delete()
         .then(() => {
-          console.log("Document successfully deleted!");
+          console.log("Document successfully from posts deleted!");
         })
         .catch((error) => {
-          console.error("Error removing document: ", error);
+          console.error("Error removing document from posts: ", error);
         });
-      console.log("book to be deleted = ", props);
+      // console.log("post = ", post)
+      // console.log("postsRef = ", postsRef)
+
+      if (booksUID) {
+        console.log("booksUID");
+        let booksRef = db.collection(collections.books).doc(booksUID);
+        booksRef
+          .delete()
+          .then(() => {
+            console.log("Document successfully from books deleted!");
+          })
+          .catch((error) => {
+            console.error("Error removing document from books: ", error);
+          });
+      }
     } catch (error) {
       console.log("error = ", error);
     }
@@ -281,7 +320,12 @@ export default function Profile_() {
           </Form>
         </Paper>
 
-        <Posts posts={posts} classes={classes} handleClick={handleClick} />
+        <Posts
+          posts={posts}
+          books={books}
+          classes={classes}
+          handleClick={handleClick}
+        />
       </S.Container>
     </div>
   );

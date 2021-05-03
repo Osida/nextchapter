@@ -23,7 +23,7 @@ export const SellBookForm = () => {
     type: 'sell',
     price: 0,
     bookImg: '',
-    bookPostedById: user.uid,
+    bookPostedById: user?.uid,
   });
 
   const title = inputs.title;
