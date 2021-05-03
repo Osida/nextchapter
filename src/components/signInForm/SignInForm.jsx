@@ -1,3 +1,5 @@
+import { ButtonBase, InputAdornment, TextField } from "@material-ui/core";
+import { AccountCircle } from "@material-ui/icons";
 import React, { useRef, useState } from "react";
 import { useHistory } from "react-router";
 import { useAuth } from "../../context/AuthContext";
@@ -60,9 +62,11 @@ export default function SignIn({ data }) {
               </S.Row1>
 
               <S.BtnWrap>
-                <Btn type="submit" {...btnColor.primary}>
-                  Sign In
-                </Btn>
+                <ButtonBase>
+                  <Btn type="submit" {...btnColor.primary}>
+                    Sign In
+                  </Btn>
+                </ButtonBase>
               </S.BtnWrap>
             </S.Form>
 

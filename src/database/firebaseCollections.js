@@ -12,7 +12,7 @@ export const collections = {
 /*export const collections = {
   books: "Books",
   conversations: "Conversations",
-  posts: "Posts",
+  posts: "Post",
   students: "Students",
   university: "University",
  };

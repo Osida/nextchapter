@@ -3,6 +3,8 @@ import { useAuth } from "../../context/AuthContext";
 import { Btn, btnColor, btnSize, Input } from "..";
 import ROUTES from "../../pages";
 import * as S from "./SignUpFormStyles";
+import { InputAdornment, TextField } from "@material-ui/core";
+import { AccountCircle } from "@material-ui/icons";
 
 export default function PasswordReset({ data }) {
   const studentEmailRef = useRef();
