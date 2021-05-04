@@ -5,6 +5,7 @@ export const signInData = {
   signUpImage: "/images/undraw_welcome_cats.svg",
   signUpImageAlt: "Sign Up",
   headerText: "Hello",
+  subHeaderText: "Sign into your account.",
   btnText: "Sign In",
   text: "Already have an account?",
   textLink: "Sign up here!",

@@ -8,8 +8,6 @@
     "@material-ui/lab": "^4.0.0-alpha.58",
     "firebase": "^8.2.10",
     "firebase-tools": "^9.6.0",
-    "formik": "^2.2.6",
-    "formik-material-ui": "^3.0.1",
     "global": "^4.4.0",
     "hamburger-react": "^2.4.0",
     "react": "^17.0.1",
@@ -21,6 +19,7 @@
     "react-scroll": "^1.8.2",
     "react-select": "^4.3.0",
     "react-sidebar-ui": "^1.2.1",
+    "react-toastify": "^7.0.4",
     "sass": "^1.32.8",
     "styled-components": "^5.2.1",
     "web-vitals": "^1.0.1"

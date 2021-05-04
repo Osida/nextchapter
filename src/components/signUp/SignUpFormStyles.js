@@ -59,7 +59,14 @@ export const Header = styled.div`
   /* border: 2px solid yellow; */
   font-size: 36px;
   font-weight: 400;
-  margin-bottom: 43px;
+  margin-bottom: 25px;
+`;
+
+export const SubHeader = styled.div`
+  /* border: 2px solid yellow; */
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 15px;
 `;
 
 export const Row1 = styled.div`
