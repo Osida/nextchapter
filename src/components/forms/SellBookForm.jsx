@@ -153,7 +153,7 @@ export const SellBookForm = () => {
       .add({ ...inputs })
       .then(console.log('Added to the database.'))
       .catch(function (err) {
-        console.log("Error = ", err);
+        console.log('Error = ', err);
         document.getElementById('warning').innerHTML =
           'Sorry Unable to Post Book, Try Back Later';
         document.getElementById('warning').style.background = '#9c6868';
@@ -168,7 +168,7 @@ export const SellBookForm = () => {
       .add({ ...inputs })
       .then(console.log('Added to books collection database'))
       .catch(function (err) {
-        console.log("Error = ", err);
+        console.log('Error = ', err);
         document.getElementById('warning').innerHTML =
           'Sorry Unable to Post Book, Try Back Later';
         document.getElementById('warning').style.background = '#9c6868';
@@ -187,11 +187,7 @@ export const SellBookForm = () => {
 
     setTimeout(() => {
       setWarn((prewarn) => (prewarn = !prewarn));
-      clearFields();
     }, 4000);
-    setTimeout(() => {
-      clearFields();
-    }, 0);
   }
 
   const clearFields = () => {
