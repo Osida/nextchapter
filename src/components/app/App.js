@@ -7,6 +7,7 @@ import { useStateValue } from "../../context/StateProvider";
 import { auth, db, collections } from "../../database";
 import ROUTES, * as PAGE from "../../pages";
 import { styleTheme } from "../../styles";
+import PrivateRoute from "../../PrivateRoute";
 
 export default function App() {
   const [{ user, student }, dispatch] = useStateValue();
@@ -58,11 +59,15 @@ export default function App() {
               path={ROUTES.RESET_PASSWORD}
               component={PAGE.ResetPassword}
             />
-            <Route exact path={ROUTES.PROFILE} component={PAGE.Profile} />
-            <Route exact path={ROUTES.SELL} component={PAGE.Sell} />
-            <Route exact path={ROUTES.BUY} component={PAGE.Buy} />
+            <PrivateRoute
+              exact
+              path={ROUTES.PROFILE}
+              component={PAGE.Profile}
+            />
+            <PrivateRoute exact path={ROUTES.SELL} component={PAGE.Sell} />
+            <PrivateRoute exact path={ROUTES.BUY} component={PAGE.Buy} />
             <Route exact path={ROUTES.HOME} component={PAGE.Home} />
-            <Route exact path="/test" component={PAGE.Test} />
+            {/* <Route exact path="/test" component={PAGE.Test} /> */}
             <Route component={NotFound} />
             {/* <PrivateRoute exact path="/test" component={Test} /> */}
           </Switch>

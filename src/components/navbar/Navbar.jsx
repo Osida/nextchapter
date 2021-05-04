@@ -32,8 +32,11 @@ export default function Navbar_({ linkR, linkS }) {
 
       try {
         await signOut();
-        history.push(ROUTES.HOME);
+        history.push(ROUTES.SIGN_IN);
       } catch (error) {
+        var errorMessage = error.message;
+        console.log("Error signing out = ", error);
+        alert(errorMessage);
         setError(error);
       }
     }
@@ -73,9 +76,9 @@ export default function Navbar_({ linkR, linkS }) {
             </LinkBtn>
           </S.NavbarBtnWrap>
 
-          <S.HamburgerWrap>
+          {/* <S.HamburgerWrap>
             <Hamburger toggled={isOpen} toggle={setOpen} size={25} />
-          </S.HamburgerWrap>
+          </S.HamburgerWrap> */}
         </S.NavbarContent>
       </Container>
     </S.Navbar>

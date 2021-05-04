@@ -27,13 +27,13 @@ export function AuthProvider({ children }) {
           });
       })
       .then(() => {
-        console.log("1 student doc added");
+        console.log("1 student added");
         return true;
       })
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log("signup error = ", error);
+        console.log("Signup error = ", error);
         alert(errorMessage);
       });
   }
@@ -60,11 +60,11 @@ export function AuthProvider({ children }) {
   }
 
   function resetPassword(email) {
-    console.log("email >>> ", email);
+    // console.log("email >>> ", email);
     return auth
       .sendPasswordResetEmail(email)
       .then(() => {
-        console.log("reset password email sent");
+        console.log("Reset password email sent.");
         return true;
       })
       .catch((error) => {
@@ -80,8 +80,8 @@ export function AuthProvider({ children }) {
     return currentUser
       .updateEmail(email)
       .then((x) => {
-        console.log("x = ", x);
-        console.log("updated email= ", x);
+        // console.log("x = ", x); undefined
+        console.log("Updated email.");
         return true;
       })
       .catch((error) => {
@@ -98,15 +98,15 @@ export function AuthProvider({ children }) {
     return currentUser
       .updatePassword(password)
       .then((x) => {
-        console.log("x = ", x);
-        console.log("updated password = ", x);
+        // console.log("x = ", x); undefined
+        console.log("Updated password.");
         return true;
       })
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
         console.log("catch error = ", error);
-        console.log("catch errorMessage = ", errorMessage);
+        // console.log("catch errorMessage = ", errorMessage);
         alert(errorMessage);
         return false;
       });

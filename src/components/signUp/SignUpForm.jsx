@@ -70,13 +70,13 @@ export default function SignUpForm({ data }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("handleSubmit");
+    // console.log("handleSubmit");
 
     if (validate2()) {
       try {
         setError("");
         setLoading(true);
-        console.log("values = ", values);
+        // console.log("values = ", values);
         let username = values?.email.substring(0, values?.email.indexOf("@"));
         // console.log("username = ", username);
         let newUser = {
@@ -94,7 +94,7 @@ export default function SignUpForm({ data }) {
       } catch (error) {
         var errorMessage = error.message;
         setError("Failed to create a account = ", errorMessage);
-        console.log("error = ", error);
+        console.log("Failed to create a account = ", error);
         alert(errorMessage);
       }
       setLoading(false);
@@ -104,7 +104,7 @@ export default function SignUpForm({ data }) {
   const validate2 = (fieldValues = values) => {
     let temp = { ...errors };
     // console.log("temp = ", temp);
-    console.log("fieldValues = ", fieldValues);
+    // console.log("fieldValues = ", fieldValues);
     var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
     if ("firstName" in fieldValues)

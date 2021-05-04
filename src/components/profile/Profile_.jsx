@@ -68,11 +68,12 @@ export default function Profile_() {
   const [update, setUpdate] = useState({});
   const [posts, setPosts] = useState([]);
   const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     let unsub2;
     if (!student) {
-      console.log("! student = ");
+      // console.log("! student = ");
       unsub2 = db
         .collection(collections.students)
         .doc(user?.uid)
@@ -88,7 +89,7 @@ export default function Profile_() {
   }, []);
 
   useEffect(() => {
-    console.log("if student posts");
+    // console.log("if student posts");
     let unsub = db
       .collection(collections.posts)
       .where("bookPostedById", "==", student?.uid)
@@ -103,7 +104,7 @@ export default function Profile_() {
   }, []);
 
   useEffect(() => {
-    console.log("if student books");
+    // console.log("if student books");
     let unsub = db
       .collection(collections.books)
       .where("bookPostedById", "==", student?.uid)
@@ -126,9 +127,9 @@ export default function Profile_() {
       // console.log(`${key}: ${value}`);
 
       if (!(values[key] === student[key] || values[key] === "")) {
-        console.log(
-          `values[key] === student[key] >> ${values[key]} === ${student[key]}`
-        );
+        // console.log(
+        //   `values[key] === student[key] >> ${values[key]} === ${student[key]}`
+        // );
         // console.log(`update ${key}`);
         let newObj = { [key]: values[key] };
         // console.log("newObj = ", newObj);
@@ -140,7 +141,7 @@ export default function Profile_() {
   const validate2 = (fieldValues = values) => {
     let temp = { ...errors };
     // console.log("temp = ", temp);
-    console.log("fieldValues = ", fieldValues);
+    // console.log("fieldValues = ", fieldValues);
     var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
     if ("email" in fieldValues)
@@ -185,21 +186,48 @@ export default function Profile_() {
   let updateDoc = false;
 
   const handleUpdatePassword = async (password) => {
-    console.log("updating password profile");
+    // console.log("updating password profile");
     try {
+      setLoading(true);
       updateDoc = await updatePassword(password);
     } catch (error) {
-      console.log("Updating password error ", error.message);
+      var errorMessage = error.message;
+      console.log("Updating password error ", error);
+      alert(errorMessage);
     }
+    setLoading(false);
   };
 
   const handleUpdateEmail = async (email) => {
     console.log("updating email profile");
     try {
+      setLoading(true);
       updateDoc = await updateEmail(email);
     } catch (error) {
-      console.log("Updating email error ", error.message);
+      var errorMessage = error.message;
+      console.log("Updating email error ", error);
+      alert(errorMessage);
     }
+    setLoading(false);
+  };
+
+  const updateStudent = () => {
+    db.collection(collections.students)
+      .doc(student?.uid)
+      .update({
+        ...update,
+      })
+      .then(() => {
+        // console.log("Doc update uid = ", student?.uid);
+        console.log("Doc has been updated");
+        setValues(initialFValues2);
+      })
+      .catch((error) => {
+        var errorCode = error?.code;
+        var errorMessage = error.message;
+        console.error("Error updating document = ", error);
+        alert(errorMessage);
+      });
   };
 
   const handleSubmit = (e) => {
@@ -215,35 +243,31 @@ export default function Profile_() {
 
       if (!isEmptyObj(update)) {
         try {
-          if (update?.password) {
-            handleUpdatePassword(update?.password);
-          }
+          setLoading(true);
+          if (
+            update?.password ||
+            update?.email ||
+            (update?.email && update?.password)
+          ) {
+            if (update?.password) {
+              handleUpdatePassword(update?.password);
+            }
 
-          if (update?.email) {
-            handleUpdateEmail(update?.email);
-          }
+            if (update?.email) {
+              handleUpdateEmail(update?.email);
+            }
 
-          if (updateDoc) {
-            console.log("try update, >> ", update);
-            console.log("updateDoc, >> ", updateDoc);
-
-            db.collection(collections.students)
-              .doc(student?.uid)
-              .update({
-                ...update,
-              })
-              .then(() => {
-                console.log("Doc update uid = ", student?.uid);
-                setValues(initialFValues2);
-              })
-              .catch((error) => {
-                var errorCode = error?.code;
-                var errorMessage = error.message;
-                console.error("Error updating document: ", error);
-                alert(errorMessage);
-              });
+            if (updateDoc) {
+              // console.log("try update, >> ", update);
+              // console.log("updateDoc, >> ", updateDoc);
+              updateStudent();
+              alert("Your information has been updated.");
+            } else {
+              console.log("Re-login to perform updates on email or password.");
+            }
           } else {
-            console.log("No update doc");
+            console.log("Update only in students.");
+            updateStudent();
           }
         } catch (error) {
           var errorCode = error?.code;
@@ -252,8 +276,10 @@ export default function Profile_() {
           alert(errorMessage);
         }
       }
+      setLoading(false);
       setValues(initialFValues2);
     } else {
+      alert("No updates to be performed. Either the inputted value(s) are not new, or all fields are blank.");
       console.log("No updates");
       // console.log("update = ", update);
     }
@@ -277,16 +303,18 @@ export default function Profile_() {
       postsRef
         .delete()
         .then(() => {
-          console.log("Document successfully from posts deleted!");
+          console.log("Document successfully deleted from posts!");
         })
         .catch((error) => {
+          var errorMessage = error.message;
           console.error("Error removing document from posts: ", error);
+          alert(errorMessage);
         });
       // console.log("post = ", post)
       // console.log("postsRef = ", postsRef)
 
       if (booksUID) {
-        console.log("booksUID");
+        // console.log("booksUID");
         let booksRef = db.collection(collections.books).doc(booksUID);
         booksRef
           .delete()
@@ -295,10 +323,12 @@ export default function Profile_() {
           })
           .catch((error) => {
             console.error("Error removing document from books: ", error);
+            var errorMessage = error.message;
+            alert(errorMessage);
           });
       }
     } catch (error) {
-      console.log("error = ", error);
+      console.log("booksUID error = ", error);
     }
   };
 

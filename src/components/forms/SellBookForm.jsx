@@ -36,9 +36,9 @@ export const SellBookForm = () => {
   const bookImg = inputs.bookImg;
 
   useEffect(() => {
-    console.log('useEffect ran on sell / trade page');
+    // console.log('useEffect ran on sell / trade page');
     getDepartments();
-    console.log(user);
+    // console.log(user);
     clearFields();
   }, []);
 
@@ -49,7 +49,7 @@ export const SellBookForm = () => {
     data.docs.forEach((dept) => {
       depts.push(dept.data());
     });
-    console.log('just fetched data from FireBase');
+    console.log('Just fetched data from Firebase.');
     addDepartmentsToDataLayer(depts);
     setCourses(depts[0].courses);
     setInput((prevState) => {
@@ -151,9 +151,9 @@ export const SellBookForm = () => {
   function sellPageDB() {
     db.collection(collections.posts)
       .add({ ...inputs })
-      .then(console.log('added to the database'))
+      .then(console.log('Added to the database.'))
       .catch(function (err) {
-        console.log(err);
+        console.log("Error = ", err);
         document.getElementById('warning').innerHTML =
           'Sorry Unable to Post Book, Try Back Later';
         document.getElementById('warning').style.background = '#9c6868';
@@ -166,9 +166,9 @@ export const SellBookForm = () => {
       });
     db.collection(collections.books)
       .add({ ...inputs })
-      .then(console.log('added to books collection database'))
+      .then(console.log('Added to books collection database'))
       .catch(function (err) {
-        console.log(err);
+        console.log("Error = ", err);
         document.getElementById('warning').innerHTML =
           'Sorry Unable to Post Book, Try Back Later';
         document.getElementById('warning').style.background = '#9c6868';
@@ -216,11 +216,11 @@ export const SellBookForm = () => {
       bookImg &&
       (price >= 0 || type === 'trade')
     ) {
-      console.log('filled out');
+      console.log('Filled out.');
 
       return sellPageDB();
     }
-    console.log('failed');
+    console.log('Failed.');
 
     if (price < 0) {
       document.getElementById('warning').style.background = '#9c6868';

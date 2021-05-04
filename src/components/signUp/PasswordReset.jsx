@@ -57,7 +57,7 @@ export default function PasswordReset({ data }) {
 
     if (validate2()) {
       try {
-        console.log("in reset try");
+        // console.log("in reset try");
         setMessage("");
         setError("");
         setLoading(true);
@@ -78,7 +78,7 @@ export default function PasswordReset({ data }) {
   const validate2 = (fieldValues = values) => {
     let temp = { ...errors };
     // console.log("temp = ", temp);
-    console.log("fieldValues = ", fieldValues);
+    // console.log("fieldValues = ", fieldValues);
 
     if ("email" in fieldValues)
       temp.email =

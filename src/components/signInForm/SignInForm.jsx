@@ -83,7 +83,7 @@ export default function SignIn({ data }) {
   const validate2 = (fieldValues = values) => {
     let temp = { ...errors };
     // console.log("temp = ", temp);
-    console.log("fieldValues = ", fieldValues);
+    // console.log("fieldValues = ", fieldValues);
     var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
     if ("email" in fieldValues)
