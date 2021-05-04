@@ -7,7 +7,7 @@ export const signInData = {
   headerText: "Hello",
   subHeaderText: "Sign into your account.",
   btnText: "Sign In",
-  text: "Already have an account?",
+  text: "Don't have an account?",
   textLink: "Sign up here!",
   resetPassword: "Forgot password?",
   typeText: "text",
