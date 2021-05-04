@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# using the website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## introduction
+    next chapter is a place to help you trade books locally
+## home or /
+    the main landing page when you navigate to nextchapter
 
-In the project directory, you can run:
 
-### `yarn start`
+## the header
+    the part that appears on every page you go
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### not signed in
+through the header you may:
+ a - navigate to the about page to learn more about the site
+ b - link down to the access preview below
+ c - link down to the message preview below
+ d - navigate to the sign in page to login
+ e - navigate to the sign up page to create an account
+ f - navigate back to home through the nextchapter link
+the pages listed here are the only ones you can access without being signed in
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### singed in
+through the header, you may:
+ a - navigate to the about page to learn more about the site
+ b - navigate to your user profile
+ c - navigate to the sell page to create a listing
+ d - navigate to the buy books page to search for books
+ e - navigate to the sing up page to create an account
+ f - navigate back home through the next chapter link
 
-### `yarn test`
+## profile
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ through the profile page you may
+  a - change any account information
+  b - delete any postings you may have
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ ## sell books
+     through here you may make a posting to sell a book
+     enter the appropriate information
+  ## buy books
+    trhough this page you can select your department, then class, then search for the books for each class
+    once you click on a book you can see more detailed information about it as well as the sellers contact email
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## sign in
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    enter your email and your password to log in
+    if you forgot your password click on "forgot password"
+    if you don't have an account click on "sign up"
 
-### `yarn eject`
+ ## signup
+    enter your info in all fields to create an account
+    if you already have an account navigate to the sign in page through "sign in here"
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+ ## forgot password
+    enter your email address and we'll send you a link so you can reset your password
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
