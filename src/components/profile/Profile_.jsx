@@ -2,6 +2,7 @@ import { Grid, makeStyles, Paper } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { Btn } from "..";
 import Controls from "../../components/controls/Controls";
+import { useAuth } from "../../context/AuthContext";
 import { actionTypes } from "../../context/reducer";
 import { useStateValue } from "../../context/StateProvider";
 import { collections, db } from "../../database";
@@ -62,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Profile_() {
   const classes = useStyles();
+  const { updateEmail, updatePassword } = useAuth();
   const [{ student, user }, dispatch] = useStateValue();
   const [update, setUpdate] = useState({});
   const [posts, setPosts] = useState([]);
@@ -124,9 +126,12 @@ export default function Profile_() {
       // console.log(`${key}: ${value}`);
 
       if (!(values[key] === student[key] || values[key] === "")) {
-        console.log(`update ${key}`);
+        console.log(
+          `values[key] === student[key] >> ${values[key]} === ${student[key]}`
+        );
+        // console.log(`update ${key}`);
         let newObj = { [key]: values[key] };
-        console.log("newObj = ", newObj);
+        // console.log("newObj = ", newObj);
         setUpdate((prevState) => ({ ...prevState, ...newObj }));
       }
     }
@@ -136,10 +141,11 @@ export default function Profile_() {
     let temp = { ...errors };
     // console.log("temp = ", temp);
     console.log("fieldValues = ", fieldValues);
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
     if ("email" in fieldValues)
       temp.email =
-        /$^|.+@.+..+/.test(fieldValues.email) || fieldValues.email === ""
+        emailPattern.test(fieldValues.email) || fieldValues.email === ""
           ? ""
           : "Email is not valid.";
     if ("phoneNumber" in fieldValues)
@@ -176,6 +182,25 @@ export default function Profile_() {
     errors,
     student
   );
+  let updateDoc = false;
+
+  const handleUpdatePassword = async (password) => {
+    console.log("updating password profile");
+    try {
+      updateDoc = await updatePassword(password);
+    } catch (error) {
+      console.log("Updating password error ", error.message);
+    }
+  };
+
+  const handleUpdateEmail = async (email) => {
+    console.log("updating email profile");
+    try {
+      updateDoc = await updateEmail(email);
+    } catch (error) {
+      console.log("Updating email error ", error.message);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -190,24 +215,41 @@ export default function Profile_() {
 
       if (!isEmptyObj(update)) {
         try {
-          console.log("try update, >> ", update);
+          if (update?.password) {
+            handleUpdatePassword(update?.password);
+          }
 
-          db.collection(collections.students)
-            .doc(student?.uid)
-            .update({
-              ...update,
-            })
-            .then(() => {
-              console.log("Doc update uid = ", student?.uid);
-            })
-            .then(() => {
-              setValues(initialFValues2);
-            })
-            .catch((error) => {
-              console.error("Error updating document: ", error);
-            });
+          if (update?.email) {
+            handleUpdateEmail(update?.email);
+          }
+
+          if (updateDoc) {
+            console.log("try update, >> ", update);
+            console.log("updateDoc, >> ", updateDoc);
+
+            db.collection(collections.students)
+              .doc(student?.uid)
+              .update({
+                ...update,
+              })
+              .then(() => {
+                console.log("Doc update uid = ", student?.uid);
+                setValues(initialFValues2);
+              })
+              .catch((error) => {
+                var errorCode = error?.code;
+                var errorMessage = error.message;
+                console.error("Error updating document: ", error);
+                alert(errorMessage);
+              });
+          } else {
+            console.log("No update doc");
+          }
         } catch (error) {
-          console.log("error = ", error);
+          var errorCode = error?.code;
+          var errorMessage = error.message;
+          console.log("error handleSubmit = ", error);
+          alert(errorMessage);
         }
       }
       setValues(initialFValues2);

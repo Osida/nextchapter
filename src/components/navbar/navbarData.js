@@ -54,6 +54,10 @@ export const about_signedOut = {
 export const signedIn = {
   linkR: [
     {
+      name: "About",
+      to: ROUTES.ABOUT,
+    },
+    {
       name: "Profile",
       to: ROUTES.PROFILE,
     },
