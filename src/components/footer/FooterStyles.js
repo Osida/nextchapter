@@ -35,11 +35,7 @@ export const FooterMenu = styled(Navbar.NavbarMenu)`
 
 export const FooterItem = styled(Navbar.NavbarItem)``;
 
-export const FooterLinkS = styled(LinkS)`
-  /* text-decoration: none;
-  font-size: 0.875rem;
-  cursor: pointer; */
-`;
+export const FooterLinkS = styled(LinkS)``;
 
 export const FooterLinkR = styled(LinkR)``;
 

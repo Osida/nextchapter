@@ -12,6 +12,10 @@ const footerLinkSProps = {
   offset: -80,
 };
 
+const srcollTop = () => {
+  window.scrollTo(0, 0);
+};
+
 export default function Footer({ linkR, linkS }) {
   return (
     <S.Footer>
@@ -23,15 +27,17 @@ export default function Footer({ linkR, linkS }) {
             <S.FooterMenu>
               {Object.values(linkR).map((link, index) => (
                 <S.FooterItem key={index}>
-                  <S.FooterLinkR to={link.to}>{link.name}</S.FooterLinkR>
+                  <S.FooterLinkR to={link.to} onClick={() => srcollTop}>
+                    {link.name}
+                  </S.FooterLinkR>
                 </S.FooterItem>
               ))}
 
               {Object.values(linkS).map((link, index) => (
                 <S.FooterItem key={index}>
-                  <S.FooterLinkR to={link.to} {...footerLinkSProps}>
+                  <S.FooterLinkS to={link.to} {...footerLinkSProps}>
                     {link.name}
-                  </S.FooterLinkR>
+                  </S.FooterLinkS>
                 </S.FooterItem>
               ))}
             </S.FooterMenu>
